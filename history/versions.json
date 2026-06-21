@@ -70,5 +70,17 @@
   "verseCount": 95,
   "changeCount": 0,
   "baseline": true
+ },
+ {
+  "book": "1timotheus",
+  "id": 1,
+  "label": "Erstübersetzung",
+  "model": "Claude Opus 4.8",
+  "baseText": "Tischendorf, Novum Testamentum Graece, 8. Ausgabe",
+  "source": "KI-Pipeline: Übersetzen → adversariale Prüfung → Korrektur",
+  "timestamp": "2026-06-21T22:55:25.938Z",
+  "verseCount": 113,
+  "changeCount": 0,
+  "baseline": true
  }
 ]
