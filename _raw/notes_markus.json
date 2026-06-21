@@ -1,0 +1,30 @@
+{
+  "1:1": {
+    "type": "variante",
+    "text": "Die Wendung „Sohn Gottes\" fehlt im Tischendorf-Text (u. a. Codex Sinaiticus) und ist hier nicht übersetzt. Zahlreiche andere Handschriften überliefern sie: „… des Evangeliums Jesu Christi, des Sohnes Gottes.\""
+  },
+  "7:16": {
+    "type": "ausgelassen",
+    "text": "Vers 16 („Wer Ohren hat zu hören, der höre!\") fehlt in den ältesten Handschriften (Sinaiticus, Vaticanus) und wird im Tischendorf-Text ausgelassen — vermutlich ein späterer Zusatz."
+  },
+  "9:44": {
+    "type": "ausgelassen",
+    "text": "Vers 44 („wo ihr Wurm nicht stirbt und das Feuer nicht erlischt\") fehlt in den ältesten Handschriften; es ist eine spätere Wiederholung von Vers 48."
+  },
+  "9:46": {
+    "type": "ausgelassen",
+    "text": "Vers 46 (gleiche Wendung wie V. 48) fehlt in den ältesten Handschriften; spätere Wiederholung von Vers 48."
+  },
+  "11:26": {
+    "type": "ausgelassen",
+    "text": "Vers 26 („Wenn ihr aber nicht vergebt, so wird euch euer Vater im Himmel eure Verfehlungen nicht vergeben\") fehlt in den ältesten Handschriften; aus Matthäus 6,15 angeglichen."
+  },
+  "15:28": {
+    "type": "ausgelassen",
+    "text": "Vers 28 („Da wurde die Schrift erfüllt, die sagt: Er ist zu den Gesetzlosen gerechnet worden\") fehlt in den ältesten Handschriften; aus Lukas 22,37 übernommen."
+  },
+  "16:9": {
+    "type": "schluss",
+    "text": "Markus 16,9–20, der sogenannte „längere Markusschluss\", fehlt in den ältesten Handschriften (Sinaiticus, Vaticanus). Viele Fachleute halten ihn für einen späteren Zusatz; traditionell gehört er zum Text und ist hier vollständig übersetzt."
+  }
+}

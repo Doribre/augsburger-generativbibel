@@ -1,0 +1,54 @@
+{
+ "1:7:l3": {
+  "reason": "Vers endete mit einem geraden ASCII-Anführungszeichen (\") statt eines deutschen Zeichens; zudem wird die wörtliche Rede falsch geschlossen. Die Rede läuft über V7-V8 (V8 l3 schließt mit „). Daher in V7 l3 das stehende Schlusszeichen entfernen, damit das Zitat offen in V8 übergeht. Verstoß gegen die formalen Regeln (deutsche Anführungszeichen).",
+  "severity": "mittel"
+ },
+ "1:8:l2": {
+  "reason": "V8 l2 endete mit einem schließenden Anführungszeichen „, hatte aber kein öffnendes. Da V7 l2 sein Zitat bereits selbst schließt, ist das Schlusszeichen in V8 verwaist. Öffnendes Anführungszeichen ergänzt, damit das Zitatpaar ausgeglichen ist.",
+  "severity": "niedrig"
+ },
+ "2:17:l3": {
+  "reason": "Der griechische Text sagt schlicht δικαίους („Gerechte\"). Die bisherige l3-Fassung „die, die sich für gerecht halten\" fügt eine Deutung hinzu (sie seien nur scheinbar/selbst-eingebildet gerecht), die im Urtext nicht steht. Laut Stilspez. darf l3 verdeutlichen, aber nichts inhaltlich Fremdes/Theologisches einfügen. Korrektur bleibt im Alltagsregister, ohne die ironische Zusatzdeutung.",
+  "severity": "mittel"
+ },
+ "4:40:l2": {
+  "reason": "Der Tischendorf-Text liest πῶς οὐκ ἔχετε πίστιν (nicht οὔπω). Das eingefügte „noch\" importiert eine zeitliche Nuance („noch nicht\"), die in dieser Lesart nicht steht; auf der Mittelstufe ist keine inhaltliche Hinzufügung zulässig.",
+  "severity": "niedrig"
+ },
+ "4:40:l3": {
+  "reason": "„immer noch\" fügt die Bedeutung von οὔπω hinzu, die der Tischendorf-Text (πῶς οὐκ) nicht enthält. Treue zum Sinn verlangt, die zeitliche Steigerung wegzulassen.",
+  "severity": "niedrig"
+ },
+ "5:6:l2": {
+  "reason": "Schlusszeichen fehlt: Der l2-Satz endet ohne Punkt, während alle anderen Verse korrekt mit Satzzeichen abschließen. Inhalt/Stil unverändert, nur fehlendes Satzendzeichen ergänzt.",
+  "severity": "niedrig"
+ },
+ "7:17:l1": {
+  "reason": "Konkordanz in l1: ὄχλος wird laut Glossar in l1 durchgängig mit „Menge“ wiedergegeben (so auch V14 und V33), hier abweichend „Volk“.",
+  "severity": "niedrig"
+ },
+ "9:41:l2": {
+  "reason": "Auslassung: Das griechische ἐν ὀνόματί μου („in meinem Namen“) fehlt in l2, obwohl es ein eigenständiges Satzelement ist (l1 hat es korrekt). l2 darf nichts weglassen.",
+  "severity": "mittel"
+ },
+ "9:41:l3": {
+  "reason": "Das ganze Element ἐν ὀνόματί μου („in meinem Namen“) fehlt; auch l3 darf einen eigenständigen Sinnbestandteil nicht ersatzlos streichen.",
+  "severity": "niedrig"
+ },
+ "11:19:l1": {
+  "reason": "Deutsch-Grammatik: Fuer das iterative ὅταν + Imperfekt (ἐξεπορεύοντο) ist im heutigen Deutsch 'wenn' korrekt; 'wann es spät wurde' ist falsch (interrogativ/relativ). l2 hat hier richtig 'sooft'.",
+  "severity": "mittel"
+ },
+ "11:25:l1": {
+  "reason": "Deutsch-Grammatik: Nach 'gegen' steht der Akkusativ, also 'gegen jemanden' statt 'gegen jemand' (τινος im Griechischen, aber deutsche Rektion verlangt Akkusativ). Sonst unveraendert.",
+  "severity": "niedrig"
+ },
+ "14:31:l1": {
+  "reason": "ἐκπερισσῶς ἐλάλει = 'er redete übermäßig/überaus heftig'. Im aktuellen l1 steht 'redete überaus' ohne Bezugswort; 'überaus' als alleinstehender Intensifier nach 'redete' ist ungrammatisch/unvollständig. 'überaus heftig' gibt das Adverb wörtlich und korrekt wieder.",
+  "severity": "mittel"
+ },
+ "15:19:l3": {
+  "reason": "προσεκύνουν αὐτῷ heißt 'sie warfen sich/huldigten vor ihm nieder'. Das hinzugefügte 'taten so, als würden sie ihn verehren' fügt einen interpretierenden Gedanken (Vortäuschung) ein, der im Griechischen nicht steht; der Spott ist durch den Kontext (V20 ἐνέπαιξαν) bereits getragen. Treuer: die Handlung benennen, den Hohn knapp markieren statt 'so tun als ob'.",
+  "severity": "mittel"
+ }
+}

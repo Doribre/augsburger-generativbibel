@@ -1,0 +1,11 @@
+# Claude Code / Harness-Konfiguration (gehört nicht ins öffentliche Repo)
+.claude/
+
+# OS-Müll
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs / Temporäres
+*.log
+preview_artifact.html

@@ -1,0 +1,22 @@
+{
+  "6:13": {
+    "type": "variante",
+    "text": "Der Lobpreis am Schluss des Vaterunsers („Denn dein ist das Reich und die Kraft und die Herrlichkeit in Ewigkeit. Amen“) fehlt im Tischendorf-Text und in den ältesten Handschriften; er ist eine spätere liturgische Ergänzung."
+  },
+  "17:21": {
+    "type": "ausgelassen",
+    "text": "Vers 21 („Diese Art aber fährt nur aus durch Gebet und Fasten“) fehlt in den ältesten Handschriften (Sinaiticus, Vaticanus); aus Markus 9,29 angeglichen."
+  },
+  "18:11": {
+    "type": "ausgelassen",
+    "text": "Vers 11 („Denn der Menschensohn ist gekommen, zu retten, was verloren ist“) fehlt in den ältesten Handschriften; aus Lukas 19,10 übernommen."
+  },
+  "21:44": {
+    "type": "ausgelassen",
+    "text": "Vers 44 („Und wer auf diesen Stein fällt …“) fehlt in wichtigen frühen Handschriften und wird im Tischendorf-Text ausgelassen."
+  },
+  "23:14": {
+    "type": "ausgelassen",
+    "text": "Vers 14 („Weh euch … die ihr die Häuser der Witwen verschlingt“) fehlt in den ältesten Handschriften; aus Markus 12,40 / Lukas 20,47 angeglichen."
+  }
+}
