@@ -1,9 +1,10 @@
 'use strict';
 
+const BRAND = 'Augsburger GenerativBibel';
 const LEVELS = {
-  1: { key: 'l1', name: 'ganz nah am Urtext', hint: 'wörtlich / konkordant' },
-  2: { key: 'l2', name: 'mittlere Stufe', hint: 'genau & natürlich' },
-  3: { key: 'l3', name: 'ganz frei', hint: 'heutiges Alltagsdeutsch' },
+  1: { key: 'l1', name: 'Urtextnah', hint: 'ganz nah am Urtext · wörtlich/konkordant' },
+  2: { key: 'l2', name: 'mittel', hint: 'genau & natürlich' },
+  3: { key: 'l3', name: 'Lesefluss', hint: 'heutiges Alltagsdeutsch' },
 };
 
 const state = {
@@ -154,7 +155,7 @@ function render() {
 
   let html = '<div class="passage-head">';
   html += '<h2>' + escapeHtml(refToString(ref)) + '</h2>';
-  html += '<span class="lvl-tag">Stufe ' + state.level + ' · ' + LEVELS[state.level].name + '</span></div>';
+  html += '<span class="lvl-tag">' + BRAND + ' ' + LEVELS[state.level].name + '</span></div>';
   html += '<div class="reader">';
 
   for (let v = ref.from; v <= ref.to; v++) {
@@ -416,7 +417,7 @@ function updateQuickNav() {
 }
 function syncSliderUI() {
   const L = LEVELS[state.level];
-  $('#levelName').innerHTML = 'Stufe ' + state.level + ': <b>' + L.name + '</b> <span style="opacity:.8">(' + L.hint + ')</span>';
+  $('#levelName').innerHTML = '<b>' + BRAND + ' ' + L.name + '</b> <span style="opacity:.8">· ' + L.hint + '</span>';
   document.querySelectorAll('.slider-labels span').forEach((sp) => sp.classList.toggle('active', Number(sp.dataset.lvl) === state.level));
 }
 

@@ -109,8 +109,11 @@ function repairPrompt(ch, translation, issues) {
   );
 }
 
-const chapters = Array.from({ length: NCH }, (_, i) => i + 1);
-log('Starte Übersetzung ' + NAME + ' 1–' + NCH + ' (3 Stufen) — translate → verify → repair, je Kapitel.');
+// Wiederaufnahme-fähig: wenn args.todo gesetzt ist, werden NUR diese Kapitel
+// verarbeitet (bereits gespeicherte überspringen → keine doppelten Tokens).
+const ALL = Array.from({ length: NCH }, (_, i) => i + 1);
+const chapters = (Array.isArray(A.todo) && A.todo.length) ? [...A.todo].sort((a, b) => a - b) : ALL;
+log('Übersetze ' + NAME + ' — ' + (chapters.length === NCH ? 'alle ' + NCH + ' Kapitel' : 'Wiederaufnahme, nur Kapitel ' + chapters.join(', ')) + ' (translate → verify → repair, je Kapitel sofort gespeichert).');
 
 const results = await pipeline(
   chapters,
@@ -118,12 +121,12 @@ const results = await pipeline(
   (prev) => {
     if (!prev || !prev.translation) return null;
     return agent(verifyPrompt(prev.ch, prev.translation), { label: 'prüfen ' + PREFIX + ' ' + prev.ch, phase: 'Prüfen', schema: VERIFY_SCHEMA })
-      .then((v) => ({ ch: prev.ch, translation: prev.translation, issues: v.issues || [], overallOk: v.overallOk }));
+      .then((v) => ({ ch: prev.ch, translation: prev.translation, issues: (v && v.issues) || [], overallOk: v ? v.overallOk : true }));
   },
   (prev) => {
     if (!prev || !prev.translation) return null;
     return agent(repairPrompt(prev.ch, prev.translation, prev.issues), { label: 'korrigieren+speichern ' + PREFIX + ' ' + prev.ch, phase: 'Korrigieren', schema: SUMMARY_SCHEMA })
-      .then((s) => ({ ...s, issuesReported: prev.issues.length }));
+      .then((s) => (s ? { ...s, issuesReported: prev.issues.length } : null));
   }
 );
 

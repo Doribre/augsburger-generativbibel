@@ -1,13 +1,17 @@
-# Markus in drei Stufen
+# Augsburger GenerativBibel
 
-Eine kleine Web-App, die das **Markusevangelium** in **drei Übersetzungsstufen** anzeigt –
-mit Suchfeld für Bibelstellen und einem Schieberegler, wie nah am Urtext der Text sein soll.
+Eine Web-App, die das **Neue Testament** (zzt. die vier Evangelien) in **drei Fassungen**
+anzeigt – mit Suchfeld für Bibelstellen und einem Schieberegler, wie nah am Urtext der Text
+sein soll. Die drei Fassungen heißen:
 
-| Stufe | Schieberegler | Charakter |
+| Fassung | Schieberegler | Charakter |
 |------|----|-----------|
-| **1** | ganz links | **ganz nah am Urtext** – wörtlich/konkordant, griechische Wortstellung, historisches Präsens, Parataxe |
-| **2** | Mitte | **mittlere Stufe** – genau, aber natürliches, flüssiges Deutsch |
-| **3** | ganz rechts | **ganz frei** – heutiges Alltagsdeutsch, sehr verständlich |
+| **Augsburger GenerativBibel Urtextnah** | ganz links | ganz nah am Urtext – wörtlich/konkordant, griechische Wortstellung, historisches Präsens, Parataxe |
+| **Augsburger GenerativBibel mittel** | Mitte | genau, aber natürliches, flüssiges Deutsch |
+| **Augsburger GenerativBibel Lesefluss** | ganz rechts | heutiges Alltagsdeutsch, sehr verständlich |
+
+> **Hinweis:** Die Augsburger GenerativBibel ist **KI-erstellt (generativ)** und mehrstufig
+> gegengeprüft, aber **keine** wissenschaftlich geprüfte Bibelausgabe. Eine Lesefassung/Annäherung.
 
 ## Starten
 
@@ -96,12 +100,29 @@ Begründungen aus einem Audit lassen sich als Datei übergeben:
 
 Aktueller Stand: **v1 Erstübersetzung**, **v2 Qualitäts-Audit** (12 Korrekturen).
 
-## Erweiterung auf weitere Bücher
+## Erweiterung auf weitere Bücher (robuste Routine)
 
-Die Daten-Pipeline liegt in `_raw/`:
-1. Griechischen Text holen (`_raw/fetch_greek.mjs`, Buchnummer anpassen).
-2. Übersetzungs-Workflow (`_raw/wf_translate.js`) auf das neue Buch laufen lassen.
-3. `_raw/assemble.js` erzeugt die `data/*.json`.
+Die App ist NT-fähig: Katalog aller 27 Bücher in `data/nt_books.json`, Verfügbarkeit in
+`data/manifest.json`, ein Buch je Datei in `data/books/<id>.json`. Ein neues Buch hinzufügen:
 
-Der Reader (`js/app.js`) ist aktuell auf Markus zugeschnitten, lässt sich aber leicht
-auf mehrere Bücher erweitern.
+1. **Urtext holen:** `_raw/fetch_greek_multi.mjs` (Buch-Konfig: bolls-Nummer, prefix, Kapitel)
+   → `_raw/greek_<id>.json` + Kapiteldateien `_raw/ch/<prefix>_NN.txt`.
+2. **Übersetzen (abbruchsicher):** siehe unten.
+3. **Einbauen:** `node _raw/assemble.js <id> _raw/greek_<id>.json _raw/out_<prefix> _raw/notes_<id>.json`
+   → schreibt `data/books/<id>.json`; `node _raw/build_manifest.js` schaltet es frei.
+4. **Version protokollieren:** `node _raw/version.js commit '<metaJSON mit book/model/baseText>'`.
+5. **(Optional) Audit:** unabhängiger Prüf-Durchlauf → `version.js commit` mit reasons-Datei → v2.
+
+### Abbruchsichere Übersetzung (keine doppelten Tokens)
+Jedes fertige Kapitel wird **sofort** als `_raw/out_<prefix>/<prefix>_NN.json` gespeichert —
+bei Abbruch (Session-Limit, API-Aussetzer) bleibt alles Bisherige erhalten. Fortsetzen ohne
+Doppelarbeit:
+
+1. Fehlende Kapitel ermitteln:
+   `node _raw/book_status.js <prefix> _raw/greek_<id>.json` → Ausgabe `TODO_JSON=[…]`.
+   (Ein Kapitel gilt nur als fertig, wenn die Datei valides JSON mit vollständiger Versanzahl ist —
+   halb geschriebene/kaputte Kapitel landen automatisch wieder in der TODO-Liste.)
+2. Workflow nur für diese Kapitel starten — `args` um `todo` ergänzen, z. B.:
+   `{ "prefix":"joh", "name":"Johannes", "chapters":21, "todo":[11,12,13,16,18,19,20,21] }`
+   (Ohne `todo` werden alle Kapitel verarbeitet.)
+3. Schritt 1–2 wiederholen, bis `TODO_JSON=[]` — dann assemblen + committen.
