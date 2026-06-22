@@ -106,5 +106,17 @@
   "verseCount": 432,
   "changeCount": 0,
   "baseline": true
+ },
+ {
+  "book": "offenbarung",
+  "id": 1,
+  "label": "Erstübersetzung",
+  "model": "Claude Opus 4.8",
+  "baseText": "Tischendorf, Novum Testamentum Graece, 8. Ausgabe",
+  "source": "KI-Pipeline: Übersetzen → adversariale Prüfung → Korrektur",
+  "timestamp": "2026-06-22T11:15:46.798Z",
+  "verseCount": 405,
+  "changeCount": 0,
+  "baseline": true
  }
 ]
