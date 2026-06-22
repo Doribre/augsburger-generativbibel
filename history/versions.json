@@ -82,5 +82,17 @@
   "verseCount": 113,
   "changeCount": 0,
   "baseline": true
+ },
+ {
+  "book": "apostelgeschichte",
+  "id": 1,
+  "label": "Erstübersetzung",
+  "model": "Claude Opus 4.8",
+  "baseText": "Tischendorf, Novum Testamentum Graece, 8. Ausgabe",
+  "source": "KI-Pipeline: Übersetzen → adversariale Prüfung → Korrektur",
+  "timestamp": "2026-06-22T06:01:35.966Z",
+  "verseCount": 1003,
+  "changeCount": 0,
+  "baseline": true
  }
 ]
