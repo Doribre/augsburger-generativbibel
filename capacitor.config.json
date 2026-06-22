@@ -1,0 +1,8 @@
+{
+  "appId": "de.bibeltv.generativbibel",
+  "appName": "Augsburger GenerativBibel",
+  "webDir": "www",
+  "android": {
+    "backgroundColor": "#f5efe6"
+  }
+}

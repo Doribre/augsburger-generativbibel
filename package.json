@@ -1,9 +1,14 @@
 {
   "name": "augsburger-generativbibel",
   "version": "1.0.0",
-  "description": "Augsburger GenerativBibel – Neues Testament in drei Fassungen (Urtextnah · mittel · Lesefluss). KI-erstellte Lesefassung aus dem Tischendorf-Griechischen, mit eingeblendetem Urtext, Strong-Lexikon und vollständiger Versions- & Änderungshistorie (Modell + Grundtext + Zeitpunkt).",
+  "description": "Augsburger GenerativBibel – Neues Testament in drei Fassungen (Urtextnah · mittel · Lesefluss). KI-erstellte Lesefassung aus dem Tischendorf-Griechischen, mit eingeblendetem Urtext, Strong-Lexikon und vollständiger Versions- & Änderungshistorie. Web-App (PWA) + native Android-App (Capacitor) mit offline eingebetteten Bibeltexten.",
   "private": true,
   "scripts": {
     "start": "node serve.js"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.1.2",
+    "@capacitor/core": "^6.1.2",
+    "@capacitor/android": "^6.1.2"
   }
 }

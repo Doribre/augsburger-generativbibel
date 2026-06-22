@@ -9,3 +9,10 @@ desktop.ini
 # Logs / Temporäres
 *.log
 preview_artifact.html
+
+# Build-Artefakte (werden in der CI erzeugt, nicht eingecheckt)
+node_modules/
+www/
+android/
+resources/
+.gradle/

@@ -1,0 +1,66 @@
+name: Android APK bauen
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code holen
+        uses: actions/checkout@v4
+
+      - name: Node einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Java (JDK 17) einrichten
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Android-SDK einrichten
+        uses: android-actions/setup-android@v3
+
+      - name: SDK-Pakete sicherstellen
+        run: yes | sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0" || true
+
+      - name: Web-Assets nach www/ kopieren (Bibeltexte werden mit eingebettet)
+        run: |
+          rm -rf www && mkdir www
+          cp -r index.html css js data icon.svg manifest.webmanifest sw.js www/
+
+      - name: Capacitor installieren
+        run: npm install
+
+      - name: Natives Android-Projekt erzeugen
+        run: npx cap add android
+
+      - name: App-Icons erzeugen (optional, nicht blockierend)
+        continue-on-error: true
+        run: |
+          sudo apt-get update && sudo apt-get install -y librsvg2-bin
+          mkdir -p resources
+          rsvg-convert -w 1024 -h 1024 icon.svg > resources/icon.png
+          npm install --no-save @capacitor/assets
+          npx capacitor-assets generate --android
+
+      - name: Web-Assets ins Android-Projekt synchronisieren
+        run: npx cap sync android
+
+      - name: Debug-APK bauen
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon --stacktrace
+
+      - name: APK als Download bereitstellen
+        uses: actions/upload-artifact@v4
+        with:
+          name: AugsburgerGenerativBibel-debug-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
