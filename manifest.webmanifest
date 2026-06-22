@@ -1,0 +1,17 @@
+{
+  "name": "Augsburger GenerativBibel",
+  "short_name": "GenerativBibel",
+  "description": "Neues Testament in drei Fassungen: Urtextnah · mittel · Lesefluss. KI-Lesefassung aus dem Tischendorf-Griechischen.",
+  "lang": "de",
+  "dir": "ltr",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f5efe6",
+  "theme_color": "#8a5a2b",
+  "categories": ["books", "education", "lifestyle"],
+  "icons": [
+    { "src": "icon.svg", "sizes": "192x192 512x512 any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Augsburger GenerativBibel">
+  <rect width="512" height="512" rx="104" fill="#8a5a2b"/>
+  <rect x="86" y="120" width="340" height="272" rx="14" fill="#fffdf8" opacity="0.10"/>
+  <text x="256" y="356" font-size="300" text-anchor="middle" fill="#fffdf8" font-family="Georgia, 'Times New Roman', serif">&#945;</text>
+</svg>
