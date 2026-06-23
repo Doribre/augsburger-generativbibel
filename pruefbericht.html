@@ -6,12 +6,11 @@
 <title>Prüfbericht · Augsburger GenerativBibel</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%238a5a2b'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23fffdf8' font-family='Georgia,serif'%3E%CE%B1%3C/text%3E%3C/svg%3E" />
 <link rel="stylesheet" href="css/style.css" />
-<script>(function(){var t=localStorage.getItem('mk_theme');if(t)document.documentElement.setAttribute('data-theme',t);else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)document.documentElement.setAttribute('data-theme','dark');})();</script>
 <style>
   .report{max-width:820px;margin:0 auto;padding:18px 16px 64px;line-height:1.6;color:var(--ink);}
   .report .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px;}
   .report a.back{display:inline-block;border:1px solid var(--line);background:var(--panel);color:var(--ink);
-    border-radius:8px;padding:6px 12px;text-decoration:none;font-size:.9rem;}
+    border-radius:8px;padding:6px 12px;text-decoration:none;font-size:.9rem;cursor:pointer;}
   .report a.back:hover{border-color:var(--accent-soft);}
   .report h1{font-size:1.5rem;margin:.6em 0 .3em;}
   .report h2{font-size:1.2rem;margin:1.4em 0 .4em;border-bottom:1px solid var(--line);padding-bottom:.2em;color:var(--accent);}
@@ -27,14 +26,14 @@
   .report table{border-collapse:collapse;width:100%;font-size:.9rem;}
   .report th,.report td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top;}
   .report th{background:var(--note-bg);}
-  .report a{color:var(--accent);}
-</style>
+  .report a{color:var(--accent);}</style>
+<script>(function(){try{var t=localStorage.getItem('mk_theme');if(t)document.documentElement.setAttribute('data-theme',t);else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
 </head>
 <body>
 <main class="report">
   <div class="topbar">
     <a class="back" href="./">‹ Zurück zur GenerativBibel</a>
-    <button class="back" onclick="(function(){var c=document.documentElement,n=c.getAttribute('data-theme')==='dark'?'light':'dark';c.setAttribute('data-theme',n);localStorage.setItem('mk_theme',n);})()">◐ Ansicht</button>
+    <button class="back" onclick="(function(){var c=document.documentElement,n=c.getAttribute('data-theme')==='dark'?'light':'dark';c.setAttribute('data-theme',n);try{localStorage.setItem('mk_theme',n);}catch(e){}})()">◐ Ansicht</button>
   </div>
 <h1>Prüfbericht: GenerativBibel Römerbrief (Röm 1–16)</h1>
 <p><strong>Gegenstand:</strong> Augsburger GenerativBibel, 3 Fassungen (Urtextnah / mittel / Lesefluss)</p>
