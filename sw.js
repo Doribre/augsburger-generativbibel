@@ -1,9 +1,9 @@
 // Service Worker — macht die Augsburger GenerativBibel offline-fähig.
 // Strategie: App-Hülle + Kerndaten beim Install vorab cachen; Buch-Dateien
 // werden bei Erstaufruf zur Laufzeit gecacht (cache-first → danach offline).
-const CACHE = 'agb-v1';
+const CACHE = 'agb-v2';
 const CORE = [
-  './', './index.html', './css/style.css', './js/app.js',
+  './', './index.html', './css/style.css', './js/app.js', './pruefbericht.html',
   './manifest.webmanifest', './icon.svg',
   './data/nt_books.json', './data/manifest.json', './data/history.json', './data/lexicon.json'
 ];
