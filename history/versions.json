@@ -166,5 +166,17 @@
   "verseCount": 149,
   "changeCount": 0,
   "baseline": true
+ },
+ {
+  "book": "epheser",
+  "id": 1,
+  "label": "Erstübersetzung",
+  "model": "Claude Opus 4.8",
+  "baseText": "Tischendorf, Novum Testamentum Graece, 8. Ausgabe",
+  "source": "KI-Pipeline: Übersetzen → adversariale Prüfung → Korrektur",
+  "timestamp": "2026-06-23T18:35:42.193Z",
+  "verseCount": 155,
+  "changeCount": 0,
+  "baseline": true
  }
 ]
