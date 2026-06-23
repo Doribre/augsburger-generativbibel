@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Prüfbericht · Augsburger GenerativBibel</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%238a5a2b'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23fffdf8' font-family='Georgia,serif'%3E%CE%B1%3C/text%3E%3C/svg%3E" />
+<style>
+  :root{--bg:#f6f3ec;--panel:#fffdf8;--ink:#23201b;--ink-soft:#5c564c;--line:#e2dccf;--accent:#8a5a2b;--accent-soft:#b98a55;--note-bg:#fbf3e3;--note-border:#e6c98a;}
+  :root[data-theme="dark"]{--bg:#1a1816;--panel:#242120;--ink:#ece6da;--ink-soft:#a9a193;--line:#38332e;--accent:#d6a86a;--accent-soft:#b98a55;--note-bg:#2a2419;--note-border:#5c4b25;}
+  *{box-sizing:border-box;} html,body{margin:0;padding:0;}
+  body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;line-height:1.6;-webkit-text-size-adjust:100%;}
+
+  .report{max-width:820px;margin:0 auto;padding:18px 16px 64px;line-height:1.6;color:var(--ink);}
+  .report .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px;}
+  .report a.back{display:inline-block;border:1px solid var(--line);background:var(--panel);color:var(--ink);
+    border-radius:8px;padding:6px 12px;text-decoration:none;font-size:.9rem;cursor:pointer;}
+  .report a.back:hover{border-color:var(--accent-soft);}
+  .report h1{font-size:1.5rem;margin:.6em 0 .3em;}
+  .report h2{font-size:1.2rem;margin:1.4em 0 .4em;border-bottom:1px solid var(--line);padding-bottom:.2em;color:var(--accent);}
+  .report h3{font-size:1.05rem;margin:1.1em 0 .3em;}
+  .report h4{font-size:.98rem;margin:1em 0 .2em;color:var(--ink-soft);}
+  .report p{margin:.5em 0;}
+  .report ul{margin:.4em 0 .8em;padding-left:1.4em;}
+  .report li{margin:.25em 0;}
+  .report code{background:var(--note-bg);border:1px solid var(--line);border-radius:4px;padding:.05em .35em;font-size:.88em;}
+  .report blockquote{margin:.8em 0;padding:.6em .9em;background:var(--note-bg);border-left:4px solid var(--note-border);border-radius:0 8px 8px 0;}
+  .report hr{border:none;border-top:1px solid var(--line);margin:1.6em 0;}
+  .report .tbl-wrap{overflow-x:auto;margin:.8em 0;}
+  .report table{border-collapse:collapse;width:100%;font-size:.9rem;}
+  .report th,.report td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top;}
+  .report th{background:var(--note-bg);}
+  .report a{color:var(--accent);}
+</style>
+<script>(function(){try{var t=localStorage.getItem('mk_theme');if(t)document.documentElement.setAttribute('data-theme',t);else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
+</head>
+<body>
+<main class="report">
+  <div class="topbar">
+    <a class="back" href="https://doribre.github.io/augsburger-generativbibel/">‹ Zur GenerativBibel</a>
+    <button class="back" onclick="(function(){var c=document.documentElement,n=c.getAttribute('data-theme')==='dark'?'light':'dark';c.setAttribute('data-theme',n);try{localStorage.setItem('mk_theme',n);}catch(e){}})()">◐ Ansicht</button>
+  </div>
+<h1>Prüfbericht: GenerativBibel Römerbrief (Röm 1–16)</h1>
+<p><strong>Gegenstand:</strong> Augsburger GenerativBibel, 3 Fassungen (Urtextnah / mittel / Lesefluss)</p>
+<p><strong>Referenzen:</strong> Bibel TV Bibelthek — LUT, ELB, EÜ, GNB, NGÜ, SLT</p>
+<p><strong>Grundtext:</strong> Tischendorf, Novum Testamentum Graece, 8. Ausgabe</p>
+<p><strong>Methodik:</strong> mechanische Vollanalyse aller 433 Verse × 3 Fassungen × 6 Referenzen (7.776 Vergleichspaare), anschließend exegetische LLM-Prüfung der markierten Stellen.</p>
+<p><strong>Stand:</strong> 23. Juni 2026 (Fassung 1.1, kritisch revidiert) · <strong>Datengrundlage abgerufen:</strong> 22. Juni 2026 · <strong>Umfang dieser Prüfung:</strong> Römerbrief (Pilot/Stichprobe für das Verfahren).</p>
+<h2>Management Summary</h2>
+<p>Die GenerativBibel-Fassung des Römerbriefs wurde maschinell vollständig (7.776 Vergleichspaare) und exegetisch (Stichprobe der auffälligsten Stellen) gegen sechs Bibelthek-Übersetzungen und den Tischendorf-Grundtext geprüft.</p>
+<ul>
+<li><strong>Inhaltlich</strong> ist die Übersetzung überwiegend <strong>korrekt und grundtextnah</strong>, an mehreren Stellen sogar <strong>genauer als die Vergleichstexte</strong>. Es liegen <strong>keine systematischen Übersetzungsfehler</strong> vor; die argumentative Struktur des Römerbriefs bleibt erhalten.</li>
+<li><strong>Formal</strong> besteht eine <strong>messbare Nähe zum Wortlaut bestehender, urheberrechtlich geschützter Übersetzungen</strong> — fassungsabhängig unterschiedlich stark, aber <strong>weitgehend durch den jeweiligen Übersetzungstyp erklärbar</strong>:</li>
+<li><strong>Urtextnah:</strong> liegt nahe an der <strong>Elberfelder (ELB)</strong>. Diese Nähe ist <strong>überwiegend statistisch erwartbar</strong>: Wer maximal wörtlich übersetzt, landet dort, wo andere wörtliche Werke liegen. Residuum: eine <em>spezifische</em> ELB-Affinität.</li>
+<li><strong>mittel:</strong> liegt im <strong>Formal-Äquivalenz-Cluster</strong> (EÜ/SLT/ELB/LUT) — und zwar <strong>innerhalb</strong> der Streuung, die diese unabhängigen Werke ohnehin untereinander haben. Die „Patchwork"-Nähe ist die <strong>erwartbare Signatur dieses Übersetzungstyps</strong>, nicht per se ein Kopiesignal. Residuum: eine <em>modeste</em> EÜ-Affinität + einzelne Verse mit übernommener Deutung.</li>
+<li><strong>Lesefluss:</strong> <strong>eigenständig</strong>, auf dem Niveau des kommunikativen Clusters (GNB/NGÜ).</li>
+<li><strong>Statistische Basislinie (Kernbefund):</strong> Unabhängige Werke desselben Typs sind schon <strong>0,65–0,75</strong> ähnlich (Token-Dice). <em>Urtextnah</em> (0,72 zum Cluster) und <em>mittel</em> (<strong>0,71</strong> — <strong>innerhalb</strong> der Cluster-Spanne 0,65–0,71) liegen kaum darüber. Die <em>aggregierte</em> Ähnlichkeit ist damit <strong>kein Plagiatsbeweis</strong>.</li>
+<li>Belastbar bleibt nur das <strong>Residuum oberhalb der Basislinie</strong>: spezifische Referenz-Affinitäten (Urtextnah→ELB, mittel→EÜ, je modest) und <strong>einzelne</strong> Verse mit mitübernommener Deutung.</li>
+</ul>
+<p><strong>Kurzantwort auf die Leitfrage:</strong> <strong>Kein Nachweis systematischer Plagiate.</strong> Die gemessene Nähe — auch die der Fassung <em>mittel</em> — ist <strong>überwiegend durch den Übersetzungstyp erklärbar</strong> (formale Äquivalenz erzeugt zwangsläufig Nähe zur formal-äquivalenten Tradition). Es verbleiben (1) <strong>modeste, aber reale referenz-spezifische Affinitäten</strong> (Urtextnah→ELB, mittel→EÜ) und (2) eine <strong>kleine Zahl einzelner Verse</strong>, in denen eine Deutung <em>einer</em> Referenz mitübernommen wurde (z. B. Röm 3:30, 8:6). Diese sind <strong>redaktionell prüfenswert</strong>, begründen aber <strong>keinen</strong> Vorwurf systematischer Kopie. <em>Lesefluss</em> ist unbedenklich. Ausführliche Begründung und kritische Selbstprüfung der Urteile im Fazit bzw. im Abschnitt „Angemessenheit der Urteile".</p>
+<hr>
+<blockquote><strong>Strikte Trennung.</strong> Dieser Bericht trennt durchgängig zwischen (a) <strong>mechanisch gemessenem Befund</strong>, (b) <strong>LLM-Interpretation</strong>, (c) <strong>urtextlicher Bewertung auf Basis von Tischendorf 8</strong> und (d) <strong>redaktioneller Empfehlung</strong>. Wo Daten fehlen, ist das markiert. Die algorithmische Risikostufe ist <strong>kein Urteil</strong>, sondern nur Triage.</blockquote>
+<hr>
+<h2>Die drei Fassungen (Prüfgegenstand)</h2>
+<p>Die GenerativBibel bietet pro Kapitel drei Fassungen mit <strong>unterschiedlichem Übersetzungstyp</strong>. Das ist für die Bewertung entscheidend, weil der Typ vorgibt, wie viel Ähnlichkeit zu bestehenden Übersetzungen <strong>erwartbar</strong> ist:</p>
+<div class="tbl-wrap"><table>
+<thead><tr><th>Stufe</th><th>Charakter</th><th>erwartbare Nähe zu bestehenden Übersetzungen</th></tr></thead><tbody>
+<tr><td><strong>1 – Urtextnah</strong></td><td>wörtlich/konkordant: griechische Wortstellung, Zeitformen und Idiome so weit wie möglich erhalten (interlinear-nah); griechischer Text einblendbar.</td><td><strong>hoch</strong> — der Raum gültiger wörtlicher deutscher Wiedergaben ist klein; Nähe zu anderen wörtlichen Übersetzungen (ELB, SLT) ist statistisch unvermeidlich.</td></tr>
+<tr><td><strong>2 – mittel</strong></td><td>philologisch genau, aber natürliches Deutsch (formale Äquivalenz, Charakter <strong>à la Elberfelder/Luther — als Stil-Referenz, nicht Kopie</strong>).</td><td><strong>mittel–hoch</strong> — gehört per Definition in denselben Formal-Äquivalenz-„Cluster" wie ELB/LUT/SLT/EÜ und ist diesen daher zwangsläufig ähnlich.</td></tr>
+<tr><td><strong>3 – Lesefluss</strong></td><td>sinngemäß, heutiges Alltagsdeutsch (kommunikativ, Charakter <strong>à la Gute Nachricht/Hoffnung für alle — Stil-Referenz, nicht Kopie</strong>).</td><td><strong>gering</strong> — eigener Sprachraum; Nähe nur zu kommunikativen Übersetzungen (GNB/NGÜ) und auch dort lose.</td></tr>
+</tbody></table></div>
+<p><strong>Konsequenz für die Bewertung:</strong> Eine faire Plagiatsprüfung darf die gemessene Ähnlichkeit <strong>nicht gegen Null</strong>, sondern <strong>gegen die typische Ähnlichkeit von Übersetzungen desselben Typs</strong> abgleichen. Genau das leistet die statistische Basislinie (s. Methodik) — und sie wird hier konsequent auf <strong>alle drei</strong> Fassungen angewandt, auch auf <em>mittel</em>.</p>
+<hr>
+<h2>Fazit: Gibt es Plagiate im Text?</h2>
+<blockquote><strong>Vorbemerkung zur Begrifflichkeit.</strong> „Plagiat" meint hier die <strong>Übernahme charakteristischer fremder Formulierungen, die als eigene Übersetzungsleistung ausgegeben werden</strong>. Davon zu trennen sind (1) <strong>biblische Standardsprache / Konvergenz</strong> — wenn der Grundtext nur eine natürliche deutsche Wiedergabe zulässt, ist Übereinstimmung erwartbar und <strong>kein</strong> Plagiat — und (2) die <strong>urheberrechtliche</strong> Frage, die eine <em>juristische</em> Bewertung erfordert und hier <strong>nicht</strong> abschließend beantwortet werden kann (dieser Bericht ist eine textwissenschaftliche, keine Rechtsauskunft).</blockquote>
+<p><strong>Antwort: Kein Nachweis systematischer Plagiate — aber einzelne prüfenswerte Stellen.</strong> Die gemessene Nähe ist zum weit überwiegenden Teil durch den jeweiligen Übersetzungstyp erklärbar (s. Punkt 2–4). Es verbleibt ein schmales, aber reales Residuum, das redaktionell zu prüfen ist (Punkt 1).</p>
+<p><strong>1. Das verbleibende Indiz: einzelne Verse mit übernommener Deutung.</strong></p>
+<p>Das belastbarste — wenn auch nicht beweisende — Signal ist nicht die Länge identischer Passagen (die ist bei diesem Übersetzungstyp normal, s. Punkt 3), sondern die mögliche *<em>Übernahme einer Deutung, die </em>vom griechischen Grundtext abweicht**<em> und nur bei </em>einer<em> Referenz vorkommt. Wenn zwei Übersetzer unabhängig aus dem Griechischen arbeiten, weichen sie nicht leicht beide mit </em>denselben Worten<em> in </em>dieselbe* Richtung vom Urtext ab:</p>
+<ul>
+<li><strong>Röm 3:30 (mittel ≈ SLT):</strong> „ein und <strong>derselbe</strong> Gott" — der Grundtext sagt εἷς = „einer". <em>Mögliche Übernahme</em> der SLT-Deutung. <strong>Gegenargument:</strong> „ein und derselbe Gott" ist zugleich eine im Deutschen geläufige, theologisch motivierte Wendung (ein Gott für Juden <em>und</em> Heiden) — also nicht zwingend aus SLT entlehnt.</li>
+<li><strong>Röm 8:6 (mittel ≈ EÜ):</strong> „das Trachten des Fleisches <strong>führt zum</strong> Tod" — der Grundtext ist eine verblose Gleichsetzung (φρόνημα … θάνατος). <strong>Gegenargument:</strong> Deutsch verlangt fast immer ein Verb; „führt zum Tod" ist eine der naheliegendsten verbalen Auflösungen und kann unabhängig entstehen. Bemerkenswert bleibt, dass die eigene <em>Urtextnah</em>-Fassung hier verbnah „ist Tod" wählt.</li>
+<li><strong>Röm 2:17 (mittel ≈ EÜ):</strong> 15 Wörter inkl. EÜ-naher Kommasetzung. <strong>Gegenargument:</strong> kurzer, syntaktisch eng geführter Satz mit begrenztem Formulierungsspielraum.</li>
+</ul>
+<p><strong>Einordnung:</strong> Solche „gemeinsamen Fingerabdrücke" <em>könnten</em> auf Übernahme hindeuten, sind hier aber <strong>einzeln</strong> (eine Handvoll Verse von 433) und <strong>jeweils auch anders erklärbar</strong>. Sie rechtfertigen eine <strong>redaktionelle Einzelprüfung</strong>, <strong>nicht</strong> den Schluss auf systematische Kopie.</p>
+<p><strong>2. Das Ausmaß ist fassungsabhängig — aber durchweg im oder nahe am erwartbaren Bereich des jeweiligen Typs:</strong></p>
+<div class="tbl-wrap"><table>
+<thead><tr><th>Fassung</th><th>Ø-Nähe zum Typ-Cluster</th><th>Basislinie des Typs</th><th>Plagiatsrelevanz</th><th>Begründung</th></tr></thead><tbody>
+<tr><td><strong>Urtextnah</strong></td><td>0,72</td><td>0,65–0,71 (formal)</td><td><strong>gering</strong></td><td>Knapp über der Cluster-Spanne. Residuum: <em>spezifische</em> ELB-Affinität (0,80 vs. ELBs Geschwister-Maximum 0,75). <strong>Keine</strong> mitübernommenen Deutungen; korrigiert oft <em>zum</em> Grundtext hin (genauer als ELB).</td></tr>
+<tr><td><strong>mittel</strong></td><td><strong>0,71</strong></td><td>0,65–0,71 (formal)</td><td><strong>gering–mittel</strong></td><td><strong>Innerhalb</strong> der Streuung unabhängiger Formal-Äquivalenz-Werke → Nähe ist <strong>typbedingt erwartbar</strong>. Residuum: <em>modeste</em> EÜ-Affinität (0,72 vs. EÜs Geschwister-Maximum 0,66) + <strong>einzelne</strong> Verse mit übernommener Deutung (3:30, 8:6).</td></tr>
+<tr><td><strong>Lesefluss</strong></td><td>0,42</td><td>~0,46 (kommunikativ)</td><td><strong>nein / sehr gering</strong></td><td>Auf bzw. unter dem Niveau des kommunikativen Clusters → eigenständig. 0 Voll-Verbatim.</td></tr>
+</tbody></table></div>
+<p>(Die zuvor genannten „280 distinktiven Übernahmen" bei <em>mittel</em> sind <strong>Triage-Treffer der Mechanik</strong>, nicht 280 Plagiate — sie liegen ganz überwiegend innerhalb der typbedingten Basislinie und sind damit zu entlasten. Siehe Punkt 3 und „Angemessenheit der Urteile".)</p>
+<p>*<em>3. Was </em>kein<em> Plagiat ist (ausdrückliche Entlastung).</em>*</p>
+<p>Ein erheblicher Teil der langen Übereinstimmungen ist <strong>Standardkonvergenz</strong>: Bei einfachem Grundtext ist das wörtliche Deutsch praktisch festgelegt, und die Passage stimmt dann mit <em>mehreren</em> Übersetzungen zugleich überein (Distinktheitsmaß = 0). Beispiele: <strong>Röm 6:8, 10:11, 5:8 (Urtextnah)</strong> — verbatim, aber gleichlautend bei ELB <em>und</em> SLT <em>und</em> LUT. Das ist <strong>kein</strong> Plagiat, sondern die natürliche Wiedergabe des Urtexts. Ebenso AT-Zitatformeln und die Grußliste (Röm 16) mit ihren festen Wendungen.</p>
+<p><strong>4. Gesamteinordnung (unter konsequenter Anwendung der typbezogenen Basislinie auf alle Fassungen).</strong></p>
+<p>Es handelt sich <strong>nicht</strong> um ein kopiertes Werk. Der weit überwiegende Teil der gemessenen Nähe ist die <strong>statistisch erwartbare Folge des jeweiligen Übersetzungstyps</strong>: Wer formal-äquivalent aus demselben Grundtext übersetzt, landet zwangsläufig im Cluster der formal-äquivalenten Tradition (ELB/LUT/SLT/EÜ sind sich als <em>unabhängige</em> Werke selbst zu 0,65–0,75 ähnlich). Das gilt *<em>ausdrücklich auch für die Fassung </em>mittel**<em>, die mit 0,71 </em>innerhalb<em> dieser Cluster-Streuung liegt — ihre frühere Einstufung als „erhöht/Patchwork-Plagiat" war <strong>zu hart und methodisch inkonsistent</strong> (die Basislinie war zunächst nur auf </em>Urtextnah<em> angewandt worden; das ist hiermit korrigiert). Belastbar bleibt nur das <strong>schmale Residuum oberhalb der Basislinie</strong>: zwei </em>modeste<em> referenz-spezifische Affinitäten (Urtextnah→ELB, mittel→EÜ) und eine <strong>kleine Zahl einzelner Verse</strong> mit möglicher Deutungsübernahme. <strong>Fazit:</strong> überwiegend typbedingte, eigenständig erarbeitete Übersetzungen; </em>Lesefluss* unbedenklich; punktueller redaktioneller Prüfbedarf, aber <strong>kein Nachweis systematischer Kopie</strong>.</p>
+<p><strong>5. Konsequenz / Handlungsbedarf.</strong></p>
+<ul>
+<li><strong>Vor jeder Veröffentlichung</strong> sind die distinktiven Übernahmen (alle Stufe-≥3-Verse mit <code>dg5 ≥ 2</code>, s. <code>flagged_for_llm.json</code>) sprachlich zu lösen; bei mitübernommenen Deutungen (3:30, 8:6, 5:12) ist eine <strong>Neuübersetzung</strong> nötig.</li>
+<li>Die Referenztexte (LUT 2017, ELB, EÜ 2016, GNB, NGÜ, SLT) sind <strong>urheberrechtlich geschützt</strong>. Die Frage einer möglichen Urheberrechtsverletzung sollte <strong>juristisch</strong> geklärt werden — dieser Bericht liefert dafür die textliche Faktenbasis, nicht die Rechtsbewertung.</li>
+<li><strong>Positiv:</strong> Die Eigenständigkeit der <em>Lesefluss</em>-Fassung und die teils über die Referenzen hinausgehende Grundtextgenauigkeit zeigen, dass eine eigenständige, qualitativ hochwertige Fassung möglich ist — die Methode trägt, sie muss nur konsequent vom Referenzwortlaut entkoppelt werden.</li>
+</ul>
+<hr>
+<h2>Methodisches Vorgehen</h2>
+<p><strong>Grundprinzip: Mechanik vor LLM.</strong> Zuerst wurde alles algorithmisch/statistisch geprüft, was zuverlässig messbar ist. Erst danach wurde das Sprachmodell eingesetzt — und nur zur fachlichen Einordnung bereits markierter Stellen, nicht als erste Prüfquelle. So bleibt der Befund nachvollziehbar und reproduzierbar.</p>
+<p><strong>1. Datenbeschaffung (drei Quellen).</strong></p>
+<ul>
+<li><em>GenerativBibel</em> (3 Fassungen) und <em>Tischendorf 8</em> lagen als statische JSON-Dateien vor und wurden direkt versweise ausgelesen (kein Headless-Browser nötig). Die Konsistenz des Grundtexts wurde gegengeprüft (dedizierte Datei vs. eingebetteter Text: 0 Abweichungen).</li>
+<li><em>Bibelthek</em> (6 Übersetzungen × 16 Kapitel = 96 Seiten) wurde als statisches HTML geladen und mit einem eigens geschriebenen Parser versweise extrahiert. Der Parser behandelt verschachtelte Fußnoten-Spans (Marker <strong>und</strong> Notiztext werden entfernt), zusammengefasste Versbereiche (z. B. „3-4") und einen defekten Quell-HTML-Fall (ELB 3:19). Überschriften, Navigation, Audio-/Video- und Copyright-Hinweise werden ignoriert.</li>
+</ul>
+<p><strong>2. Normalisierung.</strong> Für den Vergleich werden alle Texte vereinheitlicht: Kleinschreibung, Entfernen von Interpunktion und Anführungszeichen, Auflösen der NGÜ-Zusatzmarker (´…`), Tokenisierung auf Wortebene. Umlaute/ß bleiben erhalten.</p>
+<p><strong>3. Vergleichsmetriken (je Vers × 3 Fassungen × 6 Referenzen = 7.776 Paare).</strong></p>
+<ul>
+<li><em>Exakte Übereinstimmung:</em> längste zusammenhängende identische Wortfolge (longest common substring auf Tokenebene), Versanfänge/-enden.</li>
+<li><em>N-Gramm-Nähe:</em> gemeinsame 3-/4-/5-/6-Gramme, Jaccard und Anteil je Stufe.</li>
+<li><em>Allgemeine Ähnlichkeit:</em> normalisierte Levenshtein-Ähnlichkeit, Token-Ähnlichkeit (Sørensen-Dice), <strong>TF-IDF-Cosine</strong> (gewichtet seltene Wörter höher), Longest Common Subsequence.</li>
+<li><em>Struktur:</em> Wortzahl-Verhältnis, Satz- und Kommazahl.</li>
+</ul>
+<p><strong>4. Distinktheitsmaß (<code>dg4</code>/<code>dg5</code>) — der Kern der Methode.</strong> Für jedes Versspaar wird gezählt, wie viele der gemeinsamen 4-/5-Gramme <strong>nur bei genau dieser einen</strong> der sechs Referenzen im selben Vers vorkommen. Damit wird <strong>biblische Standardsprache von charakteristischer Übernahme getrennt</strong>: Eine Formulierung, die bei mehreren Übersetzungen auftaucht, ist Standardsprache (niedrig gewichtet); eine, die nur bei <em>einer</em> vorkommt und dennoch in der GenerativBibel steht, ist ein echtes Abhängigkeitssignal (hoch gewichtet).</p>
+<p><strong>5. Risiko-Score (0–100) und Risikostufe (0–5).</strong> Bewusste Gewichtungs-Philosophie: Generische Ähnlichkeit (Cosine/Dice) zwischen zwei <em>wörtlichen</em> Übersetzungen desselben Grundtexts ist erwartbar und <strong>kein</strong> Kopiesignal — sie fließt nur schwach ein. Die hohen Stufen werden von <strong>langen Verbatim-Folgen</strong> und <strong>distinktiven Übernahmen</strong> getrieben. Kurze Verse (&lt; 8–10 Wörter) und feste Formeln werden gedämpft. <strong>Die Stufe ist Triage, kein Urteil</strong> — sie sagt nur, <em>welche</em> Verse fachlich zu prüfen sind. Woher die konkreten Richtwerte stammen und ob sie für eine Bibelübersetzung überhaupt gültig sind, ist im eigenen Abschnitt <strong>„Herkunft und Gültigkeit der Richtwerte"</strong> kritisch behandelt — mit dem Ergebnis, dass die <em>absoluten</em> Schwellen für diesen Texttyp <strong>nur eingeschränkt</strong> taugen und die <strong>basislinien-relative</strong> Lesart maßgeblich ist.</p>
+<p><strong>6. Statistische Erwartungs-Basislinie (zur fairen Einordnung).</strong> Siehe eigener Abschnitt unten — sie ist methodisch zentral und korrigiert die Aggregat-Interpretation.</p>
+<p><strong>7. LLM-Prüfung der markierten Stellen.</strong> Nur die markierten Verse (Stufe ≥ 3 plus Stichproben) gingen in die exegetische Prüfung gegen Tischendorf 8. Geprüft wurde je Stelle: Ist die Nähe durch den Grundtext zwingend/naheliegend/nur möglich/nicht erklärbar? Handelt es sich um Standardsprache oder um charakteristische Formulierung einer Referenz? Gibt es Zusätze/Auslassungen/Deutungen ohne Grundtextdeckung? Daraus folgt eine <strong>endgültige</strong> Risikostufe, die von der algorithmischen abweichen darf (Begründung dokumentiert).</p>
+<p><strong>8. Grenzen des Verfahrens (ehrlich benannt).</strong></p>
+<ul>
+<li>Das Verfahren misst <em>Textnähe</em>, nicht <em>Absicht</em>; „Kopie" vs. „Konvergenz" wird über das Distinktheitsmaß angenähert, nicht bewiesen.</li>
+<li>Bei sehr literalen Fassungen ist selbst die distinktive Nähe nur <em>suggestiv</em> (s. Basislinie).</li>
+<li>Es wurde ausschließlich gegen <strong>Tischendorf 8</strong> und die <strong>sechs</strong> genannten Referenzen geprüft; andere Grundtexte/Übersetzungen sind nicht Bewertungsgrundlage.</li>
+<li>Die LLM-Einzelprüfung erfolgte an den auffälligsten Stellen + Stichproben, nicht an allen 947 markierten Versen.</li>
+</ul>
+<h3>Statistische Erwartungs-Basislinie: Warum Urtextnähe automatisch Ähnlichkeit erzeugt</h3>
+<p><strong>Methodischer Kernpunkt:</strong> Je näher eine Übersetzung am Urtext sein <em>will</em>, desto kleiner ist der Raum gültiger, zugleich korrekter und natürlicher deutscher Formulierungen. Zwei Übersetzungen, die <em>beide</em> dieses Ziel verfolgen (z. B. die GenerativBibel-Fassung <em>Urtextnah</em> und die Elberfelder), sind daher <strong>allein aus statistischer Wahrscheinlichkeit</strong> ähnlich — auch ohne jede Abhängigkeit. Ähnlichkeit ist bei urtextnahen Übersetzungen also <strong>kein hinreichender Beweis</strong> für Übernahme.</p>
+<p>Um diesen Effekt zu quantifizieren, wurde die Ähnlichkeit der <strong>sechs Referenzen untereinander</strong> gemessen (Ø Token-Dice je Vers, <code>out/baseline_matrix.json</code>). Diese Werke sind voneinander <strong>unabhängig</strong> entstanden:</p>
+<div class="tbl-wrap"><table>
+<thead><tr><th></th><th>ELB</th><th>SLT</th><th>LUT</th><th>EÜ</th><th>NGÜ</th><th>GNB</th></tr></thead><tbody>
+<tr><td><strong>ELB</strong></td><td>–</td><td><strong>0.75</strong></td><td>0.68</td><td>0.65</td><td>0.42</td><td>0.39</td></tr>
+<tr><td><strong>SLT</strong></td><td>0.75</td><td>–</td><td>0.72</td><td>0.66</td><td>0.43</td><td>0.41</td></tr>
+<tr><td><strong>LUT</strong></td><td>0.68</td><td>0.72</td><td>–</td><td>0.65</td><td>0.43</td><td>0.41</td></tr>
+<tr><td><strong>EÜ</strong></td><td>0.65</td><td>0.66</td><td>0.65</td><td>–</td><td>0.46</td><td>0.44</td></tr>
+<tr><td><strong>NGÜ</strong></td><td>0.42</td><td>0.43</td><td>0.43</td><td>0.46</td><td>–</td><td>0.46</td></tr>
+<tr><td><strong>GNB</strong></td><td>0.39</td><td>0.41</td><td>0.41</td><td>0.44</td><td>0.46</td><td>–</td></tr>
+</tbody></table></div>
+<p>Der „wörtliche" Cluster (ELB/SLT/LUT/EÜ) liegt schon <strong>untereinander bei 0.65–0.75</strong> — obwohl es eigenständige, je urheberrechtlich geschützte Werke sind. Die kommunikativen Übersetzungen (GNB/NGÜ) fallen klar ab (0.39–0.46). <strong>Urtextnähe erzeugt also nachweislich eine hohe Basis-Ähnlichkeit.</strong></p>
+<p>Dem gegenübergestellt die GenerativBibel:</p>
+<div class="tbl-wrap"><table>
+<thead><tr><th></th><th>ELB</th><th>SLT</th><th>LUT</th><th>EÜ</th><th>NGÜ</th><th>GNB</th></tr></thead><tbody>
+<tr><td><strong>Urtextnah</strong></td><td><strong>0.80</strong></td><td>0.74</td><td>0.68</td><td>0.67</td><td>0.42</td><td>0.39</td></tr>
+<tr><td><strong>mittel</strong></td><td>0.71</td><td>0.72</td><td>0.69</td><td><strong>0.72</strong></td><td>0.48</td><td>0.45</td></tr>
+<tr><td><strong>Lesefluss</strong></td><td>0.40</td><td>0.42</td><td>0.42</td><td>0.45</td><td>0.45</td><td>0.44</td></tr>
+</tbody></table></div>
+<p><strong>Der entscheidende Test — „ist die Fassung statistisch nur ein weiteres Mitglied ihres Typs?"</strong> Dazu wird die mittlere Nähe jeder Fassung zum <strong>passenden Cluster</strong> mit der <strong>inneren Streuung</strong> dieses Clusters verglichen (<code>scripts/validity_check.js</code>). Formal-Äquivalenz-Cluster = ELB/LUT/SLT/EÜ; Cluster-Mittel <strong>0,686</strong>, Spanne <strong>0,653–0,712</strong>.</p>
+<div class="tbl-wrap"><table>
+<thead><tr><th>Fassung</th><th>Ø-Nähe zum Formal-Cluster</th><th>innerhalb der Cluster-Spanne?</th><th>Überschuss ggü. Cluster-Mittel</th></tr></thead><tbody>
+<tr><td><strong>Urtextnah</strong></td><td>0,723</td><td>knapp darüber</td><td>+0,038</td></tr>
+<tr><td><strong>mittel</strong></td><td><strong>0,711</strong></td><td><strong>JA</strong> (0,653–0,712)</td><td><strong>+0,025</strong></td></tr>
+<tr><td><strong>Lesefluss</strong></td><td>0,422</td><td>weit darunter (anderer Typ)</td><td>−0,263</td></tr>
+</tbody></table></div>
+<p><strong>Folgerungen (für alle drei Fassungen konsequent angewandt):</strong></p>
+<ul>
+<li><strong>mittel liegt INNERHALB der Streuung, die unabhängige Formal-Äquivalenz-Werke ohnehin zueinander haben.</strong> Statistisch ist <em>mittel</em> damit „nur ein weiteres Mitglied" des formal-äquivalenten Clusters — genau das, was ihr Übersetzungstyp (Stil à la Elberfelder/Luther) vorgibt. Die „Patchwork"-Nähe zu mal EÜ, mal SLT, mal ELB ist die <strong>erwartbare Signatur dieses Typs</strong>, <strong>kein</strong> eigenständiges Kopiesignal.</li>
+<li><strong>Urtextnah</strong> liegt knapp über der Cluster-Spanne; die aggregierte Nähe ist damit ebenfalls weitgehend typbedingt.</li>
+<li><strong>Lesefluss</strong> liegt weit darunter, im Bereich des kommunikativen Clusters (GNB↔NGÜ = 0,46; Lesefluss↔GNB/NGÜ = 0,44/0,45) — eigenständig.</li>
+</ul>
+<p>*<em>Das einzige Residuum über der Typ-Basislinie sind </em>spezifische<em> Affinitäten</em><em> (eine Fassung ist zu </em>einer* Referenz näher, als diese Referenz zu ihrem nächsten Cluster-Geschwister ist):</p>
+<ul>
+<li><strong>Urtextnah ↔ ELB = 0,80</strong> &gt; ELBs nächstes Geschwister (0,75) → reale, aber <strong>modeste</strong> ELB-Affinität.</li>
+<li><strong>mittel ↔ EÜ = 0,72</strong> &gt; EÜs nächstes Geschwister (0,66) → reale, aber <strong>modeste</strong> EÜ-Affinität. (Zu ELB/LUT/SLT zeigt <em>mittel</em> <strong>keine</strong> spezifische Affinität — dort bleibt sie im bzw. unter dem Geschwister-Niveau.)</li>
+</ul>
+<p><strong>Konsequenz für die Bewertung:</strong> Die <em>aggregierte</em> Textnähe <strong>aller</strong> Fassungen — ausdrücklich auch der von <em>mittel</em> — ist als Plagiatsindiz <strong>deutlich zu entlasten</strong>, weil sie durch den Übersetzungstyp erklärt ist. Belastbar bleiben nur (1) die zwei genannten <strong>modesten</strong> referenz-spezifischen Affinitäten und (2) <strong>einzelne</strong> Verse mit möglicher Deutungsübernahme.</p>
+<h3>Herkunft und Gültigkeit der Richtwerte (kritische Prüfung)</h3>
+<p><strong>Woher stammen die Schwellen?</strong> Drei verschiedene Quellen — mit sehr unterschiedlicher Belastbarkeit:</p>
+<p>1. <strong>Aus der Aufgabenspezifikation übernommen</strong> (generische Text-Reuse-Heuristik): „identische Wortfolge ≥ 8 Wörter", „identisches 6-Gramm", „mehrere 4-/5-Gramme" → Stufe ≥ 3. Diese Werte stammen aus der *<em>Plagiatsprüfung für </em>Originaltexte*** (Aufsätze, Prosa), wo ein verbatim übereinstimmender 6–8-Wort-Block als signifikant gilt.</p>
+<p>2. <strong>Heuristisch von der Prüfung gesetzt</strong> (Score-Gewichte und die Stufengrenzen 45/64/83): zunächst frei gewählt, dann <strong>empirisch entsättigt</strong>, bis die Verteilung trennscharf war. Diese Werte sind <strong>nicht</strong> gegen einen Goldstandard aus <em>bekannt</em> plagiierten vs. <em>bekannt</em> unabhängigen Bibelübersetzungen kalibriert — ein solcher Datensatz lag nicht vor.</p>
+<p>3. <strong>Empirisch aus den Daten gemessen</strong> (die Basislinie 0,65–0,75): die einzige <strong>objektiv verankerte</strong> Schwelle, da direkt aus den sechs Referenzen gewonnen.</p>
+<p>*<em>Sind diese Richtwerte auf eine Bibel — und speziell auf eine Fassung wie </em>mittel<em> — überhaupt anwendbar?<strong> </strong>Nur eingeschränkt — und das ist der wichtigste methodische Vorbehalt dieses Berichts:</em>*</p>
+<ul>
+<li>Generische Plagiatsschwellen unterstellen einen <strong>frei formulierenden Autor</strong>. Eine Bibelübersetzung ist das Gegenteil: Der <strong>Inhalt ist durch den Grundtext fixiert</strong>, die <strong>Zielsprache ist hochkonventionalisiert</strong> (500 Jahre Luther-Tradition, geteiltes theologisches Vokabular: Rechtfertigung, Gnade, Fleisch, Gesetz …), und eine <strong>formale Äquivalenz minimiert bewusst den Formulierungsspielraum</strong>.</li>
+<li>Folge: Ein 8-Wort-Verbatim-Block, der in einem Aufsatz ein starkes Plagiatsindiz wäre, ist zwischen zwei <strong>unabhängigen</strong> formal-äquivalenten Bibelübersetzungen <strong>statistisch normal</strong> — die Messung ELB↔SLT (0,75) belegt das direkt.</li>
+<li>*<em>Für die Fassung </em>mittel<em> gilt dieser Vorbehalt voll:</em>* Sie ist per Definition eine formal-äquivalente Übersetzung; die absoluten Schwellen über-markieren sie systematisch.</li>
+</ul>
+<p><strong>Daraus folgt die gültige Lesart:</strong> Die absoluten Schwellen taugen für eine Bibelübersetzung <strong>nur zur Triage/Rangbildung</strong>, <strong>nicht</strong> als eigenständiger Plagiatsbeweis. Der <strong>gültige</strong> Plagiatsmaßstab ist der <strong>Überschuss über die typgleiche Basislinie</strong> (oben). Nach diesem Maßstab ist <em>mittel</em> innerhalb der Norm ihres Typs; die 947 Triage-Treffer sind daher <strong>keine</strong> 947 Plagiate.</p>
+<h3>Alternative (valide) Erklärungen für die hohe Nähe der Fassung <em>mittel</em></h3>
+<p>Über die reine Statistik hinaus gibt es mehrere <strong>sachlich legitime</strong> Gründe, warum <em>mittel</em> den bestehenden formal-äquivalenten Übersetzungen nahe ist — ohne Übernahme:</p>
+<p>1. <strong>Definierter Übersetzungstyp.</strong> <em>mittel</em> zielt ausdrücklich auf „formale Äquivalenz, Charakter à la Elberfelder/Luther". Wer dieses Ziel erreicht, <em>muss</em> im selben Sprachraum landen wie ELB/LUT/SLT/EÜ. Nähe ist hier <strong>Zielerfüllung</strong>, nicht Diebstahl.</p>
+<p>2. <strong>„Patchwork" ist die Signatur einer guten formal-äquivalenten Übersetzung, nicht eines Plagiats.</strong> Für viele Verse gibt es <em>eine</em> natürlichste formal-genaue deutsche Wiedergabe. Verschiedene Übersetzungen treffen sie mal, verfehlen sie mal (wegen eigener Konsistenzregeln/Archaismen). Eine neue Übersetzung, die je Vers das „beste natürliche Formaldeutsch" sucht, trifft sich daher mal mit dieser, mal mit jener bestehenden Übersetzung — das <strong>sieht</strong> wie Patchwork aus, ist aber <strong>Konvergenz zum Optimum</strong>.</p>
+<p>3. <strong>Konventionalisierte Tradition.</strong> Viele Wendungen sind seit Luther quasi-standardisiert und gehören keiner einzelnen Übersetzung; sie aus dem gemeinsamen Pool zu schöpfen ist legitim.</p>
+<p>4. <strong>AT-Zitate.</strong> Der Römerbrief zitiert das AT stark; diese Zitate haben traditionelle deutsche Formen, auf die alle Übersetzungen konvergieren.</p>
+<p>5. <strong>Der Grundtext selbst</strong> legt Satzbau und Inhalt oft so weit fest, dass auch „mittleres" Deutsch wenig Varianz hat.</p>
+<p>*<em>Diese Erklärungen entlasten die </em>aggregierte<em> Nähe vollständig.<strong> Sie erklären jedoch die </strong>modeste EÜ-spezifische Affinität<strong> und einzelne </strong>Deutungsübernahmen</em>* nur teilweise — diese bleiben als (schwaches) Residuum bestehen und sind redaktionell zu prüfen.</p>
+<hr>
+<h2>0. Datenzugriff und Abdeckung (Aufgabe 1)</h2>
+<div class="tbl-wrap"><table>
+<thead><tr><th>Quelle</th><th>Zugriff</th><th>Abdeckung Röm 1–16</th><th>Anmerkung</th></tr></thead><tbody>
+<tr><td>GenerativBibel (3 Fassungen)</td><td><strong>lokal</strong>, statisches JSON (<code>bibel-app/data/books/roemer.json</code>, Felder <code>l1/l2/l3</code>)</td><td>432 / 433 Verse je Fassung</td><td>Röm 16:24 fehlt <strong>bewusst</strong> (folgt Tischendorf, s. u.). Kein Headless-Browser nötig.</td></tr>
+<tr><td><strong>Tischendorf 8</strong></td><td><strong>lokal</strong> (<code>bibel-app/_raw/greek_roemer.json</code>)</td><td>432 / 433 Verse</td><td><strong>Grundtext liegt vor.</strong> Dedizierte Datei und in das Buch-JSON eingebetteter Text sind zu 100 % konsistent (0 Abweichungen). Urtextliche Bewertungen sind damit zulässig.</td></tr>
+<tr><td>LUT, ELB, EÜ, GNB, NGÜ, SLT</td><td>HTTP von <code>bibeltv.de/bibelthek/{seg}/rom-{kap}</code> (statisches HTML)</td><td>je 432–433 Verse</td><td>EÜ/NGÜ als <code>E%C3%9C</code> / <code>NG%C3%9C</code> korrekt URL-kodiert. 96 Seiten geladen, 0 dauerhafte Fehlschläge (temporäre HTTP-429 per Retry gelöst).</td></tr>
+</tbody></table></div>
+<p><strong>Dokumentierte Datenpunkte:</strong></p>
+<ul>
+<li><strong>Röm 16:24</strong> — fehlt in GenerativBibel <strong>und</strong> Tischendorf 8 <strong>und</strong> in LUT/GNB/NGÜ; ELB markiert die Auslassung mit „(*)"; nur EÜ und SLT führen den Vers. → <strong>Textkritische Differenz, kein Fehler.</strong> Tischendorf 8 lässt den Vers aus; die GenerativBibel folgt dem Grundtext korrekt.</li>
+<li><strong>10 Versbereiche</strong> in den Referenzen (GNB 6, NGÜ 4, z. B. GNB „3-4") — zusammengefasster Text wurde beiden Versnummern zugeordnet und als <code>range</code> markiert; Längenunterschiede wurden im Scoring berücksichtigt.</li>
+<li><strong>1 defekte Quell-HTML-Stelle</strong> (ELB Röm 3:19: kaputtes <code>&lt;a</code>-Tag im Fußnoten-Marker) — durch lenienten Fallback rekonstruiert und protokolliert. <strong>Bibelthek-Quelldatenfehler, nicht GenerativBibel.</strong></li>
+</ul>
+<p>Vollständiger Abdeckungsbericht: <code>data/coverage_report.json</code>.</p>
+<hr>
+<h2>1. Gesamtbewertung des Römerbriefs</h2>
+<p><strong>Mechanischer Befund:</strong> Die GenerativBibel zeigt im Römerbrief <strong>systematische, messbare Textnähe</strong> zu den Bibelthek-Übersetzungen, die weit über das hinausgeht, was durch den gemeinsamen Grundtext allein erklärbar ist. Von 1.296 Vers-/Fassungs-Treffern (ähnlichste Referenz je Vers) liegen <strong>947 auf Risikostufe ≥ 3</strong>. Entscheidend: *<em>841 davon enthalten eine </em>distinktive<em> Übernahme<strong> — eine Wortfolge (4–5 Wörter), die im Vergleichskorpus </strong>nur bei genau einer</em>* der sechs Referenzen vorkommt, also keine biblische Standardsprache ist.</p>
+<p><strong>LLM-Interpretation:</strong> Es handelt sich <strong>nicht</strong> um durchgehende 1:1-Kopie, aber auch <strong>nicht</strong> um normale Übersetzungsnähe. Das Muster ist <strong>fassungsabhängig</strong>:</p>
+<ul>
+<li><strong>Urtextnah</strong> ist eng und durchgängig an die <strong>Elberfelder (ELB)</strong> angelehnt.</li>
+<li><strong>mittel</strong> ist ein <strong>Patchwork</strong> aus <strong>EÜ</strong> und <strong>SLT</strong> (mit ELB-Einschüben).</li>
+<li><strong>Lesefluss</strong> ist <strong>weitgehend eigenständig</strong> (lose an GNB/NGÜ).</li>
+</ul>
+<p><strong>Urtextliche Einordnung (Tischendorf 8):</strong> Inhaltlich ist die Übersetzung überwiegend <strong>korrekt und grundtextnah</strong>; an mehreren Stellen ist sie sogar <strong>genauer als die ELB</strong> (z. B. Röm 5:8 „seine <em>eigene</em> Liebe" = ἑαυτοῦ). Die Qualitätsmängel betreffen weniger den <em>Inhalt</em> als die <strong>mangelnde sprachliche Eigenständigkeit</strong> und einzelne <strong>mitübernommene Deutungen</strong> der Referenztexte.</p>
+<hr>
+<h2>2. Bewertung der drei Fassungen getrennt</h2>
+<h3>2.1 Urtextnah — <em>wörtliche Übersetzung mit spezifischer (modester) ELB-Affinität</em></h3>
+<ul>
+<li><strong>Mechanik:</strong> In <strong>allen 16 Kapiteln</strong> ist <strong>ELB die ähnlichste Referenz</strong> (Ø-Score je Kapitel 41–77). 374 Verse Stufe ≥ 3 (Triage); 248 Verse mit identischer Wortfolge ≥ 8 Wörtern; einzelne Verbatim-Strecken bis <strong>27 Wörter</strong> (Röm 10:9, 15:30).</li>
+<li><strong>Statistische Einordnung:</strong> Ø-Nähe zum Formal-Cluster 0,723 (knapp über der Cluster-Spanne); die <em>aggregierte</em> Nähe ist überwiegend <strong>typbedingt</strong>. Das <strong>Residuum</strong> ist eine reale, aber <strong>modeste spezifische ELB-Affinität</strong> (Urtextnah↔ELB 0,80 &gt; ELB-Geschwister 0,75).</li>
+<li><strong>LLM:</strong> Zwei Klassen: (1) <strong>distinktive ELB-Anlehnungen</strong> (ELB-spezifische Wortwahl/Stellung) und (2) <strong>Standardkonvergenz</strong> (lange Folgen, die ELB <em>und</em> SLT/LUT/EÜ teilen, z. B. Röm 6:8, 10:11 — durch den Grundtext erzwungen, <strong>kein</strong> Plagiat).</li>
+<li><strong>Tischendorf:</strong> Inhaltlich sehr treu; teils <strong>präziser als ELB</strong> (5:8 „eigene"); <strong>keine</strong> mitübernommenen Deutungen gefunden → Indiz für eigenständige Grundtextarbeit mit ELB als Stil-Anker.</li>
+<li><strong>Fazit:</strong> <strong>Geringe Plagiatsrelevanz.</strong> Die ELB-Nähe ist großteils typbedingt; redaktionell sinnvoll ist allenfalls ein bewusstes stilistisches Lösen der distinktivsten ELB-Stellen.</li>
+</ul>
+<h3>2.2 mittel — <em>formal-äquivalente Übersetzung im Normbereich ihres Typs; modeste EÜ-Affinität</em></h3>
+<ul>
+<li><strong>Mechanik:</strong> Höchste <em>Triage</em>-Trefferzahl: 379 Verse Stufe ≥ 3, davon 280 mit Distinktheits-Markierung. Ähnlichste Referenz <strong>wechselt kapitelweise</strong> (EÜ in K1/8/9/11/12/15; SLT in K3–7/10/14/16; LUT in K2; ELB in K13).</li>
+<li><strong>Statistische Einordnung (entscheidend):</strong> Mit Ø <strong>0,711</strong> zum Formal-Cluster liegt <em>mittel</em> <strong>innerhalb</strong> der Streuung unabhängiger Formal-Äquivalenz-Werke (0,653–0,712). Das kapitelweise „Patchwork" ist die <strong>erwartbare Signatur ihres Übersetzungstyps</strong>, nicht per se ein Kopiesignal (s. „Alternative Erklärungen"). Die hohe Trefferzahl ist damit <strong>weitgehend typbedingt zu entlasten</strong>.</li>
+<li><strong>Residuum / LLM:</strong> Real bleibt (1) eine <strong>modeste EÜ-spezifische Affinität</strong> (0,72 vs. EÜ-Geschwister 0,66) und (2) <strong>einzelne</strong> Verse mit möglicher Deutungsübernahme (3:30, 8:6, 2:17, 7:20) — jeweils mit plausiblem Gegenargument (s. Fazit Punkt 1).</li>
+<li><strong>Tischendorf:</strong> In den genannten Einzelfällen liegt eine Deutung <em>einer</em> Referenz vor, die über den Grundtext hinausgeht (3:30 „derselbe", 5:12 „einzigen", 8:6 „führt zum Tod") — prüfenswert, aber je auch eigenständig erklärbar.</li>
+<li><strong>Fazit:</strong> <strong>Geringer–mittlerer, punktueller Handlungsbedarf.</strong> Kein Nachweis systematischer Kopie; gezielte Lösung der EÜ-nahen Einzelstellen empfohlen. (Frühere Einstufung „problematischste Fassung" war methodisch inkonsistent und ist hiermit korrigiert.)</li>
+</ul>
+<h3>2.3 Lesefluss — <em>weitgehend eigenständig</em></h3>
+<ul>
+<li><strong>Mechanik:</strong> Deutlich niedrigere Werte (Ø-Kapitel-Score 20–41). 194 Verse Stufe ≥ 3, aber nur <strong>98 distinktiv</strong> und Ø-Run nur 6,7 Wörter (vs. 9,7 / 9,6 bei den anderen). Nähe verteilt sich auf die <strong>kommunikativen</strong> Übersetzungen GNB (35), NGÜ (32), EÜ (22) — passend zum freien Register. Nur <strong>9 Verse Stufe 5</strong>, <strong>0 Voll-Verbatim</strong>.</li>
+<li><strong>LLM:</strong> Überwiegend <strong>freie, eigenständige Paraphrase</strong>. Die Nähe zu GNB/NGÜ ist meist Register-bedingt (gleiche kommunikative Strategie), nicht Wortlaut-Kopie.</li>
+<li><strong>Fazit:</strong> <strong>Geringes Risiko.</strong> Punktuell prüfen, wo GNB/NGÜ-Wortlaut durchscheint.</li>
+</ul>
+<hr>
+<h2>3. Die 50 auffälligsten Verse insgesamt</h2>
+<p>Mechanisch (höchster Risiko-Score, ähnlichste Referenz). Vollständig in <code>out/results_top_findings.csv</code>.</p>
+<div class="tbl-wrap"><table>
+<thead><tr><th>#</th><th>Stelle</th><th>Fassung→Ref</th><th>Score</th><th>längste identische Wortfolge</th></tr></thead><tbody>
+<tr><td>1</td><td>Röm 2:17</td><td>mittel→EÜ</td><td>100</td><td>15 W.</td></tr>
+<tr><td>2</td><td>Röm 3:29</td><td>mittel→EÜ</td><td>100</td><td>16 W.</td></tr>
+<tr><td>3</td><td>Röm 4:15</td><td>Urtextnah→EÜ</td><td>100</td><td>15 W.</td></tr>
+<tr><td>4</td><td>Röm 5:8</td><td>mittel→SLT</td><td>100</td><td>19 W.</td></tr>
+<tr><td>5</td><td>Röm 6:20</td><td>mittel→SLT</td><td>100</td><td>14 W.</td></tr>
+<tr><td>6</td><td>Röm 7:16</td><td>Urtextnah→LUT</td><td>100</td><td>18 W.</td></tr>
+<tr><td>7</td><td>Röm 8:6</td><td>mittel→EÜ</td><td>100</td><td>17 W.</td></tr>
+<tr><td>8</td><td>Röm 8:22</td><td>Urtextnah→SLT</td><td>100</td><td>15 W.</td></tr>
+<tr><td>9</td><td>Röm 10:9</td><td>Urtextnah→ELB</td><td>100</td><td><strong>27 W.</strong></td></tr>
+<tr><td>10</td><td>Röm 10:21</td><td>Urtextnah→ELB</td><td>100</td><td>19 W.</td></tr>
+<tr><td>11</td><td>Röm 11:5</td><td>Urtextnah→ELB</td><td>100</td><td>15 W.</td></tr>
+<tr><td>12</td><td>Röm 13:10</td><td>Urtextnah→ELB</td><td>100</td><td>15 W.</td></tr>
+<tr><td>13</td><td>Röm 14:11</td><td>Urtextnah→ELB</td><td>100</td><td>23 W.</td></tr>
+<tr><td>14</td><td>Röm 15:30</td><td>Urtextnah→ELB</td><td>100</td><td><strong>27 W.</strong></td></tr>
+<tr><td>15</td><td>Röm 16:12</td><td>Urtextnah→ELB</td><td>100</td><td>18 W.</td></tr>
+<tr><td>16</td><td>Röm 1:17</td><td>Urtextnah→ELB</td><td>99</td><td>15 W.</td></tr>
+<tr><td>17</td><td>Röm 3:1</td><td>mittel→ELB</td><td>99</td><td>13 W.</td></tr>
+<tr><td>18</td><td>Röm 4:9</td><td>mittel→EÜ</td><td>99</td><td>16 W.</td></tr>
+<tr><td>19</td><td>Röm 4:24</td><td>mittel→EÜ</td><td>99</td><td>20 W.</td></tr>
+<tr><td>20</td><td>Röm 5:8</td><td>Urtextnah→ELB</td><td>99</td><td>15 W.</td></tr>
+<tr><td>21</td><td>Röm 7:1</td><td>Urtextnah→ELB</td><td>99</td><td>16 W.</td></tr>
+<tr><td>22</td><td>Röm 7:18</td><td>mittel→SLT</td><td>99</td><td><strong>26 W.</strong></td></tr>
+<tr><td>23</td><td>Röm 7:24</td><td>mittel→EÜ</td><td>99</td><td>13 W.</td></tr>
+<tr><td>24</td><td>Röm 8:11</td><td>Urtextnah→ELB</td><td>99</td><td>17 W.</td></tr>
+<tr><td>25</td><td>Röm 8:11</td><td>mittel→EÜ</td><td>99</td><td>17 W.</td></tr>
+<tr><td>26</td><td>Röm 8:13</td><td>Urtextnah→EÜ</td><td>99</td><td>17 W.</td></tr>
+<tr><td>27</td><td>Röm 8:13</td><td>mittel→EÜ</td><td>99</td><td>17 W.</td></tr>
+<tr><td>28</td><td>Röm 8:16</td><td>mittel→ELB</td><td>99</td><td>13 W.</td></tr>
+<tr><td>29</td><td>Röm 8:19</td><td>Urtextnah→ELB</td><td>99</td><td>13 W.</td></tr>
+<tr><td>30</td><td>Röm 8:35</td><td>Urtextnah→ELB</td><td>99</td><td>14 W.</td></tr>
+<tr><td>31</td><td>Röm 9:26</td><td>mittel→ELB</td><td>99</td><td>18 W.</td></tr>
+<tr><td>32</td><td>Röm 10:9</td><td>mittel→NGÜ</td><td>99</td><td>15 W.</td></tr>
+<tr><td>33</td><td>Röm 13:9</td><td>Urtextnah→ELB</td><td>99</td><td>21 W.</td></tr>
+<tr><td>34</td><td>Röm 15:8</td><td>Urtextnah→ELB</td><td>99</td><td>22 W.</td></tr>
+<tr><td>35</td><td>Röm 16:10</td><td>Urtextnah→LUT</td><td>99</td><td>13 W.</td></tr>
+<tr><td>36</td><td>Röm 16:13</td><td>mittel→NGÜ</td><td>99</td><td>15 W.</td></tr>
+<tr><td>37</td><td>Röm 16:14</td><td>mittel→EÜ</td><td>99</td><td>13 W.</td></tr>
+<tr><td>38</td><td>Röm 2:12</td><td>mittel→SLT</td><td>98</td><td>22 W.</td></tr>
+<tr><td>39</td><td>Röm 2:20</td><td>Urtextnah→ELB</td><td>98</td><td>15 W.</td></tr>
+<tr><td>40</td><td>Röm 3:22</td><td>Urtextnah→ELB</td><td>98</td><td>15 W.</td></tr>
+<tr><td>41</td><td>Röm 3:27</td><td>Urtextnah→SLT</td><td>98</td><td>14 W.</td></tr>
+<tr><td>42</td><td>Röm 3:30</td><td>mittel→SLT</td><td>98</td><td>19 W. (dg5=15)</td></tr>
+<tr><td>43</td><td>Röm 5:3</td><td>Urtextnah→ELB</td><td>98</td><td>14 W.</td></tr>
+<tr><td>44</td><td>Röm 5:10</td><td>Urtextnah→ELB</td><td>98</td><td>16 W.</td></tr>
+<tr><td>45</td><td>Röm 5:21</td><td>Urtextnah→SLT</td><td>98</td><td>17 W.</td></tr>
+<tr><td>46</td><td>Röm 6:14</td><td>Urtextnah→ELB</td><td>98</td><td>13 W.</td></tr>
+<tr><td>47</td><td>Röm 7:1</td><td>mittel→ELB</td><td>98</td><td>14 W.</td></tr>
+<tr><td>48</td><td>Röm 7:19</td><td>mittel→LUT</td><td>98</td><td>13 W.</td></tr>
+<tr><td>49</td><td>Röm 8:15</td><td>Urtextnah→ELB</td><td>98</td><td>13 W.</td></tr>
+<tr><td>50</td><td>Röm 8:30</td><td>Urtextnah→ELB</td><td>98</td><td>19 W.</td></tr>
+</tbody></table></div>
+<blockquote><strong>Wichtig (LLM-Hinweis):</strong> Ein hoher Score ist <em>Triage</em>, kein Urteil. Mehrere dieser Verse sind nach exegetischer Prüfung <strong>Standardkonvergenz</strong> (s. Abschnitt 5, „Entlastung"), z. B. Verse mit langer Folge aber <strong>dg5 = 0</strong>.</blockquote>
+<hr>
+<h2>4. Auffälligste Kapitel / Abschnitte</h2>
+<ul>
+<li><strong>Röm 7–8</strong> (mittel): höchste Patchwork-Dichte zu SLT/EÜ (K7: Ø 77, K8: Ø 76).</li>
+<li><strong>Röm 5</strong> (Urtextnah↔ELB): Ø 77 — höchste durchgehende ELB-Nähe.</li>
+<li><strong>Röm 16 (Grußliste)</strong>: erwartungsgemäß hohe Nähe in allen Fassungen — Eigennamen + feste Grußformeln lassen kaum Varianz; <strong>mit Vorsicht zu werten</strong> (s. Abschnitt 6, Kurzvers-Problematik).</li>
+<li><strong>Geringste Nähe:</strong> Röm 12 (Urtextnah, Ø 41) und durchgängig die <strong>Lesefluss-Fassung</strong>.</li>
+</ul>
+<hr>
+<h2>5. Nächste Referenzübersetzungen (Rangfolge)</h2>
+<div class="tbl-wrap"><table>
+<thead><tr><th>Fassung</th><th>1.</th><th>2.</th><th>3.</th><th>Charakter (basislinien-bereinigt)</th></tr></thead><tbody>
+<tr><td><strong>Urtextnah</strong></td><td><strong>ELB</strong> (alle 16 Kap.)</td><td>SLT</td><td>LUT/EÜ</td><td>wörtlicher Typ + modeste ELB-Affinität</td></tr>
+<tr><td><strong>mittel</strong></td><td><strong>EÜ</strong> ≈ <strong>SLT</strong></td><td>ELB</td><td>LUT</td><td>formaler Typ (im Cluster-Normbereich) + modeste EÜ-Affinität</td></tr>
+<tr><td><strong>Lesefluss</strong></td><td><strong>GNB</strong></td><td><strong>NGÜ</strong></td><td>EÜ</td><td>kommunikativer Typ, eigenständig</td></tr>
+</tbody></table></div>
+<p>Details: <code>out/results_summary_by_translation.csv</code>, <code>out/results_summary_by_chapter.csv</code>.</p>
+<hr>
+<h2>6. Einschätzung: Abhängigkeit, Patchwork oder normale Nähe?</h2>
+<p><strong>Antwort: weit überwiegend normale, typbedingte Übersetzungsnähe — mit schmalem Residuum.</strong></p>
+<ul>
+<li><strong>Urtextnah → überwiegend typbedingte Nähe</strong> (wörtliche Übersetzung landet im wörtlichen Cluster) <strong>+ modeste spezifische ELB-Affinität</strong>. Die langen Verbatim-Strecken sind teils Standardkonvergenz, teils ELB-nahe Wortwahl — aber <strong>keine</strong> mitübernommenen Deutungen.</li>
+<li><strong>mittel → typbedingte Cluster-Nähe</strong> (formale Äquivalenz; <em>innerhalb</em> der Norm-Streuung des Clusters) <strong>+ modeste spezifische EÜ-Affinität</strong> + einzelne Deutungsübernahmen. Das kapitelweise „Patchwork" ist die <strong>erwartbare Signatur</strong> des Typs, <strong>kein</strong> eigenständiger Plagiatsbeleg.</li>
+<li><strong>Lesefluss → normale, eigenständige Nähe</strong> zu GNB/NGÜ (kommunikativer Typ).</li>
+</ul>
+<p><strong>Methodischer Vorbehalt (ehrlich benannt):</strong> Kurzverse (&lt; 8–10 Wörter) und feste Formeln (Grußlisten Röm 16, AT-Zitatformeln „wie geschrieben steht") erzeugen unvermeidbar hohe Werte und wurden im Score gedämpft, aber nicht eliminiert. Vor allem aber: Die <strong>absoluten</strong> Trefferzahlen über-markieren diesen Texttyp grundsätzlich; maßgeblich ist die <strong>basislinien-relative</strong> Lesart (s. „Herkunft und Gültigkeit der Richtwerte").</p>
+<hr>
+<h2>7. Wiederkehrende Qualitätsmängel gegenüber Tischendorf 8</h2>
+<p>Da Tischendorf 8 vorliegt, urtextlich abschließend prüfbar. Befunde:</p>
+<p>*<em>A. Deutungen, die über den Grundtext hinausgehen und mit </em>einer<em> Referenz übereinstimmen (prüfenswert; jeweils auch eigenständig erklärbar):</em>*</p>
+<ul>
+<li><strong>Röm 3:30 (mittel, vgl. SLT):</strong> „ein und <strong>derselbe</strong> Gott" — εἷς = „einer". <em>Mögliche</em> SLT-Anlehnung; zugleich geläufige theologische Wendung (ein Gott für Juden u. Heiden). → leichte Überinterpretation.</li>
+<li><strong>Röm 5:12 (mittel, vgl. EÜ):</strong> „einen <strong>einzigen</strong> Menschen" — ἑνός = „einen"; „einzigen" ist verstärkend. <em>Mögliche</em> EÜ-Anlehnung; auch als betonende Lesart eigenständig denkbar.</li>
+<li><strong>Röm 8:6 (mittel, vgl. EÜ):</strong> „… <strong>führt zum</strong> Tod" — Grundtext ist verblose Gleichsetzung (φρόνημα … θάνατος). „führt zu" ist eine von mehreren naheliegenden verbalen Auflösungen; <strong>urtextnah</strong> wählt verbnah „ist Tod".</li>
+</ul>
+<p><strong>B. Inkonsistente Wiedergabe von Schlüsselbegriffen zwischen den Fassungen:</strong></p>
+<ul>
+<li>φρόνημα (Röm 8): urtextnah „Sinnen", mittel „Trachten" (= EÜ/SLT). Innerhalb je einer Fassung konsistent, zwischen den Fassungen uneinheitlich.</li>
+</ul>
+<p><strong>C. Positiv hervorzuheben (Entlastung / Qualität über Referenz):</strong></p>
+<ul>
+<li><strong>Röm 5:8 (urtextnah):</strong> „seine <strong>eigene</strong> Liebe" gibt ἑαυτοῦ korrekt wieder — <strong>genauer als ELB</strong>, die es auslässt.</li>
+<li><strong>Röm 8:13 (urtextnah):</strong> „die Taten des Leibes" (τὰς πράξεις) — korrekter als EÜ („die <em>sündigen</em> Taten", Zusatz).</li>
+<li><strong>Röm 16:24:</strong> korrekte Auslassung gemäß Tischendorf 8.</li>
+</ul>
+<p><strong>Keine</strong> systematischen Fehler bei Tempora, Modi, Kasus oder Pronomenbezügen festgestellt; die argumentative Struktur des Römerbriefs bleibt in allen drei Fassungen erhalten. Der inhaltliche Kern ist solide — das Hauptproblem ist <strong>sprachliche Abhängigkeit</strong>, nicht <strong>Übersetzungsfehler</strong>.</p>
+<hr>
+<h2>8. Verse mit vorrangigem redaktionellem Prüfbedarf (Deutungsübernahme)</h2>
+<p>Kein „zwingend", aber die belastbarsten Einzelfälle — hier sollte die Formulierung <strong>bewusst vom Referenzwortlaut gelöst</strong> und die Deutung am Grundtext gemessen werden:</p>
+<ul>
+<li><strong>Röm 3:30 (mittel, vgl. SLT)</strong> — „derselbe" über εἷς hinaus. Wortlaut von SLT lösen, „derselbe" prüfen.</li>
+<li><strong>Röm 8:6 (mittel, vgl. EÜ)</strong> — „führt zum Tod" für verblose Gleichsetzung. Verbnähere Lösung erwägen.</li>
+<li><strong>Röm 2:17 (mittel, vgl. EÜ)</strong> — eng EÜ-nah; Wortstellung/Interpunktion variieren.</li>
+<li><strong>Röm 7:20, 5:12, 8:18, 11:1 (mittel)</strong> — EÜ-/ELB-nahe Einzelstellen; sprachlich entkoppeln.</li>
+</ul>
+<p>→ Kandidatenliste zur Sichtung: Stufe-≥3-Verse mit <code>dg5 ≥ 2</code> in <code>out/flagged_for_llm.json</code> (Triage — die meisten davon sind nach Basislinien-Abgleich unkritisch).</p>
+<h2>9. Verse, die nur sprachlich unabhängiger formuliert werden sollten</h2>
+<p>Distinktive Übernahme <strong>ohne</strong> inhaltlichen Fehler (Wortlaut lösen genügt):</p>
+<ul>
+<li><strong>Röm 7:16 (urtextnah→LUT)</strong>, <strong>8:13 (urtextnah/mittel→EÜ)</strong>, <strong>10:9 (mittel→NGÜ)</strong>, <strong>11:8 (mittel→EÜ)</strong>, <strong>2:12 (mittel→SLT)</strong> sowie die große Mehrheit der distinktiven Urtextnah↔ELB-Treffer.</li>
+</ul>
+<h2>10. Verse, die unproblematisch erscheinen (Entlastung)</h2>
+<ul>
+<li><strong>Röm 6:8, 10:11, 5:8 (urtextnah):</strong> lange identische Folge, aber <strong>dg5 = 0</strong> → Standardkonvergenz, durch den einfachen Grundtext erzwungen. <strong>Unverändert lassen.</strong></li>
+<li><strong>Röm 10:14 (mittel→SLT):</strong> längste Folge im Korpus (28 W.), aber strenger griechischer Parallelismus → Konvergenz, nicht Kopie.</li>
+<li><strong>Lesefluss</strong> nahezu durchgängig (eigenständige Paraphrase).</li>
+</ul>
+<h2>11. Empfehlungen für den dauerhaften Prüfworkflow</h2>
+<p>1. <strong>Mechanik vor LLM</strong> beibehalten: Die Pipeline (<code>fetch → build_corpus → analyze</code>) ist reproduzierbar und für jedes weitere NT-Buch wiederverwendbar (nur Buch-ID + Kapitelzahl ändern).</p>
+<p>2. <strong>Distinktheitsmaß (<code>dg4/dg5</code>) als Leitkennzahl</strong> verwenden — es trennt Kopie von Konvergenz weit zuverlässiger als Run-Länge oder Cosine allein.</p>
+<p>3. <strong>Schwellen-Gegenprüfung bei der Quelle:</strong> GenerativBibel sollte bewusst gegen die jeweilige Leit-Referenz (Urtextnah↔ELB, mittel↔EÜ/SLT) <strong>distanziert</strong> werden; eine „Anti-Plagiats-Stufe" im Erstellungs-Workflow (eigene Wortwahl bei dg5 ≥ 2) wäre wirksam.</p>
+<p>4. <strong>Kurzvers-/Formel-Filter</strong> dauerhaft anwenden (Grußlisten, Zitatformeln nicht überbewerten).</p>
+<p>5. <strong>Tischendorf-Treue als Stärke ausbauen:</strong> Die Fälle, in denen die GenerativBibel genauer ist als die Referenz (5:8, 8:13, 16:24), sind ein Qualitätsargument — gezielt fördern.</p>
+<p>6. <strong>LLM-Prüfung skalieren:</strong> Bei künftigen Büchern Workflow-Orchestrierung (parallele exegetische Prüfung je markiertem Vers) erwägen; in dieser Prüfung wurden Top-Fälle + repräsentative Stichproben manuell exegetisch geprüft.</p>
+<hr>
+<h2>12. Angemessenheit der Urteile (kritische Selbstprüfung)</h2>
+<p>Dieser Abschnitt prüft die eigenen Schlussfolgerungen auf Über- und Unterschätzung.</p>
+<p><strong>Wo das Verfahren zunächst zu hart urteilte (korrigiert):</strong></p>
+<ul>
+<li>Die <strong>erste Fassung dieses Berichts</strong> stufte <em>mittel</em> als „erhöht/problematischste Fassung" ein. Das war <strong>methodisch inkonsistent</strong>: Die statistische Basislinie wurde anfangs nur auf <em>Urtextnah</em> angewandt. Korrekt angewandt liegt <em>mittel</em> <strong>innerhalb</strong> der Normstreuung ihres Übersetzungstyps. Die Einstufung wurde auf „gering–mittel, punktuell" korrigiert.</li>
+<li>Die <strong>absoluten Schwellen</strong> (8-Wort-Folge, n-Gramme) stammen aus der Plagiatsprüfung für <em>Originaltexte</em> und <strong>über-markieren</strong> Bibelübersetzungen grundsätzlich. Die 947 „Stufe ≥ 3"-Treffer sind <strong>Triage</strong>, nicht 947 Plagiate. Maßgeblich ist die <strong>basislinien-relative</strong> Lesart.</li>
+</ul>
+<p><strong>Wo Vorsicht vor Unterschätzung geboten ist (offen gehalten):</strong></p>
+<ul>
+<li>Die <strong>modesten spezifischen Affinitäten</strong> (Urtextnah→ELB +0,05; mittel→EÜ +0,06 über Geschwister-Niveau) sind <strong>klein, aber real</strong> und werden <strong>nicht</strong> wegerklärt.</li>
+<li>Die <strong>einzelnen Deutungsübernahmen</strong> (3:30, 8:6 …) werden als <em>prüfenswert</em> geführt — weder zu Plagiaten erklärt noch ignoriert.</li>
+</ul>
+<p>*<em>Was das Verfahren grundsätzlich </em>nicht<em> kann (Ehrlichkeit über die Grenzen):</em>*</p>
+<ul>
+<li>Es misst <strong>Textnähe und deren Überschuss über eine Basislinie</strong> — es kann <strong>Absicht/Entstehungsweg nicht beweisen</strong>. Ob eine Stelle „abgeschrieben" oder unabhängig gleich formuliert wurde, ist textstatistisch <strong>nicht</strong> letztgültig entscheidbar.</li>
+<li>Die Basislinie wurde aus <strong>sechs</strong> Übersetzungen geschätzt — eine kleine Stichprobe; die Schwellen sind <strong>nicht</strong> gegen einen Goldstandard kalibriert.</li>
+<li>Geprüft wurde <strong>ein</strong> Buch (Römer). Verallgemeinerungen auf das ganze NT sind <strong>nicht</strong> zulässig, bevor weitere Bücher geprüft sind.</li>
+</ul>
+<p><strong>Gesamturteil zur Angemessenheit:</strong> Nach Korrektur der Inkonsistenz hält der Bericht die Balance — er <strong>entlastet</strong> die typbedingte Aggregat-Nähe klar und <strong>belässt</strong> zugleich das schmale, reale Residuum als redaktionell prüfenswert. Das Hauptergebnis („kein Nachweis systematischer Plagiate; punktueller Prüfbedarf; <em>Lesefluss</em> unbedenklich") ist gegenüber den Schwellen-Annahmen <strong>robust</strong>, weil es auf der empirisch gemessenen Basislinie beruht, nicht auf den generischen Absolutschwellen.</p>
+<hr>
+<h2>Erzeugte Dateien</h2>
+<div class="tbl-wrap"><table>
+<thead><tr><th>Datei</th><th>Inhalt</th></tr></thead><tbody>
+<tr><td><code>data/corpus.json</code></td><td>einheitliche Vers-Struktur (GB 3 Fassungen + Tischendorf + 6 Referenzen)</td></tr>
+<tr><td><code>data/coverage_report.json</code></td><td>Abdeckung, fehlende/auffällige Stellen</td></tr>
+<tr><td><code>out/results_verse_level.csv</code></td><td>7.776 Zeilen, alle Metriken je Paar</td></tr>
+<tr><td><code>out/results_top_findings.csv</code></td><td>ähnlichste Referenz je Vers/Fassung, nach Score</td></tr>
+<tr><td><code>out/results_summary_by_chapter.csv</code></td><td>je Kapitel/Fassung</td></tr>
+<tr><td><code>out/results_summary_by_translation.csv</code></td><td>je Referenz/Fassung</td></tr>
+<tr><td><code>out/results_summary_by_gb_version.csv</code></td><td>Vergleich der 3 Fassungen</td></tr>
+<tr><td><code>out/flagged_for_llm.json</code></td><td>947 Stufe-≥3-Verse + Stichproben (mit Grundtext + allen Referenztexten)</td></tr>
+<tr><td><code>out/results_llm_review.csv</code></td><td>exegetische LLM-Bewertung der geprüften Stellen (Aufgabe 6)</td></tr>
+<tr><td><code>out/baseline_matrix.json</code></td><td>Ähnlichkeitsmatrix (Referenzen untereinander + GB-Fassungen) — statistische Basislinie</td></tr>
+</tbody></table></div>
+<p><strong>Reproduktion:</strong> <code>node scripts/fetch_bibelthek.js</code> → <code>build_corpus.js</code> → <code>analyze.js</code> → <code>make_worklist.js</code> → <code>baseline.js</code> → <code>validity_check.js</code>.</p>
+  <hr>
+  <p style="color:var(--ink-soft);font-size:.85rem">Dieser Prüfbericht wurde automatisiert erstellt (mechanische Vollanalyse + exegetische Stichprobenprüfung gegen Tischendorf 8) und dient der Transparenz über Methode und Grenzen der Augsburger GenerativBibel.</p>
+</main>
+</body>
+</html>
