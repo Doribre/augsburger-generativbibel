@@ -19,6 +19,12 @@ const TYPES = {
 const server = http.createServer((req, res) => {
   try {
     let urlPath = decodeURIComponent(req.url.split('?')[0]);
+    // PS#0005: Versionsendpunkt
+    if (urlPath === '/.well-known/version') {
+      res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
+      res.end((process.env.BTV_IMAGE_VERSION || 'dev') + '\n');
+      return;
+    }
     if (urlPath === '/') urlPath = '/index.html';
     const filePath = path.join(ROOT, path.normalize(urlPath));
     if (!filePath.startsWith(ROOT)) {
@@ -43,5 +49,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log('Markus-App läuft auf http://localhost:' + PORT + '  (Strg+C zum Beenden)');
+  console.log('Augsburger GenerativBibel läuft auf Port ' + PORT + ' (Version ' + (process.env.BTV_IMAGE_VERSION || 'dev') + ')');
 });

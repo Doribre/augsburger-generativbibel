@@ -20,7 +20,8 @@ const state = {
   patternMap: {},    // normalisiert -> bookId
   level: Number(localStorage.getItem('mk_level')) || 2,
   greek: localStorage.getItem('mk_greek') === '1',
-  ref: null,         // {bookId, chapter, from, to}
+  ref: null,         // (Legacy) – aktuelle Stelle = segments[0]
+  segments: [],      // [{bookId, chapter, verses|null}] – Listen & Semikolon (FD#0004)
 };
 
 const $ = (s) => document.querySelector(s);
@@ -33,10 +34,11 @@ function dl() { window.dataLayer = window.dataLayer || []; return window.dataLay
 function chapterSlug(bookId, chapter) { return String(bookId) + '-' + chapter; }
 // Globale Parameter aktuell halten (bei jedem Buch-/Kapitel-/Stufenwechsel)
 function updateGlobals() {
-  if (!state.ref) return;
+  const cur = (state.segments || [])[0];
+  if (!cur) return;
   dl().push({
-    bible_book: state.bookId || '',
-    bible_chapter: Number(state.ref.chapter) || 0,
+    bible_book: cur.bookId || '',
+    bible_chapter: Number(cur.chapter) || 0,
     current_translation: TRANSLATION_KEY[state.level] || '',
   });
 }
@@ -77,16 +79,11 @@ async function boot() {
   wireControls();
   syncSliderUI();
 
-  // Start: Hash → sonst erstes verfügbares Buch
-  const fromHash = parseRef(decodeURIComponent(location.hash.replace(/^#/, '')));
-  let startBook = (state.manifest.available && state.manifest.available[0]) || 'markus';
-  let startRef = null;
-  if (fromHash && !fromHash.error && isAvailable(fromHash.bookId)) {
-    startBook = fromHash.bookId; startRef = fromHash;
-  }
-  await loadBook(startBook);
-  state.ref = startRef || { bookId: startBook, chapter: 1, from: 1, to: Math.min(8, maxVerse(1)) };
-  buildChangeIndex();
+  // Start: Hash → sonst erstes verfügbares Buch, Kapitel 1
+  const fromHash = parseQuery(decodeURIComponent(location.hash.replace(/^#/, '')), null);
+  let segs = (fromHash && fromHash.segments && isAvailable(fromHash.segments[0].bookId)) ? fromHash.segments : null;
+  if (!segs) { const sb = (state.manifest.available && state.manifest.available[0]) || 'markus'; segs = [{ bookId: sb, chapter: 1, verses: null }]; }
+  await loadSegments(segs);
   renderVersionFooter();
   render();
   startHeartbeat();
@@ -117,6 +114,15 @@ async function loadBook(id) {
   const sel = $('#bookSel'); if (sel) sel.value = id;
 }
 
+// Lädt alle in den Segmenten referenzierten Bücher und setzt das erste als „aktuell"
+async function loadSegments(segs) {
+  for (const bid of [...new Set(segs.map((s) => s.bookId))]) {
+    if (!state.booksCache[bid]) state.booksCache[bid] = await fetch('data/books/' + bid + '.json').then((r) => r.json());
+  }
+  await loadBook(segs[0].bookId);
+  state.segments = segs;
+}
+
 /* ---------------- Hilfen ---------------- */
 function maxVerse(ch) {
   const c = state.bookData && state.bookData.chapters[ch];
@@ -126,95 +132,131 @@ function maxVerse(ch) {
   return m;
 }
 
-/* ---------------- Referenz-Parser (alle NT-Bücher) ---------------- */
-function parseRef(input) {
-  if (!input) return null;
-  const s = String(input).trim();
-  const m = s.match(/^(.*?)(\d+(?:\s*[,:.]\s*\d+(?:\s*[-–—]\s*\d+)?)?)\s*$/);
-  if (!m) return { error: 'format' };
-  const bookPhrase = m[1].trim();
-  const numPart = m[2].replace(/\s+/g, '');
-
-  let bookId = state.bookId;
-  if (bookPhrase) {
-    const id = state.patternMap[norm(bookPhrase)];
-    if (!id) return { error: 'unknownbook', phrase: bookPhrase };
-    bookId = id;
-  }
-  if (!bookId) return { error: 'format' };
-
-  const nm = numPart.match(/^(\d+)(?:[,:.](\d+)(?:[-–—](\d+))?)?$/);
-  if (!nm) return { error: 'format' };
-  const chapter = Number(nm[1]);
-  const meta = bookMeta(bookId);
-  if (chapter < 1 || chapter > meta.chapters) return { error: 'chapter', bookId, max: meta.chapters };
-
-  if (!isAvailable(bookId)) return { error: 'unavailable', bookId };
-
-  // Verszahlen kennen wir sicher nur für das aktuell geladene Buch
-  const sameBook = bookId === state.bookId;
-  const mv = sameBook ? maxVerse(chapter) : 0;
-  if (nm[2] === undefined) return { bookId, chapter, from: 1, to: sameBook ? mv : 1, whole: true };
-  let from = Number(nm[2]);
-  let to = nm[3] !== undefined ? Number(nm[3]) : from;
-  if (sameBook) {
-    if (to > mv) to = mv;
-    if (from > mv) return { error: 'verse', bookId };
-  }
-  if (to < from) to = from;
-  return { bookId, chapter, from, to };
+/* ---------------- Referenz-Parser (FD#0004) ----------------
+   Fehlertolerant: ohne Satzzeichen, Leerzeichen als Trenner, Groß/klein egal,
+   typografische Striche, Halbvers (5a), Versbereich (5-7), Versliste (5,7,9),
+   mehrere Stellen per Semikolon (Buch/Kapitel-Carryover), eindeutige Abkürzungs-Präfixe. */
+function resolveBook(phrase) {
+  const n = norm(phrase);
+  if (!n || !/[a-zäöü]/.test(n)) return null; // reine Ziffern = Kapitel, kein Buch
+  if (state.patternMap[n]) return state.patternMap[n];
+  const ids = [...new Set(Object.keys(state.patternMap).filter((k) => k.indexOf(n) === 0).map((k) => state.patternMap[k]))];
+  return ids.length === 1 ? ids[0] : null; // eindeutiger Präfix
 }
-
-function refToString(ref) {
-  if (!ref) return '';
-  const name = bookName(ref.bookId);
-  if (ref.whole || (ref.from === 1 && ref.to === maxVerse(ref.chapter))) return name + ' ' + ref.chapter;
-  if (ref.from === ref.to) return name + ' ' + ref.chapter + ',' + ref.from;
-  return name + ' ' + ref.chapter + ',' + ref.from + '-' + ref.to;
+function parseVersePart(vp) {
+  vp = vp.replace(/\s+/g, '');
+  if (!vp) return null;
+  const set = []; let any = false, ok = false;
+  for (const it of vp.split(',').filter(Boolean)) {
+    any = true;
+    const r = it.match(/^(\d+)[a-z]?(?:-(\d+)[a-z]?)?$/i); // Halbvers-Buchstabe wird akzeptiert (Vollvers angezeigt)
+    if (!r) continue;
+    const a = Number(r[1]);
+    if (r[2] !== undefined) { const b = Number(r[2]); ok = true; if (b < a) continue; for (let x = a; x <= b; x++) set.push(x); }
+    else { set.push(a); ok = true; }
+  }
+  if (any && !ok) return undefined; // nichts Gültiges -> ungültig
+  return [...new Set(set)].sort((x, y) => x - y);
 }
+function parseSpec(spec) {
+  const m = String(spec).trim().match(/^(\d+)\s*[ ,:]?\s*(.*)$/);
+  if (!m) return { error: true };
+  const rest = (m[2] || '').trim();
+  if (!rest) return { chapter: Number(m[1]), verses: null };
+  const verses = parseVersePart(rest);
+  if (verses === undefined) return { error: true };
+  return { chapter: Number(m[1]), verses: verses };
+}
+function parseQuery(input, defaultBookId) {
+  if (input == null) return { error: 'empty' };
+  const s = String(input).replace(/ /g, ' ').replace(/[–—]/g, '-').replace(/\s+/g, ' ').trim();
+  if (!s) return { error: 'empty' };
+  const segs = [];
+  let curBook = defaultBookId || null;
+  for (const part of s.split(';').map((x) => x.trim()).filter(Boolean)) {
+    const toks = part.split(' ').filter(Boolean);
+    let bookId = null, restToks = toks;
+    for (let k = Math.min(toks.length, 4); k >= 1; k--) {
+      const rest = toks.slice(k);
+      if (rest.length === 0 || /^\d/.test(rest[0])) {
+        const id = resolveBook(toks.slice(0, k).join(' '));
+        if (id) { bookId = id; restToks = rest; break; }
+      }
+    }
+    let specStr;
+    if (bookId) { curBook = bookId; specStr = restToks.join(' '); }
+    else specStr = part;
+    if (!curBook) return { error: 'unknownbook', phrase: part };
+    if (!isAvailable(curBook)) return { error: 'unavailable', bookId: curBook };
+    if (!specStr) { segs.push({ bookId: curBook, chapter: 1, verses: null }); continue; }
+    const sp = parseSpec(specStr);
+    if (sp.error) return { error: 'format' };
+    const meta = bookMeta(curBook);
+    if (sp.chapter < 1 || sp.chapter > meta.chapters) return { error: 'chapter', bookId: curBook, max: meta.chapters };
+    segs.push({ bookId: curBook, chapter: sp.chapter, verses: sp.verses });
+  }
+  return segs.length ? { segments: segs } : { error: 'empty' };
+}
+function segLabel(seg) {
+  const name = bookName(seg.bookId);
+  if (seg.verses == null) return name + ' ' + seg.chapter;
+  const vs = seg.verses;
+  if (!vs.length) return name + ' ' + seg.chapter;
+  if (vs.length === 1) return name + ' ' + seg.chapter + ',' + vs[0];
+  let contig = true; for (let i = 1; i < vs.length; i++) if (vs[i] !== vs[i - 1] + 1) { contig = false; break; }
+  return name + ' ' + seg.chapter + ',' + (contig ? vs[0] + '-' + vs[vs.length - 1] : vs.join('.'));
+}
+function segmentsToString(segs) { return (segs || []).map(segLabel).join('; '); }
 
 /* ---------------- Rendering ---------------- */
 function render() {
-  const ref = state.ref;
+  const segs = state.segments || [];
   const results = $('#results');
-  if (!ref || !state.bookData) { results.innerHTML = ''; return; }
+  if (!segs.length) { results.innerHTML = ''; return; }
   const lvl = LEVELS[state.level].key;
-  const ch = ref.chapter;
-  const chap = state.bookData.chapters[ch] || {};
+  let html = '';
 
-  let html = '<div class="passage-head">';
-  html += '<h2>' + escapeHtml(refToString(ref)) + '</h2>';
-  html += '<span class="lvl-tag">' + BRAND + ' ' + LEVELS[state.level].name + '</span></div>';
-  html += '<div class="reader">';
+  for (const seg of segs) {
+    const data = state.booksCache[seg.bookId];
+    if (!data) continue;
+    const ch = seg.chapter;
+    const chap = data.chapters[ch] || {};
+    const isCur = seg.bookId === state.bookId;
+    const notes = data.notes || {};
+    const verseNums = (seg.verses && seg.verses.length)
+      ? seg.verses
+      : Object.keys(chap).filter((k) => /^\d+$/.test(k)).map(Number).sort((a, b) => a - b);
 
-  for (let v = ref.from; v <= ref.to; v++) {
-    const verse = chap[v];
-    if (!verse) continue;
-    const noteKey = ch + ':' + v;
-    const note = state.notes[noteKey];
-
-    if (verse.omitted) {
-      const t = note ? note.text : 'Dieser Vers fehlt im zugrunde gelegten Urtext (Tischendorf).';
-      html += '<p class="verse omitted" id="v' + v + '"><span class="vnum">' + v + '</span><span class="vtext">[ausgelassen] ' + escapeHtml(t) + '</span></p>';
-      continue;
+    html += '<div class="passage-head"><h2>' + escapeHtml(segLabel(seg)) + '</h2>';
+    html += '<span class="lvl-tag">' + BRAND + ' ' + LEVELS[state.level].name + '</span></div>';
+    html += '<div class="reader">';
+    for (const v of verseNums) {
+      const verse = chap[v];
+      if (!verse) continue;
+      const note = notes[ch + ':' + v];
+      if (verse.omitted) {
+        const t = note ? note.text : 'Dieser Vers fehlt im zugrunde gelegten Urtext (Tischendorf).';
+        html += '<p class="verse omitted"><span class="vnum">' + v + '</span><span class="vtext">[ausgelassen] ' + escapeHtml(t) + '</span></p>';
+        continue;
+      }
+      const histMark = (isCur && state.changeIndex[ch + ':' + v])
+        ? '<button class="vhist" data-ref="' + ch + ':' + v + '" title="Änderungshistorie dieses Verses">↻</button>' : '';
+      html += '<p class="verse"><span class="vnum">' + v + '</span>' + histMark + '<span class="vtext">' + escapeHtml(verse[lvl] || '') + '</span></p>';
+      if (state.greek && verse.gr) html += '<div class="greek-line">' + renderGreek(verse.gw, verse.gr) + '</div>';
+      if (note) {
+        const label = note.type === 'variante' ? 'Textvariante' : note.type === 'schluss' ? 'Markusschluss' : note.type === 'perikope' ? 'Umstrittene Stelle' : 'Hinweis';
+        html += '<div class="note"><b>' + label + ' (' + ch + ',' + v + '):</b> ' + escapeHtml(note.text) + '</div>';
+      }
     }
-    const histMark = state.changeIndex[ch + ':' + v]
-      ? '<button class="vhist" data-ref="' + ch + ':' + v + '" title="Änderungshistorie dieses Verses">↻</button>' : '';
-    html += '<p class="verse" id="v' + v + '"><span class="vnum">' + v + '</span>' + histMark + '<span class="vtext">' + escapeHtml(verse[lvl] || '') + '</span></p>';
-
-    if (state.greek && verse.gr) html += '<div class="greek-line">' + renderGreek(verse.gw, verse.gr) + '</div>';
-    if (note) {
-      const label = note.type === 'variante' ? 'Textvariante' : note.type === 'schluss' ? 'Markusschluss' : note.type === 'perikope' ? 'Umstrittene Stelle' : 'Hinweis';
-      html += '<div class="note"><b>' + label + ' (' + ch + ',' + v + '):</b> ' + escapeHtml(note.text) + '</div>';
-    }
+    html += '</div>';
   }
-  html += '</div>';
   results.innerHTML = html;
 
   updateQuickNav();
   updateGlobals();
-  location.hash = refToString(ref);
-  $('#search').value = refToString(ref);
+  const str = segmentsToString(segs);
+  location.hash = str;
+  $('#search').value = str;
 }
 
 function renderGreek(gw, gr) {
@@ -367,8 +409,7 @@ function wireControls() {
   if (sel) sel.addEventListener('change', async () => {
     const id = sel.value;
     if (!isAvailable(id)) return;
-    await loadBook(id);
-    state.ref = { bookId: id, chapter: 1, from: 1, to: Math.min(8, maxVerse(1)) };
+    await loadSegments([{ bookId: id, chapter: 1, verses: null }]);
     closePopover(); renderVersionFooter(); render();
     track('generativ_bibel_chapter_changed', chapterSlug(id, 1), 'chapter_selected');
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -406,16 +447,12 @@ function wireControls() {
 }
 
 async function doSearch() {
-  const ref = parseRef($('#search').value);
-  if (!ref || ref.error) { showError(ref || { error: 'empty' }); return; }
-  if (ref.bookId !== state.bookId) await loadBook(ref.bookId);
-  // Verse nach Buchwechsel ggf. begrenzen
-  const mv = maxVerse(ref.chapter);
-  if (ref.whole || ref.to > mv) ref.to = mv;
-  if (ref.from > mv) { showError({ error: 'verse' }); return; }
-  state.ref = ref;
+  const q = parseQuery($('#search').value, state.bookId);
+  if (!q || q.error) { showError(q || { error: 'empty' }); return; }
+  await loadSegments(q.segments);
   closePopover(); renderVersionFooter(); render();
-  track('generativ_bibel_chapter_changed', chapterSlug(ref.bookId, ref.chapter), 'chapter_search');
+  const s0 = q.segments[0];
+  track('generativ_bibel_chapter_changed', chapterSlug(s0.bookId, s0.chapter), 'chapter_search');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -433,18 +470,19 @@ function showError(err) {
 }
 
 function navChapter(dir) {
-  if (!state.ref) return;
-  const meta = bookMeta(state.bookId);
-  let ch = state.ref.chapter + dir;
+  const cur = (state.segments || [])[0]; if (!cur) return;
+  const meta = bookMeta(cur.bookId);
+  const ch = cur.chapter + dir;
   if (ch < 1 || ch > meta.chapters) return;
-  state.ref = { bookId: state.bookId, chapter: ch, from: 1, to: maxVerse(ch), whole: true };
+  state.segments = [{ bookId: cur.bookId, chapter: ch, verses: null }];
   closePopover(); render();
-  track('generativ_bibel_chapter_changed', chapterSlug(state.bookId, ch), dir > 0 ? 'next_chapter' : 'previous_chapter');
+  track('generativ_bibel_chapter_changed', chapterSlug(cur.bookId, ch), dir > 0 ? 'next_chapter' : 'previous_chapter');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 function updateQuickNav() {
-  const meta = bookMeta(state.bookId);
-  const ch = state.ref ? state.ref.chapter : 1;
+  const cur = (state.segments || [])[0];
+  const meta = bookMeta(cur ? cur.bookId : state.bookId);
+  const ch = cur ? cur.chapter : 1;
   $('#prevCh').disabled = ch <= 1;
   $('#nextCh').disabled = ch >= meta.chapters;
   $('#chLabel').textContent = 'Kapitel ' + ch + ' / ' + meta.chapters;
@@ -476,11 +514,9 @@ function escapeHtml(s) {
 }
 
 window.addEventListener('hashchange', async () => {
-  const r = parseRef(decodeURIComponent(location.hash.replace(/^#/, '')));
-  if (r && !r.error && refToString(r) !== refToString(state.ref)) {
-    if (r.bookId !== state.bookId) await loadBook(r.bookId);
-    const mv = maxVerse(r.chapter); if (r.whole || r.to > mv) r.to = mv;
-    state.ref = r; renderVersionFooter(); render();
+  const q = parseQuery(decodeURIComponent(location.hash.replace(/^#/, '')), state.bookId);
+  if (q && q.segments && segmentsToString(q.segments) !== segmentsToString(state.segments)) {
+    await loadSegments(q.segments); renderVersionFooter(); render();
   }
 });
 

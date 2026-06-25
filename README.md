@@ -27,6 +27,28 @@ Dann im Browser **http://localhost:8080** öffnen.
 > Hinweis: Bitte über den Server öffnen, **nicht** die `index.html` per Doppelklick –
 > Browser blockieren beim direkten Öffnen (`file://`) das Laden der JSON-Daten.
 
+## Betrieb / Deployment (Docker)
+
+Auslieferung als Docker-Image, konform zu den Bibel-TV-Standards **PS#0002** (Port 8080) und
+**PS#0005** (zustandslos, Konfiguration nur über Umgebungsvariablen, Logs nach `stdout`/`stderr`,
+Versionsendpunkt).
+
+**Umgebungsvariablen**
+
+| Variable | Standard | Beschreibung |
+|---|---|---|
+| `PORT` | `8080` | Port der Webanwendung. |
+| `BTV_IMAGE_VERSION` | `dev` | Image-Version (Semantic Versioning), beim Build gesetzt; wird unter `/.well-known/version` ausgegeben. |
+
+**Bauen & starten**
+
+```bash
+docker build --build-arg BTV_IMAGE_VERSION=1.0.0 -t generativ-bibel .
+docker run -p 8080:8080 generativ-bibel
+```
+
+Versionsendpunkt (PS#0005): `GET /.well-known/version` → `text/plain` (z. B. `1.0.0`).
+
 ## Funktionen
 
 - **Suchfeld** für Stellen: `Markus 1,1-8`, `Mk 4,35`, `8,27-30`, `3` (ganzes Kapitel).

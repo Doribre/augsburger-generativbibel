@@ -1,0 +1,10 @@
+.git/
+.github/
+.claude/
+_raw/
+history/
+node_modules/
+android/
+www/
+*.apk
+*.md
