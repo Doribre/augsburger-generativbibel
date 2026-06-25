@@ -26,6 +26,34 @@ const state = {
 const $ = (s) => document.querySelector(s);
 const norm = (s) => String(s).toLowerCase().replace(/\./g, '').replace(/\s+/g, '');
 
+/* ---------------- Analytics (dataLayer / GTM) ---------------- */
+// Stufe → current_translation gemäß Mess-Spezifikation
+const TRANSLATION_KEY = { 1: 'AGB_urtextnah', 2: 'AGB_mittel', 3: 'AGB_lesefluss' };
+function dl() { window.dataLayer = window.dataLayer || []; return window.dataLayer; }
+function chapterSlug(bookId, chapter) { return String(bookId) + '-' + chapter; }
+// Globale Parameter aktuell halten (bei jedem Buch-/Kapitel-/Stufenwechsel)
+function updateGlobals() {
+  if (!state.ref) return;
+  dl().push({
+    bible_book: state.bookId || '',
+    bible_chapter: Number(state.ref.chapter) || 0,
+    current_translation: TRANSLATION_KEY[state.level] || '',
+  });
+}
+// Interaktions-Event: event:'interaction' mit type/destination/action
+function track(type, destination, action) {
+  const e = { event: 'interaction', type: type };
+  if (destination !== undefined && destination !== null && destination !== '') e.destination = destination;
+  if (action) e.action = action; // bei Übersetzungs-/Urtext-/Lexikon-Events weglassen
+  dl().push(e);
+}
+// Heartbeat: alle 10 s, solange die Seite im Vordergrund ist
+function startHeartbeat() {
+  setInterval(function () {
+    if (document.visibilityState === 'visible') dl().push({ event: 'visit_duration', page_seconds_view: 10 });
+  }, 10000);
+}
+
 /* ---------------- Laden ---------------- */
 async function boot() {
   initTheme();
@@ -61,6 +89,7 @@ async function boot() {
   buildChangeIndex();
   renderVersionFooter();
   render();
+  startHeartbeat();
 }
 
 function isAvailable(bookId) {
@@ -183,13 +212,14 @@ function render() {
   results.innerHTML = html;
 
   updateQuickNav();
+  updateGlobals();
   location.hash = refToString(ref);
   $('#search').value = refToString(ref);
 }
 
 function renderGreek(gw, gr) {
   if (Array.isArray(gw) && gw.length) {
-    return gw.map((p) => '<span class="gw" data-s="' + p[1] + '">' + escapeHtml(p[0]) + '</span>').join(' ');
+    return gw.map((p) => '<span class="gw" data-s="' + p[1] + '" data-click-type="generativ_bibel_lexicon_word_clicked" data-destination="G' + p[1] + '">' + escapeHtml(p[0]) + '</span>').join(' ');
   }
   return escapeHtml(gr);
 }
@@ -340,29 +370,31 @@ function wireControls() {
     await loadBook(id);
     state.ref = { bookId: id, chapter: 1, from: 1, to: Math.min(8, maxVerse(1)) };
     closePopover(); renderVersionFooter(); render();
+    track('generativ_bibel_chapter_changed', chapterSlug(id, 1), 'chapter_selected');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
   const slider = $('#level');
   slider.value = state.level;
-  slider.addEventListener('input', () => { state.level = Number(slider.value); localStorage.setItem('mk_level', String(state.level)); syncSliderUI(); render(); });
-  document.querySelectorAll('.slider-labels span').forEach((sp) => sp.addEventListener('click', () => { state.level = Number(sp.dataset.lvl); slider.value = state.level; localStorage.setItem('mk_level', String(state.level)); syncSliderUI(); render(); }));
+  slider.addEventListener('input', () => { state.level = Number(slider.value); localStorage.setItem('mk_level', String(state.level)); syncSliderUI(); render(); track('generativ_bibel_translation_changed', TRANSLATION_KEY[state.level]); });
+  document.querySelectorAll('.slider-labels span').forEach((sp) => sp.addEventListener('click', () => { state.level = Number(sp.dataset.lvl); slider.value = state.level; localStorage.setItem('mk_level', String(state.level)); syncSliderUI(); render(); track('generativ_bibel_translation_changed', TRANSLATION_KEY[state.level]); }));
 
   const gk = $('#greekToggle');
   gk.checked = state.greek;
-  gk.addEventListener('change', () => { state.greek = gk.checked; localStorage.setItem('mk_greek', state.greek ? '1' : '0'); render(); });
+  gk.addEventListener('change', () => { state.greek = gk.checked; localStorage.setItem('mk_greek', state.greek ? '1' : '0'); render(); track('generativ_bibel_urtext_toggle', gk.checked ? 'on' : 'off'); });
 
   $('#prevCh').addEventListener('click', () => navChapter(-1));
   $('#nextCh').addEventListener('click', () => navChapter(1));
   $('#theme').addEventListener('click', toggleTheme);
 
-  const hb = $('#histBtn'); if (hb) hb.addEventListener('click', openHistModal);
+  const hb = $('#histBtn'); if (hb) hb.addEventListener('click', () => { track('menu_generativ_bibel_history'); openHistModal(); });
+  const pb = document.querySelector('footer a[href="pruefbericht.html"]'); if (pb) pb.addEventListener('click', () => track('generativ_bibel_pruefbericht_open', 'pruefbericht.html'));
   const mc = document.querySelector('#histModal .modal-close'); if (mc) mc.addEventListener('click', closeHistModal);
   const mm = $('#histModal'); if (mm) mm.addEventListener('click', (e) => { if (e.target === mm) closeHistModal(); });
 
   document.addEventListener('click', (ev) => {
     const gw = ev.target.closest('.gw');
-    if (gw) { ev.stopPropagation(); showPopover(gw, gw.dataset.s); return; }
+    if (gw) { ev.stopPropagation(); track('generativ_bibel_lexicon_word_clicked', 'G' + gw.dataset.s); showPopover(gw, gw.dataset.s); return; }
     const vh = ev.target.closest('.vhist');
     if (vh) { ev.stopPropagation(); showHistoryPopover(vh, vh.dataset.ref); return; }
     if (popoverEl && !ev.target.closest('.popover')) closePopover();
@@ -383,6 +415,7 @@ async function doSearch() {
   if (ref.from > mv) { showError({ error: 'verse' }); return; }
   state.ref = ref;
   closePopover(); renderVersionFooter(); render();
+  track('generativ_bibel_chapter_changed', chapterSlug(ref.bookId, ref.chapter), 'chapter_search');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -406,6 +439,7 @@ function navChapter(dir) {
   if (ch < 1 || ch > meta.chapters) return;
   state.ref = { bookId: state.bookId, chapter: ch, from: 1, to: maxVerse(ch), whole: true };
   closePopover(); render();
+  track('generativ_bibel_chapter_changed', chapterSlug(state.bookId, ch), dir > 0 ? 'next_chapter' : 'previous_chapter');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 function updateQuickNav() {
@@ -432,6 +466,8 @@ function toggleTheme() {
   const next = cur === 'dark' ? 'light' : 'dark';
   document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem('mk_theme', next);
+  const tb = $('#theme'); if (tb) tb.setAttribute('data-destination', next);
+  track('menu_generativ_bibel_view_settings', next);
 }
 
 /* ---------------- Util ---------------- */

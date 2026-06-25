@@ -3,6 +3,24 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Globale Parameter (müssen oberhalb des GTM-Snippets stehen) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      platform: 'generativ-bibel',
+      product: 'generativ-bibel',
+      platform_version: '1.0.0'
+    });
+  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WMCKZ3Z');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Augsburger GenerativBibel</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%238a5a2b'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23fffdf8' font-family='Georgia,serif'%3E%CE%B1%3C/text%3E%3C/svg%3E" />
   <link rel="manifest" href="manifest.webmanifest" />
@@ -11,13 +29,18 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMCKZ3Z"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
   <header class="site">
     <div class="site-inner">
       <div class="title-row">
         <h1>Augsburger GenerativBibel <span class="sub">Neues Testament · Urtextnah · mittel · Lesefluss</span></h1>
         <div class="head-actions">
-          <button class="theme-btn ghost" id="histBtn" title="Versionen &amp; Änderungen ansehen">↻ Verlauf</button>
-          <button class="theme-btn" id="theme" title="Hell/Dunkel umschalten">◐ Ansicht</button>
+          <button class="theme-btn ghost" id="histBtn" title="Versionen &amp; Änderungen ansehen" data-click-type="menu_generativ_bibel_history">↻ Verlauf</button>
+          <button class="theme-btn" id="theme" title="Hell/Dunkel umschalten" data-click-type="menu_generativ_bibel_view_settings">◐ Ansicht</button>
         </div>
       </div>
 
@@ -48,9 +71,9 @@
         </div>
 
         <div class="quicknav">
-          <button id="prevCh" title="vorheriges Kapitel">‹ Kap.</button>
+          <button id="prevCh" title="vorheriges Kapitel" data-click-type="generativ_bibel_chapter_changed" data-action="previous_chapter">‹ Kap.</button>
           <span id="chLabel">Kapitel 1 / 16</span>
-          <button id="nextCh" title="nächstes Kapitel">Kap. ›</button>
+          <button id="nextCh" title="nächstes Kapitel" data-click-type="generativ_bibel_chapter_changed" data-action="next_chapter">Kap. ›</button>
         </div>
       </div>
     </div>
@@ -72,7 +95,7 @@
       <p><b>Drei Fassungen der Augsburger GenerativBibel:</b> <b>Urtextnah</b> = ganz nah am Urtext (wörtlich/konkordant) · <b>mittel</b> = genau &amp; natürlich · <b>Lesefluss</b> = heutiges Alltagsdeutsch. Der Schieberegler wählt, wie nah am Urtext der Text sein soll.</p>
       <p><b>Urtext &amp; Lexikon:</b> Griechischer Text nach <i>Tischendorf, Novum Testamentum Graece, 8. Ausgabe</i> (gemeinfrei). Wort-Lexikon nach <i>Strong's Greek Dictionary</i> / OpenScriptures (CC&nbsp;BY-SA). Tippe bei eingeblendetem Urtext auf ein griechisches Wort, um Bedeutung und Strong-Nummer zu sehen.</p>
       <p><b>Wichtiger Hinweis:</b> Die <b>Augsburger GenerativBibel</b> ist <b>KI-erstellt</b> (generativ) und mehrstufig gegengeprüft, aber <b>keine</b> wissenschaftlich geprüfte Bibelausgabe. Für Studium und Verkündigung bitte zusätzlich anerkannte Übersetzungen heranziehen.</p>
-      <p><b>Transparenz:</b> Ein unabhängiger <a href="pruefbericht.html">Prüfbericht</a> dokumentiert Methode, Textnähe zu bestehenden Übersetzungen und Qualität gegenüber dem Grundtext (am Beispiel des Römerbriefs).</p>
+      <p><b>Transparenz:</b> Ein unabhängiger <a href="pruefbericht.html" data-click-type="generativ_bibel_pruefbericht_open" data-destination="pruefbericht.html">Prüfbericht</a> dokumentiert Methode, Textnähe zu bestehenden Übersetzungen und Qualität gegenüber dem Grundtext (am Beispiel des Römerbriefs).</p>
       <p id="versionInfo" class="version-line"></p>
     </footer>
   </main>
