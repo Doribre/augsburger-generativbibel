@@ -38,6 +38,10 @@ const APP_BASE_PATH = APP_ORIGIN.replace(/^https?:\/\/[^/]+/, ''); // '' (live) 
 function dataUrl(p) { return APP_ORIGIN + '/' + String(p).replace(/^\//, ''); }
 const FASSUNG_SLUG = { 1: 'urtextnah', 2: 'mittel', 3: 'lesefluss' };
 const SLUG_FASSUNG = { urtextnah: 1, mittel: 2, lesefluss: 3 };
+// Bibelthek-Deep-Link (Loccumer Abkürzungen; Format /bibelthek/GNB/<abk>-<kap>, ) — Übersetzung immer GNB
+const BIBELTHEK_ABBR = { matthaeus: 'mt', markus: 'mk', lukas: 'lk', johannes: 'joh', apostelgeschichte: 'apg', roemer: 'röm', '1korinther': '1kor', '2korinther': '2kor', galater: 'gal', epheser: 'eph', philipper: 'phil', kolosser: 'kol', '1thessalonicher': '1thess', '2thessalonicher': '2thess', '1timotheus': '1tim', '2timotheus': '2tim', titus: 'tit', philemon: 'phlm', hebraeer: 'hebr', jakobus: 'jak', '1petrus': '1petr', '2petrus': '2petr', '1johannes': '1joh', '2johannes': '2joh', '3johannes': '3joh', judas: 'jud', offenbarung: 'offb' };
+function bibelthekUrl(bookId, chapter) { return 'https://www.bibeltv.de/bibelthek/GNB/' + (BIBELTHEK_ABBR[bookId] || bookId) + '-' + chapter + ','; }
+function setBibelthekLink() { const el = document.getElementById('bibelthekLink'); if (!el) return; const cur = (state.segments || [])[0]; if (cur) el.href = bibelthekUrl(cur.bookId, cur.chapter); }
 
 /* ---------------- Analytics (dataLayer / GTM) ---------------- */
 // Stufe → current_translation gemäß Mess-Spezifikation
@@ -330,6 +334,7 @@ function render(push) {
 
   updateQuickNav();
   updateGlobals();
+  setBibelthekLink();
   $('#search').value = segmentsToString(segs);
   syncUrl(push);
 }
