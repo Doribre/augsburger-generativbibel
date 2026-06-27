@@ -22,10 +22,22 @@ const state = {
   greek: localStorage.getItem('mk_greek') === '1',
   ref: null,         // (Legacy) – aktuelle Stelle = segments[0]
   segments: [],      // [{bookId, chapter, verses|null}] – Listen & Semikolon (FD#0004)
+  pathMode: false,   // true = saubere Kapitel-URL führen (/{fassung}/{buch}/{kapitel}/)
 };
 
 const $ = (s) => document.querySelector(s);
 const norm = (s) => String(s).toLowerCase().replace(/\./g, '').replace(/\s+/g, '');
+
+/* ---------------- Basis-Pfad & Fassungs-Slugs (für Prerender-/Kapitel-URLs) ----------------
+   Die App-Wurzel wird aus dem eigenen <script src> abgeleitet — funktioniert an der
+   Domain-Wurzel (live) genauso wie in einem Unterverzeichnis (GitHub-Pages-Preview),
+   und auf tief verschachtelten Kapitelseiten wie /lesefluss/matthaeus/22/. */
+const APP_SCRIPT = document.currentScript || document.querySelector('script[src*="js/app.js"]');
+const APP_ORIGIN = (APP_SCRIPT && APP_SCRIPT.src ? APP_SCRIPT.src : (location.origin + '/js/app.js')).replace(/\/js\/app\.js(?:[?#].*)?$/, '');
+const APP_BASE_PATH = APP_ORIGIN.replace(/^https?:\/\/[^/]+/, ''); // '' (live) oder '/augsburger-generativbibel' (Preview)
+function dataUrl(p) { return APP_ORIGIN + '/' + String(p).replace(/^\//, ''); }
+const FASSUNG_SLUG = { 1: 'urtextnah', 2: 'mittel', 3: 'lesefluss' };
+const SLUG_FASSUNG = { urtextnah: 1, mittel: 2, lesefluss: 3 };
 
 /* ---------------- Analytics (dataLayer / GTM) ---------------- */
 // Stufe → current_translation gemäß Mess-Spezifikation
@@ -61,9 +73,9 @@ async function boot() {
   initTheme();
   try {
     const [catalog, manifest, lex] = await Promise.all([
-      fetch('data/nt_books.json').then((r) => r.json()),
-      fetch('data/manifest.json').then((r) => r.json()),
-      fetch('data/lexicon.json').then((r) => r.json()),
+      fetch(dataUrl('data/nt_books.json')).then((r) => r.json()),
+      fetch(dataUrl('data/manifest.json')).then((r) => r.json()),
+      fetch(dataUrl('data/lexicon.json')).then((r) => r.json()),
     ]);
     state.catalog = catalog;
     state.manifest = manifest;
@@ -72,20 +84,30 @@ async function boot() {
     $('#results').innerHTML = '<div class="msg"><b>Daten konnten nicht geladen werden.</b><br>Bitte über den lokalen Server starten: <code>node serve.js</code> → <code>http://localhost:8080</code>.</div>';
     return;
   }
-  try { state.history = await fetch('data/history.json').then((r) => r.json()); } catch (e) { state.history = { versions: [], changes: [] }; }
+  try { state.history = await fetch(dataUrl('data/history.json')).then((r) => r.json()); } catch (e) { state.history = { versions: [], changes: [] }; }
 
   buildPatternMap();
   populateBookSelect();
   wireControls();
   syncSliderUI();
 
-  // Start: Hash → sonst erstes verfügbares Buch, Kapitel 1
-  const fromHash = parseQuery(decodeURIComponent(location.hash.replace(/^#/, '')), null);
-  let segs = (fromHash && fromHash.segments && isAvailable(fromHash.segments[0].bookId)) ? fromHash.segments : null;
+  // Start: Pfad (/{fassung}/{buch}/{kapitel}/) → sonst Hash → sonst erstes verfügbares Buch
+  let segs = null;
+  const fromPath = parsePath();
+  if (fromPath && isAvailable(fromPath.bookId)) {
+    state.level = fromPath.level; state.pathMode = true;
+    segs = [{ bookId: fromPath.bookId, chapter: fromPath.chapter, verses: fromPath.verses }];
+    const sl = $('#level'); if (sl) sl.value = state.level; syncSliderUI();
+  }
+  if (!segs) {
+    const fromHash = parseQuery(decodeURIComponent(location.hash.replace(/^#/, '')), null);
+    if (fromHash && fromHash.segments && isAvailable(fromHash.segments[0].bookId)) segs = fromHash.segments;
+  }
   if (!segs) { const sb = (state.manifest.available && state.manifest.available[0]) || 'markus'; segs = [{ bookId: sb, chapter: 1, verses: null }]; }
   await loadSegments(segs);
   renderVersionFooter();
   render();
+  if (state.pathMode) scrollToVerseAnchor();
   startHeartbeat();
 }
 
@@ -105,7 +127,7 @@ function buildPatternMap() {
 
 async function loadBook(id) {
   if (!state.booksCache[id]) {
-    state.booksCache[id] = await fetch('data/books/' + id + '.json').then((r) => r.json());
+    state.booksCache[id] = await fetch(dataUrl('data/books/' + id + '.json')).then((r) => r.json());
   }
   state.bookId = id;
   state.bookData = state.booksCache[id];
@@ -117,7 +139,7 @@ async function loadBook(id) {
 // Lädt alle in den Segmenten referenzierten Bücher und setzt das erste als „aktuell"
 async function loadSegments(segs) {
   for (const bid of [...new Set(segs.map((s) => s.bookId))]) {
-    if (!state.booksCache[bid]) state.booksCache[bid] = await fetch('data/books/' + bid + '.json').then((r) => r.json());
+    if (!state.booksCache[bid]) state.booksCache[bid] = await fetch(dataUrl('data/books/' + bid + '.json')).then((r) => r.json());
   }
   await loadBook(segs[0].bookId);
   state.segments = segs;
@@ -208,8 +230,61 @@ function segLabel(seg) {
 }
 function segmentsToString(segs) { return (segs || []).map(segLabel).join('; '); }
 
+/* ---------------- Pfad-Routing (Kapitel-URLs) ---------------- */
+function parseAnchorVerses(hash) {
+  const m = String(hash || '').replace(/^#/, '').match(/^v(\d+)(?:-(\d+))?$/);
+  if (!m) return null;
+  const a = Number(m[1]);
+  if (m[2]) { const b = Number(m[2]); if (b < a) return [a]; const arr = []; for (let x = a; x <= b; x++) arr.push(x); return arr; }
+  return [a];
+}
+function parsePath() {
+  let p = location.pathname;
+  if (APP_BASE_PATH && p.indexOf(APP_BASE_PATH) === 0) p = p.slice(APP_BASE_PATH.length);
+  const m = p.match(/^\/(urtextnah|mittel|lesefluss)\/([a-z0-9]+)\/(\d+)\/?$/);
+  if (!m) return null;
+  return { level: SLUG_FASSUNG[m[1]], bookId: m[2], chapter: Number(m[3]), verses: null }; // ganzes Kapitel; Anker (#v5) dient nur dem Scrollen/Hervorheben
+}
+function verseAnchor(verses) {
+  if (!verses || !verses.length) return '';
+  if (verses.length === 1) return 'v' + verses[0];
+  let contig = true; for (let i = 1; i < verses.length; i++) if (verses[i] !== verses[i - 1] + 1) { contig = false; break; }
+  return contig ? ('v' + verses[0] + '-' + verses[verses.length - 1]) : ('v' + verses[0]);
+}
+function scrollToVerseAnchor() {
+  const m = String(location.hash || '').replace(/^#/, '').match(/^v(\d+)/);
+  if (!m) return;
+  const el = document.getElementById('v' + m[1]);
+  if (!el) return;
+  el.scrollIntoView({ block: 'center' });
+  document.querySelectorAll('.verse.vtarget').forEach((x) => x.classList.remove('vtarget'));
+  el.classList.add('vtarget');
+}
+function chapterUrl(bookId, chapter, level, verses) {
+  const u = (APP_BASE_PATH || '') + '/' + FASSUNG_SLUG[level] + '/' + bookId + '/' + chapter + '/';
+  const a = verseAnchor(verses);
+  return a ? (u + '#' + a) : u;
+}
+function syncUrl(push) {
+  if (!state.pathMode) return;
+  const segs = state.segments || [];
+  if (segs.length !== 1) return; // Mehrfach-/Listensuche: keine kanonische Kapitel-URL
+  const seg = segs[0];
+  const path = (APP_BASE_PATH || '') + '/' + FASSUNG_SLUG[state.level] + '/' + seg.bookId + '/' + seg.chapter + '/';
+  let hash = '';
+  const a = verseAnchor(seg.verses);
+  if (a) hash = '#' + a;
+  else {
+    // Ganzes Kapitel: vorhandenen Vers-Anker nur behalten, wenn wir auf demselben Kapitel bleiben (Slider/Fassungswechsel)
+    const cur = parsePath();
+    if (cur && cur.bookId === seg.bookId && cur.chapter === seg.chapter && /^#v\d/.test(location.hash)) hash = location.hash;
+  }
+  const u = path + hash;
+  try { push ? history.pushState(null, '', u) : history.replaceState(null, '', u); } catch (e) {}
+}
+
 /* ---------------- Rendering ---------------- */
-function render() {
+function render(push) {
   const segs = state.segments || [];
   const results = $('#results');
   if (!segs.length) { results.innerHTML = ''; return; }
@@ -236,12 +311,12 @@ function render() {
       const note = notes[ch + ':' + v];
       if (verse.omitted) {
         const t = note ? note.text : 'Dieser Vers fehlt im zugrunde gelegten Urtext (Tischendorf).';
-        html += '<p class="verse omitted"><span class="vnum">' + v + '</span><span class="vtext">[ausgelassen] ' + escapeHtml(t) + '</span></p>';
+        html += '<p class="verse omitted" id="v' + v + '"><span class="vnum">' + v + '</span><span class="vtext">[ausgelassen] ' + escapeHtml(t) + '</span></p>';
         continue;
       }
       const histMark = (isCur && state.changeIndex[ch + ':' + v])
         ? '<button class="vhist" data-ref="' + ch + ':' + v + '" title="Änderungshistorie dieses Verses">↻</button>' : '';
-      html += '<p class="verse"><span class="vnum">' + v + '</span>' + histMark + '<span class="vtext">' + escapeHtml(verse[lvl] || '') + '</span></p>';
+      html += '<p class="verse" id="v' + v + '"><span class="vnum">' + v + '</span>' + histMark + '<span class="vtext">' + escapeHtml(verse[lvl] || '') + '</span></p>';
       if (state.greek && verse.gr) html += '<div class="greek-line">' + renderGreek(verse.gw, verse.gr) + '</div>';
       if (note) {
         const label = note.type === 'variante' ? 'Textvariante' : note.type === 'schluss' ? 'Markusschluss' : note.type === 'perikope' ? 'Umstrittene Stelle' : 'Hinweis';
@@ -254,9 +329,8 @@ function render() {
 
   updateQuickNav();
   updateGlobals();
-  const str = segmentsToString(segs);
-  location.hash = str;
-  $('#search').value = str;
+  $('#search').value = segmentsToString(segs);
+  syncUrl(push);
 }
 
 function renderGreek(gw, gr) {
@@ -409,16 +483,17 @@ function wireControls() {
   if (sel) sel.addEventListener('change', async () => {
     const id = sel.value;
     if (!isAvailable(id)) return;
+    state.pathMode = true;
     await loadSegments([{ bookId: id, chapter: 1, verses: null }]);
-    closePopover(); renderVersionFooter(); render();
+    closePopover(); renderVersionFooter(); render(true);
     track('generativ_bibel_chapter_changed', chapterSlug(id, 1), 'chapter_selected');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
   const slider = $('#level');
   slider.value = state.level;
-  slider.addEventListener('input', () => { state.level = Number(slider.value); localStorage.setItem('mk_level', String(state.level)); syncSliderUI(); render(); track('generativ_bibel_translation_changed', TRANSLATION_KEY[state.level]); });
-  document.querySelectorAll('.slider-labels span').forEach((sp) => sp.addEventListener('click', () => { state.level = Number(sp.dataset.lvl); slider.value = state.level; localStorage.setItem('mk_level', String(state.level)); syncSliderUI(); render(); track('generativ_bibel_translation_changed', TRANSLATION_KEY[state.level]); }));
+  slider.addEventListener('input', () => { state.level = Number(slider.value); localStorage.setItem('mk_level', String(state.level)); state.pathMode = true; syncSliderUI(); render(); track('generativ_bibel_translation_changed', TRANSLATION_KEY[state.level]); });
+  document.querySelectorAll('.slider-labels span').forEach((sp) => sp.addEventListener('click', () => { state.level = Number(sp.dataset.lvl); slider.value = state.level; localStorage.setItem('mk_level', String(state.level)); state.pathMode = true; syncSliderUI(); render(); track('generativ_bibel_translation_changed', TRANSLATION_KEY[state.level]); }));
 
   const gk = $('#greekToggle');
   gk.checked = state.greek;
@@ -449,8 +524,9 @@ function wireControls() {
 async function doSearch() {
   const q = parseQuery($('#search').value, state.bookId);
   if (!q || q.error) { showError(q || { error: 'empty' }); return; }
+  state.pathMode = true;
   await loadSegments(q.segments);
-  closePopover(); renderVersionFooter(); render();
+  closePopover(); renderVersionFooter(); render(true);
   const s0 = q.segments[0];
   track('generativ_bibel_chapter_changed', chapterSlug(s0.bookId, s0.chapter), 'chapter_search');
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -474,8 +550,9 @@ function navChapter(dir) {
   const meta = bookMeta(cur.bookId);
   const ch = cur.chapter + dir;
   if (ch < 1 || ch > meta.chapters) return;
+  state.pathMode = true;
   state.segments = [{ bookId: cur.bookId, chapter: ch, verses: null }];
-  closePopover(); render();
+  closePopover(); render(true);
   track('generativ_bibel_chapter_changed', chapterSlug(cur.bookId, ch), dir > 0 ? 'next_chapter' : 'previous_chapter');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -513,7 +590,20 @@ function escapeHtml(s) {
   return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+// Zurück/Vor im Browser: Kapitel-URL neu auswerten
+window.addEventListener('popstate', async () => {
+  const fp = parsePath();
+  if (fp && isAvailable(fp.bookId)) {
+    state.level = fp.level; state.pathMode = true;
+    const sl = $('#level'); if (sl) sl.value = state.level; syncSliderUI();
+    await loadSegments([{ bookId: fp.bookId, chapter: fp.chapter, verses: fp.verses }]);
+    renderVersionFooter(); render(); scrollToVerseAnchor();
+  }
+});
 window.addEventListener('hashchange', async () => {
+  // Auf Kapitelseiten ist der Hash ein Vers-Anker (#v5) → nur scrollen.
+  if (/^#v\d/.test(location.hash)) { scrollToVerseAnchor(); return; }
+  // Legacy: Hash als Stellenangabe (#Markus 1,1-8)
   const q = parseQuery(decodeURIComponent(location.hash.replace(/^#/, '')), state.bookId);
   if (q && q.segments && segmentsToString(q.segments) !== segmentsToString(state.segments)) {
     await loadSegments(q.segments); renderVersionFooter(); render();

@@ -9,6 +9,10 @@ COPY serve.js index.html manifest.webmanifest sw.js icon.svg pruefbericht.html r
 COPY css ./css
 COPY js ./js
 COPY data ./data
+# Vorgerenderte Kapitelseiten (eine Fassung je Pfad-Namespace)
+COPY urtextnah ./urtextnah
+COPY mittel ./mittel
+COPY lesefluss ./lesefluss
 
 # PS#0005: Version wird beim Build gesetzt
 ARG BTV_IMAGE_VERSION=dev

@@ -26,11 +26,16 @@ const server = http.createServer((req, res) => {
       return;
     }
     if (urlPath === '/') urlPath = '/index.html';
-    const filePath = path.join(ROOT, path.normalize(urlPath));
+    let filePath = path.join(ROOT, path.normalize(urlPath));
     if (!filePath.startsWith(ROOT)) {
       res.writeHead(403);
       res.end('Forbidden');
       return;
+    }
+    // Verzeichnis-/extensionslose Pfade (z. B. /lesefluss/matthaeus/22/) → index.html
+    const lastSeg = urlPath.split('/').filter(Boolean).pop() || '';
+    if (urlPath.endsWith('/') || !lastSeg.includes('.')) {
+      filePath = path.join(filePath, 'index.html');
     }
     fs.readFile(filePath, (err, data) => {
       if (err) {
