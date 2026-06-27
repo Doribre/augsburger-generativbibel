@@ -1,6 +1,6 @@
 # Augsburger GenerativBibel
 
-Eine Web-App, die das **Neue Testament** (zzt. die vier Evangelien) in **drei Fassungen**
+Eine Web-App, die das **vollständige Neue Testament** (alle 27 Bücher) in **drei Fassungen**
 anzeigt – mit Suchfeld für Bibelstellen und einem Schieberegler, wie nah am Urtext der Text
 sein soll. Die drei Fassungen heißen:
 
@@ -120,7 +120,8 @@ Begründungen aus einem Audit lassen sich als Datei übergeben:
 `node _raw/version.js commit "<Label>" "<Quelle>" pfad/zu/reasons.json`
 (Format: `{ "kapitel:vers:stufe": { "reason": "…", "severity": "…" } }`).
 
-Aktueller Stand: **v1 Erstübersetzung**, **v2 Qualitäts-Audit** (12 Korrekturen).
+Aktueller Stand: **vollständiges Neues Testament — alle 27 Bücher**, je drei Fassungen
+(v1 Erstübersetzung). Markus zusätzlich mit unabhängigem **Qualitäts-Audit** (v2, 12 Korrekturen).
 
 ## Erweiterung auf weitere Bücher (robuste Routine)
 
