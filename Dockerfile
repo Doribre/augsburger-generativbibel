@@ -5,7 +5,7 @@ FROM node:20-alpine
 WORKDIR /app
 
 # Nur Laufzeit-Dateien (keine Rohdaten/_raw, keine History-Schnappschüsse)
-COPY serve.js index.html manifest.webmanifest sw.js icon.svg pruefbericht.html ./
+COPY serve.js index.html manifest.webmanifest sw.js icon.svg pruefbericht.html robots.txt sitemap.xml ./
 COPY css ./css
 COPY js ./js
 COPY data ./data
