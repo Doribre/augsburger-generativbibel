@@ -1,60 +1,353 @@
-{"chapter": 13, "verses": [
-{"v":1,"l1":"An jenem Tag ging Jesus aus dem Haus hinaus und saß am Meer;","l2":"An jenem Tag verließ Jesus das Haus und setzte sich am See nieder.","l3":"An diesem Tag verließ Jesus das Haus und setzte sich an den See."},
-{"v":2,"l1":"und es versammelten sich zu ihm große Mengen, sodass er in ein Boot stieg und sich setzte, und die ganze Menge stand am Ufer.","l2":"Und es versammelten sich so große Volksmengen bei ihm, dass er in ein Boot stieg und sich hineinsetzte, während die ganze Menge am Ufer stand.","l3":"So viele Menschen liefen bei ihm zusammen, dass er in ein Boot stieg und sich hineinsetzte. Die ganze Menge aber stand am Ufer."},
-{"v":3,"l1":"Und er redete zu ihnen vieles in Gleichnissen, sagend: Siehe, der Sämann ging hinaus, um zu säen.","l2":"Und er redete vieles zu ihnen in Gleichnissen und sagte: Seht, der Sämann ging hinaus, um zu säen.","l3":"Er erzählte ihnen vieles in Bildern. Er sagte: Schaut, ein Bauer ging aufs Feld, um zu säen."},
-{"v":4,"l1":"Und während er säte, fiel das eine an den Weg, und es kamen die Vögel und fraßen es auf.","l2":"Und als er säte, fiel ein Teil an den Weg, und die Vögel kamen und fraßen es auf.","l3":"Beim Säen fiel ein Teil der Körner auf den Weg. Da kamen die Vögel und pickten sie auf."},
-{"v":5,"l1":"Anderes aber fiel auf das Felsige, wo es nicht viel Erde hatte, und sogleich ging es auf, weil es keine Tiefe der Erde hatte;","l2":"Anderes fiel auf felsigen Boden, wo es nicht viel Erde hatte, und ging sofort auf, weil der Boden nicht tief war.","l3":"Anderes fiel auf steinigen Boden, wo kaum Erde war. Es ging schnell auf, weil die Erde so flach war."},
-{"v":6,"l1":"als aber die Sonne aufging, wurde es verbrannt, und weil es keine Wurzel hatte, verdorrte es.","l2":"Als aber die Sonne aufstieg, wurde es versengt, und weil es keine Wurzel hatte, verdorrte es.","l3":"Doch als die Sonne hochstieg, verbrannte es. Weil es keine Wurzeln hatte, vertrocknete es."},
-{"v":7,"l1":"Anderes aber fiel auf die Dornen, und die Dornen wuchsen empor und erstickten es.","l2":"Anderes fiel unter die Dornen, und die Dornen wuchsen hoch und erstickten es.","l3":"Anderes fiel zwischen Dornengestrüpp. Das Gestrüpp wuchs hoch und erstickte die Pflanzen."},
-{"v":8,"l1":"Anderes aber fiel auf die gute Erde und gab Frucht, das eine hundert, das andere sechzig, das andere dreißig.","l2":"Anderes aber fiel auf guten Boden und brachte Frucht: das eine hundertfach, das andere sechzigfach, das andere dreißigfach.","l3":"Anderes fiel auf guten Boden und brachte reiche Ernte: manches hundertfach, manches sechzigfach, manches dreißigfach."},
-{"v":9,"l1":"Wer Ohren hat, der höre.","l2":"Wer Ohren hat, der höre!","l3":"Wer Ohren hat, soll gut zuhören!"},
-{"v":10,"l1":"Und herzukommend sagten die Jünger zu ihm: Warum redest du in Gleichnissen zu ihnen?","l2":"Da traten die Jünger zu ihm und fragten: Warum redest du in Gleichnissen zu ihnen?","l3":"Da kamen die Jünger zu ihm und fragten: Warum sprichst du eigentlich in Bildern zu den Leuten?"},
-{"v":11,"l1":"Er aber antwortend sprach: Weil euch gegeben ist, die Geheimnisse des Himmelreichs zu erkennen, jenen aber ist es nicht gegeben.","l2":"Er antwortete und sagte: Weil euch geschenkt ist, die Geheimnisse des Himmelreichs zu erkennen, jenen aber ist es nicht gegeben.","l3":"Er antwortete: Euch ist es geschenkt, die Geheimnisse von Gottes neuer Welt (dem Himmelreich) zu verstehen. Den anderen aber nicht."},
-{"v":12,"l1":"Denn wer hat, dem wird gegeben werden, und er wird Überfluss haben; wer aber nicht hat, dem wird auch das, was er hat, von ihm genommen werden.","l2":"Denn wer hat, dem wird gegeben werden, und er wird Überfluss haben; wer aber nicht hat, dem wird auch das genommen werden, was er hat.","l3":"Denn wer schon etwas hat, der bekommt noch mehr dazu, bis er reichlich hat. Wer aber nichts hat, dem wird sogar das genommen, was er hat."},
-{"v":13,"l1":"Deswegen rede ich in Gleichnissen zu ihnen, weil sie sehend nicht sehen und hörend nicht hören und auch nicht verstehen.","l2":"Deshalb rede ich in Gleichnissen zu ihnen, weil sie sehen und doch nicht sehen, hören und doch nicht hören und nichts verstehen.","l3":"Genau deshalb rede ich in Bildern zu ihnen: Sie schauen hin und sehen doch nichts. Sie hören zu und verstehen doch nichts."},
-{"v":14,"l1":"Und an ihnen erfüllt sich die Weissagung Jesajas, die sagt: Mit Hören werdet ihr hören und doch nicht verstehen, und sehend werdet ihr sehen und doch nicht erblicken.","l2":"An ihnen erfüllt sich die Weissagung Jesajas, die lautet: Hören werdet ihr und doch nicht verstehen, und sehen werdet ihr und doch nicht erkennen.","l3":"An ihnen geht in Erfüllung, was der Prophet Jesaja gesagt hat: Ihr werdet zwar hören, aber nichts verstehen. Ihr werdet zwar hinschauen, aber nichts erkennen."},
-{"v":15,"l1":"Denn das Herz dieses Volkes ist dick geworden, und mit den Ohren haben sie schwer gehört, und ihre Augen haben sie geschlossen, damit sie nicht etwa mit den Augen sehen und mit den Ohren hören und mit dem Herzen verstehen und umkehren und ich sie heile.","l2":"Denn das Herz dieses Volkes ist verstockt; mit den Ohren hören sie nur schwer, und ihre Augen haben sie verschlossen, damit sie nicht etwa mit den Augen sehen, mit den Ohren hören, mit dem Herzen verstehen, umkehren und ich sie heile.","l3":"Denn dieses Volk ist innerlich abgestumpft. Sie wollen mit den Ohren nicht richtig hören, und die Augen haben sie fest zugemacht. Sonst würden sie ja sehen, hören und im Herzen verstehen, würden umdenken und neu anfangen, und ich würde sie heilen."},
-{"v":16,"l1":"Eure Augen aber sind selig, weil sie sehen, und eure Ohren, weil sie hören.","l2":"Selig aber sind eure Augen, weil sie sehen, und eure Ohren, weil sie hören.","l3":"Ihr aber dürft euch glücklich schätzen: Eure Augen sehen, und eure Ohren hören."},
-{"v":17,"l1":"Amen, ich sage euch, dass viele Propheten und Gerechte begehrten zu sehen, was ihr seht, und sahen es nicht, und zu hören, was ihr hört, und hörten es nicht.","l2":"Wahrlich, ich sage euch: Viele Propheten und Gerechte haben sich danach gesehnt, zu sehen, was ihr seht, und haben es nicht gesehen, und zu hören, was ihr hört, und haben es nicht gehört.","l3":"Ich sage euch ganz klar: Viele Propheten und gute Menschen hätten gern gesehen, was ihr seht, und konnten es nicht. Und sie hätten gern gehört, was ihr hört, und konnten es nicht."},
-{"v":18,"l1":"Ihr nun hört das Gleichnis vom Sämann.","l2":"Hört ihr nun, was das Gleichnis vom Sämann bedeutet.","l3":"Hört also, was das Bild vom Bauern, der sät, bedeutet:"},
-{"v":19,"l1":"Bei jedem, der das Wort vom Reich hört und nicht versteht, kommt der Böse und reißt das in seinem Herzen Gesäte weg; dieser ist der an den Weg Gesäte.","l2":"Wenn jemand das Wort vom Reich hört und nicht versteht, kommt der Böse und reißt weg, was in sein Herz gesät wurde. Das ist der, bei dem an den Weg gesät wurde.","l3":"Da ist einer, der die Botschaft von Gottes neuer Welt hört, aber nicht versteht. Dann kommt der Böse und reißt weg, was in sein Herz gesät war. Das ist das Korn, das auf den Weg gefallen ist."},
-{"v":20,"l1":"Der aber auf das Felsige Gesäte, dieser ist der, der das Wort hört und es sogleich mit Freude aufnimmt;","l2":"Bei dem auf den felsigen Boden Gesäten ist es so: Das ist der, der das Wort hört und es sofort mit Freude aufnimmt.","l3":"Das Korn auf dem steinigen Boden steht für jemanden, der die Botschaft hört und sie sofort begeistert annimmt."},
-{"v":21,"l1":"er hat aber keine Wurzel in sich, sondern ist nur für eine Zeit; wenn aber Bedrängnis oder Verfolgung wegen des Wortes entsteht, nimmt er sogleich Anstoß.","l2":"Doch er hat keine Wurzel in sich, sondern ist unbeständig. Wenn wegen des Wortes Bedrängnis oder Verfolgung kommt, fällt er sofort ab.","l3":"Aber er hat keine Wurzeln und hält nicht lange durch. Sobald es wegen der Botschaft schwierig wird oder Verfolgung kommt, gibt er sofort auf."},
-{"v":22,"l1":"Der aber in die Dornen Gesäte, dieser ist der, der das Wort hört, und die Sorge dieser Weltzeit und der Betrug des Reichtums ersticken das Wort, und es wird unfruchtbar.","l2":"Bei dem unter die Dornen Gesäten ist es so: Das ist der, der das Wort hört, aber die Sorge dieser Welt und der trügerische Reichtum ersticken das Wort, und es bleibt ohne Frucht.","l3":"Das Korn im Dornengestrüpp steht für jemanden, der die Botschaft hört. Doch die Sorgen des Alltags und die Verlockung des Geldes ersticken sie, und am Ende kommt nichts dabei heraus."},
-{"v":23,"l1":"Der aber auf die gute Erde Gesäte, dieser ist der, der das Wort hört und versteht, der dann wirklich Frucht bringt und macht, das eine hundert, das andere sechzig, das andere dreißig.","l2":"Bei dem auf den guten Boden Gesäten ist es so: Das ist der, der das Wort hört und versteht; der bringt dann Frucht, der eine hundertfach, der andere sechzigfach, der andere dreißigfach.","l3":"Das Korn auf dem guten Boden aber steht für jemanden, der die Botschaft hört und versteht. Der bringt reiche Frucht: hundertfach, sechzigfach oder dreißigfach."},
-{"v":24,"l1":"Ein anderes Gleichnis legte er ihnen vor, sagend: Das Himmelreich ist gleich geworden einem Menschen, der guten Samen in seinem Acker säte.","l2":"Ein anderes Gleichnis legte er ihnen vor und sagte: Das Himmelreich gleicht einem Menschen, der guten Samen auf seinen Acker säte.","l3":"Jesus erzählte ihnen noch ein Bild: Mit Gottes neuer Welt ist es wie mit einem Mann, der guten Samen auf seinen Acker säte."},
-{"v":25,"l1":"Während aber die Menschen schliefen, kam sein Feind und säte Unkraut mitten unter den Weizen und ging weg.","l2":"Während aber die Menschen schliefen, kam sein Feind, säte Unkraut mitten unter den Weizen und ging wieder weg.","l3":"Während aber alle schliefen, kam sein Feind, streute Unkraut mitten unter den Weizen und verschwand wieder."},
-{"v":26,"l1":"Als aber das Kraut sprosste und Frucht machte, da erschien auch das Unkraut.","l2":"Als nun die Saat aufging und Frucht ansetzte, kam auch das Unkraut zum Vorschein.","l3":"Als die Saat dann aufwuchs und Ähren bildete, kam auch das Unkraut zum Vorschein."},
-{"v":27,"l1":"Herzukommend aber sagten die Knechte des Hausherrn zu ihm: Herr, hast du nicht guten Samen auf deinem Acker gesät? Woher hat er denn Unkraut?","l2":"Da kamen die Knechte des Hausherrn und sagten zu ihm: Herr, hast du nicht guten Samen auf deinen Acker gesät? Woher kommt dann das Unkraut?","l3":"Da kamen die Arbeiter zum Besitzer und fragten: Herr, du hast doch guten Samen auf deinen Acker gesät. Woher kommt dann auf einmal das Unkraut?"},
-{"v":28,"l1":"Er aber sprach zu ihnen: Ein feindlicher Mensch hat dies getan. Die Knechte aber sagen zu ihm: Willst du nun, dass wir hingehen und es zusammenlesen?","l2":"Er sagte zu ihnen: Das hat ein Feind getan. Da fragten ihn die Knechte: Sollen wir hingehen und es zusammenlesen?","l3":"Er antwortete: Das hat ein Feind getan. Die Arbeiter fragten: Sollen wir es einsammeln?"},
-{"v":29,"l1":"Er aber sagt: Nein, damit ihr nicht etwa, wenn ihr das Unkraut zusammenlest, zugleich mit ihm den Weizen ausreißt.","l2":"Er aber sagte: Nein, sonst reißt ihr beim Zusammenlesen des Unkrauts vielleicht zugleich den Weizen mit aus.","l3":"Nein, sagte er, sonst reißt ihr womöglich mit dem Unkraut auch den Weizen heraus."},
-{"v":30,"l1":"Lasst beides zusammen wachsen bis zur Ernte, und zur Zeit der Ernte werde ich den Schnittern sagen: Lest zuerst das Unkraut zusammen und bindet es in Bündel, um es zu verbrennen, den Weizen aber sammelt in meine Scheune.","l2":"Lasst beides zusammen wachsen bis zur Ernte. Zur Erntezeit werde ich den Schnittern sagen: Lest zuerst das Unkraut zusammen und bindet es in Bündel, um es zu verbrennen; den Weizen aber bringt in meine Scheune.","l3":"Lasst beides zusammen wachsen bis zur Ernte. Dann sage ich den Erntehelfern: Sammelt zuerst das Unkraut ein, bindet es zu Bündeln und verbrennt es. Den Weizen aber bringt in meine Scheune."},
-{"v":31,"l1":"Ein anderes Gleichnis legte er ihnen vor, sagend: Gleich ist das Himmelreich einem Senfkorn, das ein Mensch nahm und in seinem Acker säte;","l2":"Ein anderes Gleichnis legte er ihnen vor und sagte: Das Himmelreich gleicht einem Senfkorn, das ein Mensch nahm und auf seinen Acker säte.","l3":"Jesus erzählte ihnen noch ein Bild: Gottes neue Welt ist wie ein Senfkorn, das ein Mann nahm und auf seinem Feld aussäte."},
-{"v":32,"l1":"das zwar kleiner ist als alle Samenkörner, wenn es aber gewachsen ist, ist es größer als die Gartenkräuter und wird ein Baum, sodass die Vögel des Himmels kommen und in seinen Zweigen nisten.","l2":"Es ist zwar das kleinste von allen Samenkörnern, wenn es aber herangewachsen ist, ist es größer als die anderen Gartenpflanzen und wird zu einem Baum, sodass die Vögel des Himmels kommen und in seinen Zweigen nisten.","l3":"Es ist zwar das kleinste von allen Samenkörnern. Aber wenn es wächst, wird es größer als alle anderen Gartenpflanzen und wird zu einem regelrechten Baum, sodass die Vögel kommen und in seinen Zweigen nisten."},
-{"v":33,"l1":"Ein anderes Gleichnis redete er zu ihnen: Gleich ist das Himmelreich einem Sauerteig, den eine Frau nahm und in drei Maß Mehl verbarg, bis das Ganze durchsäuert war.","l2":"Ein anderes Gleichnis sagte er ihnen: Das Himmelreich gleicht einem Sauerteig, den eine Frau nahm und unter drei Maß Mehl mengte, bis das Ganze durchsäuert war.","l3":"Noch ein Bild erzählte er ihnen: Gottes neue Welt ist wie ein Sauerteig. Eine Frau mischt ihn unter eine große Menge Mehl, bis der ganze Teig durchgesäuert ist."},
-{"v":34,"l1":"Dies alles redete Jesus in Gleichnissen zu den Mengen, und ohne Gleichnis redete er nichts zu ihnen;","l2":"Dies alles redete Jesus in Gleichnissen zu den Volksmengen, und ohne Gleichnis redete er nichts zu ihnen.","l3":"All das sagte Jesus den Menschen in Bildern. Ohne ein Bild sagte er ihnen gar nichts."},
-{"v":35,"l1":"damit erfüllt würde, was durch den Propheten gesagt ist, sagend: Ich werde in Gleichnissen meinen Mund auftun, ich werde aussprechen, was verborgen ist seit Grundlegung.","l2":"So sollte sich erfüllen, was durch den Propheten gesagt ist: Ich werde meinen Mund auftun in Gleichnissen, ich werde aussprechen, was seit Grundlegung verborgen ist.","l3":"So ging in Erfüllung, was der Prophet vorausgesagt hatte: Ich rede in Bildern. Ich spreche aus, was seit Anbeginn verborgen war."},
-{"v":36,"l1":"Dann entließ er die Mengen und kam in das Haus. Und es traten zu ihm seine Jünger und sagten: Erkläre uns das Gleichnis vom Unkraut des Ackers.","l2":"Dann entließ er die Volksmengen und ging ins Haus. Da traten seine Jünger zu ihm und sagten: Erkläre uns das Gleichnis vom Unkraut auf dem Acker.","l3":"Dann schickte er die Menschen weg und ging ins Haus. Seine Jünger kamen zu ihm und baten: Erklär uns doch das Bild vom Unkraut auf dem Acker."},
-{"v":37,"l1":"Er aber antwortend sprach: Der den guten Samen Säende ist der Sohn des Menschen,","l2":"Er antwortete und sagte: Der den guten Samen sät, ist der Menschensohn.","l3":"Er antwortete: Der den guten Samen sät, das ist der Menschensohn."},
-{"v":38,"l1":"der Acker aber ist die Welt; der gute Same aber, das sind die Söhne des Reiches; das Unkraut aber sind die Söhne des Bösen,","l2":"Der Acker ist die Welt. Der gute Same, das sind die Söhne des Reiches; das Unkraut aber sind die Söhne des Bösen.","l3":"Der Acker ist die Welt. Der gute Samen, das sind die Menschen, die zu Gottes neuer Welt gehören. Das Unkraut sind die Menschen, die zum Bösen gehören."},
-{"v":39,"l1":"der Feind aber, der es gesät hat, ist der Teufel; die Ernte aber ist die Vollendung der Weltzeit, die Schnitter aber sind Engel.","l2":"Der Feind, der es gesät hat, ist der Teufel. Die Ernte ist das Ende der Welt, und die Schnitter sind die Engel.","l3":"Der Feind, der es gesät hat, ist der Teufel. Die Ernte ist das Ende der Welt, und die Erntehelfer sind die Engel."},
-{"v":40,"l1":"Wie nun das Unkraut zusammengelesen und mit Feuer verbrannt wird, so wird es sein in der Vollendung der Weltzeit;","l2":"Wie nun das Unkraut zusammengelesen und im Feuer verbrannt wird, so wird es am Ende der Welt sein.","l3":"Wie man das Unkraut einsammelt und im Feuer verbrennt, so wird es am Ende der Welt sein."},
-{"v":41,"l1":"der Sohn des Menschen wird seine Engel aussenden, und sie werden aus seinem Reich alle Anstöße zusammenlesen und die, die die Gesetzlosigkeit tun,","l2":"Der Menschensohn wird seine Engel aussenden, und sie werden aus seinem Reich alles zusammenlesen, was zu Fall bringt, und alle, die Unrecht tun,","l3":"Der Menschensohn wird seine Engel schicken. Sie werden aus seinem Reich alle heraussammeln, die andere zu Fall bringen und Unrecht tun,"},
-{"v":42,"l1":"und sie werden sie in den Feuerofen werfen; dort wird das Weinen und das Knirschen der Zähne sein.","l2":"und sie in den Feuerofen werfen. Dort wird Weinen und Zähneknirschen sein.","l3":"und werden sie in den brennenden Ofen werfen. Dort werden sie weinen und vor Verzweiflung mit den Zähnen knirschen."},
-{"v":43,"l1":"Dann werden die Gerechten leuchten wie die Sonne im Reich ihres Vaters. Wer Ohren hat, der höre.","l2":"Dann werden die Gerechten leuchten wie die Sonne im Reich ihres Vaters. Wer Ohren hat, der höre!","l3":"Dann werden die, die zu Gott gehören, strahlen wie die Sonne im Reich ihres Vaters. Wer Ohren hat, soll gut zuhören!"},
-{"v":44,"l1":"Gleich ist das Himmelreich einem Schatz, verborgen im Acker, den ein Mensch fand und verbarg, und aus seiner Freude geht er hin und verkauft alles, was er hat, und kauft jenen Acker.","l2":"Das Himmelreich gleicht einem im Acker verborgenen Schatz, den ein Mensch fand und wieder verbarg. Vor Freude darüber geht er hin, verkauft alles, was er hat, und kauft jenen Acker.","l3":"Mit Gottes neuer Welt ist es wie mit einem Schatz, der in einem Acker vergraben war. Ein Mann findet ihn und versteckt ihn wieder. Vor lauter Freude verkauft er alles, was er hat, und kauft diesen Acker."},
-{"v":45,"l1":"Wiederum ist das Himmelreich gleich einem Menschen, einem Kaufmann, der schöne Perlen sucht;","l2":"Wiederum gleicht das Himmelreich einem Kaufmann, der schöne Perlen sucht.","l3":"Mit Gottes neuer Welt ist es auch wie mit einem Händler, der nach schönen Perlen sucht."},
-{"v":46,"l1":"als er aber eine sehr kostbare Perle fand, ging er hin und verkaufte alles, was er hatte, und kaufte sie.","l2":"Als er eine besonders kostbare Perle fand, ging er hin, verkaufte alles, was er hatte, und kaufte sie.","l3":"Als er eine besonders wertvolle Perle findet, verkauft er alles, was er hat, und kauft sie."},
-{"v":47,"l1":"Wiederum ist das Himmelreich gleich einem Schleppnetz, das ins Meer geworfen wurde und aus jeder Art zusammenbrachte;","l2":"Wiederum gleicht das Himmelreich einem Schleppnetz, das in den See geworfen wurde und Fische jeder Art einfing.","l3":"Mit Gottes neuer Welt ist es auch wie mit einem großen Netz, das man in den See wirft und mit dem man Fische aller Art fängt."},
-{"v":48,"l1":"das zogen sie, als es voll war, ans Ufer hinauf und setzten sich und lasen die guten in Gefäße zusammen, die faulen aber warfen sie hinaus.","l2":"Als es voll war, zogen sie es ans Ufer, setzten sich hin und lasen die guten Fische in Gefäße zusammen, die schlechten aber warfen sie weg.","l3":"Wenn es voll ist, ziehen sie es ans Ufer, setzen sich hin und sortieren: Die guten Fische kommen in Körbe, die schlechten werfen sie weg."},
-{"v":49,"l1":"So wird es sein in der Vollendung der Weltzeit: Die Engel werden ausgehen und die Bösen aus der Mitte der Gerechten aussondern,","l2":"So wird es am Ende der Welt sein: Die Engel werden ausziehen und die Bösen von den Gerechten trennen","l3":"So wird es am Ende der Welt sein: Die Engel werden kommen und die schlechten Menschen von den guten trennen."},
-{"v":50,"l1":"und sie werden sie in den Feuerofen werfen; dort wird das Weinen und das Knirschen der Zähne sein.","l2":"und sie in den Feuerofen werfen. Dort wird Weinen und Zähneknirschen sein.","l3":"Sie werden sie in den brennenden Ofen werfen. Dort werden sie weinen und vor Verzweiflung mit den Zähnen knirschen."},
-{"v":51,"l1":"Habt ihr dies alles verstanden? Sie sagen zu ihm: Ja.","l2":"Habt ihr das alles verstanden? Sie antworteten ihm: Ja.","l3":"Habt ihr das alles verstanden?, fragte Jesus. Ja, antworteten sie."},
-{"v":52,"l1":"Er aber sprach zu ihnen: Deswegen ist jeder Schriftgelehrte, der für das Himmelreich gelehrt wurde, gleich einem Menschen, einem Hausherrn, der aus seinem Schatz Neues und Altes hervorbringt.","l2":"Da sagte er zu ihnen: Deshalb gleicht jeder Schriftgelehrte, der ein Schüler des Himmelreichs geworden ist, einem Hausherrn, der aus seinem Vorrat Neues und Altes hervorholt.","l3":"Da sagte er zu ihnen: Deshalb gleicht jeder Schriftgelehrte (Gesetzeslehrer), der etwas über Gottes neue Welt gelernt hat, einem Hausbesitzer, der aus seinem Vorrat Neues und Altes hervorholt."},
-{"v":53,"l1":"Und es geschah, als Jesus diese Gleichnisse beendet hatte, brach er von dort auf.","l2":"Und es geschah, als Jesus diese Gleichnisse beendet hatte, zog er von dort weiter.","l3":"Als Jesus diese Bilder zu Ende erzählt hatte, zog er von dort weiter."},
-{"v":54,"l1":"Und gekommen in seine Vaterstadt, lehrte er sie in ihrer Synagoge, sodass sie außer sich gerieten und sagten: Woher hat dieser diese Weisheit und die Wunderkräfte?","l2":"Er kam in seine Heimatstadt und lehrte die Leute in ihrer Synagoge, sodass sie erstaunt waren und sagten: Woher hat dieser diese Weisheit und diese Wunderkräfte?","l3":"Er kam in seine Heimatstadt und lehrte die Leute in der Synagoge. Sie waren völlig verblüfft und fragten: Woher hat der Mann diese Weisheit und die Kraft, solche Wunder zu tun?"},
-{"v":55,"l1":"Ist dieser nicht der Sohn des Zimmermanns? Heißt nicht seine Mutter Maria und seine Brüder Jakobus und Josef und Simon und Judas?","l2":"Ist das nicht der Sohn des Zimmermanns? Heißt nicht seine Mutter Maria und sind seine Brüder nicht Jakobus, Josef, Simon und Judas?","l3":"Ist das nicht der Sohn des Zimmermanns? Heißt seine Mutter nicht Maria, und sind seine Brüder nicht Jakobus, Josef, Simon und Judas?"},
-{"v":56,"l1":"Und sind nicht seine Schwestern alle bei uns? Woher hat dieser nun dies alles?","l2":"Und leben nicht alle seine Schwestern bei uns? Woher hat er dann das alles?","l3":"Und seine Schwestern wohnen doch alle hier bei uns. Woher hat er das alles bloß?"},
-{"v":57,"l1":"Und sie nahmen Anstoß an ihm. Jesus aber sprach zu ihnen: Ein Prophet ist nicht ohne Ehre außer in seiner eigenen Vaterstadt und in seinem Haus.","l2":"Und sie nahmen Anstoß an ihm. Jesus aber sagte zu ihnen: Ein Prophet gilt nirgends so wenig wie in seiner Heimatstadt und in seiner eigenen Familie.","l3":"So konnten sie nichts mit ihm anfangen und lehnten ihn ab. Jesus aber sagte: Nirgends wird ein Prophet so wenig geachtet wie in seiner Heimatstadt und in seiner eigenen Familie."},
-{"v":58,"l1":"Und er tat dort nicht viele Wunderkräfte wegen ihres Unglaubens.","l2":"Und er tat dort wegen ihres Unglaubens nicht viele Wunder.","l3":"Und weil sie ihm nicht glaubten, tat er dort nur wenige Wunder."}
-]}
+{
+ "chapter": 13,
+ "verses": [
+  {
+   "v": 1,
+   "l1": "An jenem Tag ging Jesus aus dem Haus hinaus und saß am Meer;",
+   "l2": "An jenem Tag verließ Jesus das Haus und setzte sich am See nieder.",
+   "l3": "An diesem Tag verließ Jesus das Haus und setzte sich an den See."
+  },
+  {
+   "v": 2,
+   "l1": "und es versammelten sich zu ihm große Mengen, sodass er in ein Boot stieg und sich setzte, und die ganze Menge stand am Ufer.",
+   "l2": "Und es versammelten sich so große Volksmengen bei ihm, dass er in ein Boot stieg und sich hineinsetzte, während die ganze Menge am Ufer stand.",
+   "l3": "So viele Menschen liefen bei ihm zusammen, dass er in ein Boot stieg und sich hineinsetzte. Die ganze Menge aber stand am Ufer."
+  },
+  {
+   "v": 3,
+   "l1": "Und er redete zu ihnen vieles in Gleichnissen, sagend: Siehe, der Sämann ging hinaus, um zu säen.",
+   "l2": "Und er redete vieles zu ihnen in Gleichnissen und sagte: Seht, der Sämann ging hinaus, um zu säen.",
+   "l3": "Er erzählte ihnen vieles in Bildern. Er sagte: Schaut, ein Bauer ging aufs Feld, um zu säen."
+  },
+  {
+   "v": 4,
+   "l1": "Und während er säte, fiel das eine an den Weg, und es kamen die Vögel und fraßen es auf.",
+   "l2": "Und als er säte, fiel ein Teil an den Weg, und die Vögel kamen und fraßen es auf.",
+   "l3": "Beim Säen fiel ein Teil der Körner auf den Weg. Da kamen die Vögel und pickten sie auf."
+  },
+  {
+   "v": 5,
+   "l1": "Anderes aber fiel auf das Felsige, wo es nicht viel Erde hatte, und sogleich ging es auf, weil es keine Tiefe der Erde hatte;",
+   "l2": "Anderes fiel auf felsigen Boden, wo es nicht viel Erde hatte, und ging sofort auf, weil der Boden nicht tief war.",
+   "l3": "Anderes fiel auf steinigen Boden, wo kaum Erde war. Es ging schnell auf, weil die Erde so flach war."
+  },
+  {
+   "v": 6,
+   "l1": "als aber die Sonne aufging, wurde es verbrannt, und weil es keine Wurzel hatte, verdorrte es.",
+   "l2": "Als aber die Sonne aufstieg, wurde es versengt, und weil es keine Wurzel hatte, verdorrte es.",
+   "l3": "Doch als die Sonne hochstieg, verbrannte es. Weil es keine Wurzeln hatte, vertrocknete es."
+  },
+  {
+   "v": 7,
+   "l1": "Anderes aber fiel auf die Dornen, und die Dornen wuchsen empor und erstickten es.",
+   "l2": "Anderes fiel unter die Dornen, und die Dornen wuchsen hoch und erstickten es.",
+   "l3": "Anderes fiel zwischen Dornengestrüpp. Das Gestrüpp wuchs hoch und erstickte die Pflanzen."
+  },
+  {
+   "v": 8,
+   "l1": "Anderes aber fiel auf die gute Erde und gab Frucht, das eine hundert, das andere sechzig, das andere dreißig.",
+   "l2": "Anderes aber fiel auf guten Boden und brachte Frucht: das eine hundertfach, das andere sechzigfach, das andere dreißigfach.",
+   "l3": "Anderes fiel auf guten Boden und brachte reiche Ernte: manches hundertfach, manches sechzigfach, manches dreißigfach."
+  },
+  {
+   "v": 9,
+   "l1": "Wer Ohren hat, der höre.",
+   "l2": "Wer Ohren hat, der höre!",
+   "l3": "Wer Ohren hat, soll gut zuhören!"
+  },
+  {
+   "v": 10,
+   "l1": "Und herzukommend sagten die Jünger zu ihm: Warum redest du in Gleichnissen zu ihnen?",
+   "l2": "Da traten die Jünger zu ihm und fragten: Warum redest du in Gleichnissen zu ihnen?",
+   "l3": "Da kamen die Jünger zu ihm und fragten: Warum sprichst du eigentlich in Bildern zu den Leuten?"
+  },
+  {
+   "v": 11,
+   "l1": "Er aber antwortend sprach: Weil euch gegeben ist, die Geheimnisse des Himmelreichs zu erkennen, jenen aber ist es nicht gegeben.",
+   "l2": "Er antwortete und sagte: Weil euch geschenkt ist, die Geheimnisse des Himmelreichs zu erkennen, jenen aber ist es nicht gegeben.",
+   "l3": "Er antwortete: Euch ist es geschenkt, die Geheimnisse von Gottes neuer Welt (dem Himmelreich) zu verstehen. Den anderen aber nicht."
+  },
+  {
+   "v": 12,
+   "l1": "Denn wer hat, dem wird gegeben werden, und er wird Überfluss haben; wer aber nicht hat, dem wird auch das, was er hat, von ihm genommen werden.",
+   "l2": "Denn wer hat, dem wird gegeben werden, und er wird Überfluss haben; wer aber nicht hat, dem wird auch das genommen werden, was er hat.",
+   "l3": "Denn wer schon etwas hat, der bekommt noch mehr dazu, bis er reichlich hat. Wer aber nichts hat, dem wird sogar das genommen, was er hat."
+  },
+  {
+   "v": 13,
+   "l1": "Deswegen rede ich in Gleichnissen zu ihnen, weil sie sehend nicht sehen und hörend nicht hören und auch nicht verstehen.",
+   "l2": "Deshalb rede ich in Gleichnissen zu ihnen, weil sie sehen und doch nicht sehen, hören und doch nicht hören und nichts verstehen.",
+   "l3": "Genau deshalb rede ich in Bildern zu ihnen: Sie schauen hin und sehen doch nichts. Sie hören zu und verstehen doch nichts."
+  },
+  {
+   "v": 14,
+   "l1": "Und an ihnen erfüllt sich die Weissagung Jesajas, die sagt: Mit Hören werdet ihr hören und doch nicht verstehen, und sehend werdet ihr sehen und doch nicht erblicken.",
+   "l2": "An ihnen erfüllt sich die Weissagung Jesajas, die lautet: Hören werdet ihr und doch nicht verstehen, und sehen werdet ihr und doch nicht erkennen.",
+   "l3": "An ihnen geht in Erfüllung, was der Prophet Jesaja gesagt hat: Ihr werdet zwar hören, aber nichts verstehen. Ihr werdet zwar hinschauen, aber nichts erkennen."
+  },
+  {
+   "v": 15,
+   "l1": "Denn das Herz dieses Volkes ist dick geworden, und mit den Ohren haben sie schwer gehört, und ihre Augen haben sie geschlossen, damit sie nicht etwa mit den Augen sehen und mit den Ohren hören und mit dem Herzen verstehen und umkehren und ich sie heile.",
+   "l2": "Denn das Herz dieses Volkes ist verstockt; mit den Ohren hören sie nur schwer, und ihre Augen haben sie verschlossen, damit sie nicht etwa mit den Augen sehen, mit den Ohren hören, mit dem Herzen verstehen, umkehren und ich sie heile.",
+   "l3": "Denn dieses Volk ist innerlich abgestumpft. Sie wollen mit den Ohren nicht richtig hören, und die Augen haben sie fest zugemacht. Sonst würden sie ja sehen, hören und im Herzen verstehen, würden umdenken und neu anfangen, und ich würde sie heilen."
+  },
+  {
+   "v": 16,
+   "l1": "Eure Augen aber sind selig, weil sie sehen, und eure Ohren, weil sie hören.",
+   "l2": "Selig aber sind eure Augen, weil sie sehen, und eure Ohren, weil sie hören.",
+   "l3": "Ihr aber dürft euch glücklich schätzen: Eure Augen sehen, und eure Ohren hören."
+  },
+  {
+   "v": 17,
+   "l1": "Amen, ich sage euch, dass viele Propheten und Gerechte begehrten zu sehen, was ihr seht, und sahen es nicht, und zu hören, was ihr hört, und hörten es nicht.",
+   "l2": "Wahrlich, ich sage euch: Viele Propheten und Gerechte haben sich danach gesehnt, zu sehen, was ihr seht, und haben es nicht gesehen, und zu hören, was ihr hört, und haben es nicht gehört.",
+   "l3": "Ich sage euch ganz klar: Viele Propheten und gute Menschen hätten gern gesehen, was ihr seht, und konnten es nicht. Und sie hätten gern gehört, was ihr hört, und konnten es nicht."
+  },
+  {
+   "v": 18,
+   "l1": "Ihr nun hört das Gleichnis vom Sämann.",
+   "l2": "Hört ihr nun, was das Gleichnis vom Sämann bedeutet.",
+   "l3": "Hört also, was das Bild vom Bauern, der sät, bedeutet:"
+  },
+  {
+   "v": 19,
+   "l1": "Bei jedem, der das Wort vom Reich hört und nicht versteht, kommt der Böse und reißt das in seinem Herzen Gesäte weg; dieser ist der an den Weg Gesäte.",
+   "l2": "Wenn jemand das Wort vom Reich hört und nicht versteht, kommt der Böse und reißt weg, was in sein Herz gesät wurde. Das ist der, bei dem an den Weg gesät wurde.",
+   "l3": "Da ist einer, der die Botschaft von Gottes neuer Welt hört, aber nicht versteht. Dann kommt der Böse und reißt weg, was in sein Herz gesät war. Das ist das Korn, das auf den Weg gefallen ist."
+  },
+  {
+   "v": 20,
+   "l1": "Der aber auf das Felsige Gesäte, dieser ist der, der das Wort hört und es sogleich mit Freude aufnimmt;",
+   "l2": "Bei dem auf den felsigen Boden Gesäten ist es so: Das ist der, der das Wort hört und es sofort mit Freude aufnimmt.",
+   "l3": "Das Korn auf dem steinigen Boden steht für jemanden, der die Botschaft hört und sie sofort begeistert annimmt."
+  },
+  {
+   "v": 21,
+   "l1": "er hat aber keine Wurzel in sich, sondern ist nur für eine Zeit; wenn aber Bedrängnis oder Verfolgung wegen des Wortes entsteht, nimmt er sogleich Anstoß.",
+   "l2": "Doch er hat keine Wurzel in sich, sondern ist unbeständig. Wenn wegen des Wortes Bedrängnis oder Verfolgung kommt, fällt er sofort ab.",
+   "l3": "Aber er hat keine Wurzeln und hält nicht lange durch. Sobald es wegen der Botschaft schwierig wird oder Verfolgung kommt, gibt er sofort auf."
+  },
+  {
+   "v": 22,
+   "l1": "Der aber in die Dornen Gesäte, dieser ist der, der das Wort hört, und die Sorge dieser Weltzeit und der Betrug des Reichtums ersticken das Wort, und es wird unfruchtbar.",
+   "l2": "Bei dem unter die Dornen Gesäten ist es so: Das ist der, der das Wort hört, aber die Sorge dieser Welt und der trügerische Reichtum ersticken das Wort, und es bleibt ohne Frucht.",
+   "l3": "Das Korn im Dornengestrüpp steht für jemanden, der die Botschaft hört. Doch die Sorgen des Alltags und die Verlockung des Geldes ersticken sie, und am Ende kommt nichts dabei heraus."
+  },
+  {
+   "v": 23,
+   "l1": "Der aber auf die gute Erde Gesäte, dieser ist der, der das Wort hört und versteht, der dann wirklich Frucht bringt und macht, das eine hundert, das andere sechzig, das andere dreißig.",
+   "l2": "Bei dem auf den guten Boden Gesäten ist es so: Das ist der, der das Wort hört und versteht; der bringt dann Frucht, der eine hundertfach, der andere sechzigfach, der andere dreißigfach.",
+   "l3": "Das Korn auf dem guten Boden aber steht für jemanden, der die Botschaft hört und versteht. Der bringt reiche Frucht: hundertfach, sechzigfach oder dreißigfach."
+  },
+  {
+   "v": 24,
+   "l1": "Ein anderes Gleichnis legte er ihnen vor, sagend: Das Himmelreich ist gleich geworden einem Menschen, der guten Samen in seinem Acker säte.",
+   "l2": "Ein anderes Gleichnis legte er ihnen vor und sagte: Das Himmelreich gleicht einem Menschen, der guten Samen auf seinen Acker säte.",
+   "l3": "Jesus erzählte ihnen noch ein Bild: Mit Gottes neuer Welt ist es wie mit einem Mann, der guten Samen auf seinen Acker säte."
+  },
+  {
+   "v": 25,
+   "l1": "Während aber die Menschen schliefen, kam sein Feind und säte Unkraut mitten unter den Weizen und ging weg.",
+   "l2": "Während aber die Menschen schliefen, kam sein Feind, säte Unkraut mitten unter den Weizen und ging wieder weg.",
+   "l3": "Während aber alle schliefen, kam sein Feind, streute Unkraut mitten unter den Weizen und verschwand wieder."
+  },
+  {
+   "v": 26,
+   "l1": "Als aber das Kraut sprosste und Frucht machte, da erschien auch das Unkraut.",
+   "l2": "Als nun die Saat aufging und Frucht ansetzte, kam auch das Unkraut zum Vorschein.",
+   "l3": "Als die Saat dann aufwuchs und Ähren bildete, kam auch das Unkraut zum Vorschein."
+  },
+  {
+   "v": 27,
+   "l1": "Herzukommend aber sagten die Knechte des Hausherrn zu ihm: Herr, hast du nicht guten Samen auf deinem Acker gesät? Woher hat er denn Unkraut?",
+   "l2": "Da kamen die Knechte des Hausherrn und sagten zu ihm: Herr, hast du nicht guten Samen auf deinen Acker gesät? Woher kommt dann das Unkraut?",
+   "l3": "Da kamen die Arbeiter zum Besitzer und fragten: Herr, du hast doch guten Samen auf deinen Acker gesät. Woher kommt dann auf einmal das Unkraut?"
+  },
+  {
+   "v": 28,
+   "l1": "Er aber sprach zu ihnen: Ein feindlicher Mensch hat dies getan. Die Knechte aber sagen zu ihm: Willst du nun, dass wir hingehen und es zusammenlesen?",
+   "l2": "Er sagte zu ihnen: Das hat ein Feind getan. Da fragten ihn die Knechte: Sollen wir hingehen und es zusammenlesen?",
+   "l3": "Er antwortete: Das hat ein Feind getan. Die Arbeiter fragten: Sollen wir es einsammeln?"
+  },
+  {
+   "v": 29,
+   "l1": "Er aber sagt: Nein, damit ihr nicht etwa, wenn ihr das Unkraut zusammenlest, zugleich mit ihm den Weizen ausreißt.",
+   "l2": "Er aber sagte: Nein, sonst reißt ihr beim Zusammenlesen des Unkrauts vielleicht zugleich den Weizen mit aus.",
+   "l3": "Nein, sagte er, sonst reißt ihr womöglich mit dem Unkraut auch den Weizen heraus."
+  },
+  {
+   "v": 30,
+   "l1": "Lasst beides zusammen wachsen bis zur Ernte, und zur Zeit der Ernte werde ich den Schnittern sagen: Lest zuerst das Unkraut zusammen und bindet es in Bündel, um es zu verbrennen, den Weizen aber sammelt in meine Scheune.",
+   "l2": "Lasst beides zusammen wachsen bis zur Ernte. Zur Erntezeit werde ich den Schnittern sagen: Lest zuerst das Unkraut zusammen und bindet es in Bündel, um es zu verbrennen; den Weizen aber bringt in meine Scheune.",
+   "l3": "Lasst beides zusammen wachsen bis zur Ernte. Dann sage ich den Erntehelfern: Sammelt zuerst das Unkraut ein, bindet es zu Bündeln und verbrennt es. Den Weizen aber bringt in meine Scheune."
+  },
+  {
+   "v": 31,
+   "l1": "Ein anderes Gleichnis legte er ihnen vor, sagend: Gleich ist das Himmelreich einem Senfkorn, das ein Mensch nahm und in seinem Acker säte;",
+   "l2": "Ein anderes Gleichnis legte er ihnen vor und sagte: Das Himmelreich gleicht einem Senfkorn, das ein Mensch nahm und auf seinen Acker säte.",
+   "l3": "Jesus erzählte ihnen noch ein Bild: Gottes neue Welt ist wie ein Senfkorn, das ein Mann nahm und auf seinem Feld aussäte."
+  },
+  {
+   "v": 32,
+   "l1": "das zwar kleiner ist als alle Samenkörner, wenn es aber gewachsen ist, ist es größer als die Gartenkräuter und wird ein Baum, sodass die Vögel des Himmels kommen und in seinen Zweigen nisten.",
+   "l2": "Es ist zwar das kleinste von allen Samenkörnern, wenn es aber herangewachsen ist, ist es größer als die anderen Gartenpflanzen und wird zu einem Baum, sodass die Vögel des Himmels kommen und in seinen Zweigen nisten.",
+   "l3": "Es ist zwar das kleinste von allen Samenkörnern. Aber wenn es wächst, wird es größer als alle anderen Gartenpflanzen und wird zu einem regelrechten Baum, sodass die Vögel kommen und in seinen Zweigen nisten."
+  },
+  {
+   "v": 33,
+   "l1": "Ein anderes Gleichnis redete er zu ihnen: Gleich ist das Himmelreich einem Sauerteig, den eine Frau nahm und in drei Maß Mehl verbarg, bis das Ganze durchsäuert war.",
+   "l2": "Ein anderes Gleichnis sagte er ihnen: Das Himmelreich gleicht einem Sauerteig, den eine Frau nahm und unter drei Maß Mehl mengte, bis das Ganze durchsäuert war.",
+   "l3": "Noch ein Bild erzählte er ihnen: Gottes neue Welt ist wie ein Sauerteig. Eine Frau mischt ihn unter eine große Menge Mehl, bis der ganze Teig durchgesäuert ist."
+  },
+  {
+   "v": 34,
+   "l1": "Dies alles redete Jesus in Gleichnissen zu den Mengen, und ohne Gleichnis redete er nichts zu ihnen;",
+   "l2": "Dies alles redete Jesus in Gleichnissen zu den Volksmengen, und ohne Gleichnis redete er nichts zu ihnen.",
+   "l3": "All das sagte Jesus den Menschen in Bildern. Ohne ein Bild sagte er ihnen gar nichts."
+  },
+  {
+   "v": 35,
+   "l1": "damit erfüllt würde, was durch den Propheten Jesaja gesagt ist, sagend: Ich werde in Gleichnissen meinen Mund auftun, ich werde aussprechen, was verborgen ist seit Grundlegung.",
+   "l2": "So sollte sich erfüllen, was durch den Propheten Jesaja gesagt ist: Ich werde meinen Mund auftun in Gleichnissen, ich werde aussprechen, was seit Grundlegung verborgen ist.",
+   "l3": "So ging in Erfüllung, was der Prophet Jesaja vorausgesagt hatte: Ich rede in Bildern. Ich spreche aus, was seit Anbeginn verborgen war."
+  },
+  {
+   "v": 36,
+   "l1": "Dann entließ er die Mengen und kam in das Haus. Und es traten zu ihm seine Jünger und sagten: Erkläre uns das Gleichnis vom Unkraut des Ackers.",
+   "l2": "Dann entließ er die Volksmengen und ging ins Haus. Da traten seine Jünger zu ihm und sagten: Erkläre uns das Gleichnis vom Unkraut auf dem Acker.",
+   "l3": "Dann schickte er die Menschen weg und ging ins Haus. Seine Jünger kamen zu ihm und baten: Erklär uns doch das Bild vom Unkraut auf dem Acker."
+  },
+  {
+   "v": 37,
+   "l1": "Er aber antwortend sprach: Der den guten Samen Säende ist der Sohn des Menschen,",
+   "l2": "Er antwortete und sagte: Der den guten Samen sät, ist der Menschensohn.",
+   "l3": "Er antwortete: Der den guten Samen sät, das ist der Menschensohn."
+  },
+  {
+   "v": 38,
+   "l1": "der Acker aber ist die Welt; der gute Same aber, das sind die Söhne des Reiches; das Unkraut aber sind die Söhne des Bösen,",
+   "l2": "Der Acker ist die Welt. Der gute Same, das sind die Söhne des Reiches; das Unkraut aber sind die Söhne des Bösen.",
+   "l3": "Der Acker ist die Welt. Der gute Samen, das sind die Menschen, die zu Gottes neuer Welt gehören. Das Unkraut sind die Menschen, die zum Bösen gehören."
+  },
+  {
+   "v": 39,
+   "l1": "der Feind aber, der es gesät hat, ist der Teufel; die Ernte aber ist die Vollendung der Weltzeit, die Schnitter aber sind Engel.",
+   "l2": "Der Feind, der es gesät hat, ist der Teufel. Die Ernte ist das Ende der Welt, und die Schnitter sind die Engel.",
+   "l3": "Der Feind, der es gesät hat, ist der Teufel. Die Ernte ist das Ende der Welt, und die Erntehelfer sind die Engel."
+  },
+  {
+   "v": 40,
+   "l1": "Wie nun das Unkraut zusammengelesen und mit Feuer verbrannt wird, so wird es sein in der Vollendung der Weltzeit;",
+   "l2": "Wie nun das Unkraut zusammengelesen und im Feuer verbrannt wird, so wird es am Ende der Welt sein.",
+   "l3": "Wie man das Unkraut einsammelt und im Feuer verbrennt, so wird es am Ende der Welt sein."
+  },
+  {
+   "v": 41,
+   "l1": "der Sohn des Menschen wird seine Engel aussenden, und sie werden aus seinem Reich alle Anstöße zusammenlesen und die, die die Gesetzlosigkeit tun,",
+   "l2": "Der Menschensohn wird seine Engel aussenden, und sie werden aus seinem Reich alles zusammenlesen, was zu Fall bringt, und alle, die Unrecht tun,",
+   "l3": "Der Menschensohn wird seine Engel schicken. Sie werden aus seinem Reich alle heraussammeln, die andere zu Fall bringen und Unrecht tun,"
+  },
+  {
+   "v": 42,
+   "l1": "und sie werden sie in den Feuerofen werfen; dort wird das Weinen und das Knirschen der Zähne sein.",
+   "l2": "und sie in den Feuerofen werfen. Dort wird Weinen und Zähneknirschen sein.",
+   "l3": "und werden sie in den brennenden Ofen werfen. Dort werden sie weinen und vor Verzweiflung mit den Zähnen knirschen."
+  },
+  {
+   "v": 43,
+   "l1": "Dann werden die Gerechten leuchten wie die Sonne im Reich ihres Vaters. Wer Ohren hat, der höre.",
+   "l2": "Dann werden die Gerechten leuchten wie die Sonne im Reich ihres Vaters. Wer Ohren hat, der höre!",
+   "l3": "Dann werden die, die zu Gott gehören, strahlen wie die Sonne im Reich ihres Vaters. Wer Ohren hat, soll gut zuhören!"
+  },
+  {
+   "v": 44,
+   "l1": "Gleich ist das Himmelreich einem Schatz, verborgen im Acker, den ein Mensch fand und verbarg, und aus seiner Freude geht er hin und verkauft alles, was er hat, und kauft jenen Acker.",
+   "l2": "Das Himmelreich gleicht einem im Acker verborgenen Schatz, den ein Mensch fand und wieder verbarg. Vor Freude darüber geht er hin, verkauft alles, was er hat, und kauft jenen Acker.",
+   "l3": "Mit Gottes neuer Welt ist es wie mit einem Schatz, der in einem Acker vergraben war. Ein Mann findet ihn und versteckt ihn wieder. Vor lauter Freude verkauft er alles, was er hat, und kauft diesen Acker."
+  },
+  {
+   "v": 45,
+   "l1": "Wiederum ist das Himmelreich gleich einem Menschen, einem Kaufmann, der schöne Perlen sucht;",
+   "l2": "Wiederum gleicht das Himmelreich einem Kaufmann, der schöne Perlen sucht.",
+   "l3": "Mit Gottes neuer Welt ist es auch wie mit einem Händler, der nach schönen Perlen sucht."
+  },
+  {
+   "v": 46,
+   "l1": "als er aber eine sehr kostbare Perle fand, ging er hin und verkaufte alles, was er hatte, und kaufte sie.",
+   "l2": "Als er eine besonders kostbare Perle fand, ging er hin, verkaufte alles, was er hatte, und kaufte sie.",
+   "l3": "Als er eine besonders wertvolle Perle findet, verkauft er alles, was er hat, und kauft sie."
+  },
+  {
+   "v": 47,
+   "l1": "Wiederum ist das Himmelreich gleich einem Schleppnetz, das ins Meer geworfen wurde und aus jeder Art zusammenbrachte;",
+   "l2": "Wiederum gleicht das Himmelreich einem Schleppnetz, das in den See geworfen wurde und Fische jeder Art einfing.",
+   "l3": "Mit Gottes neuer Welt ist es auch wie mit einem großen Netz, das man in den See wirft und mit dem man Fische aller Art fängt."
+  },
+  {
+   "v": 48,
+   "l1": "das zogen sie, als es voll war, ans Ufer hinauf und setzten sich und lasen die guten in Gefäße zusammen, die faulen aber warfen sie hinaus.",
+   "l2": "Als es voll war, zogen sie es ans Ufer, setzten sich hin und lasen die guten Fische in Gefäße zusammen, die schlechten aber warfen sie weg.",
+   "l3": "Wenn es voll ist, ziehen sie es ans Ufer, setzen sich hin und sortieren: Die guten Fische kommen in Körbe, die schlechten werfen sie weg."
+  },
+  {
+   "v": 49,
+   "l1": "So wird es sein in der Vollendung der Weltzeit: Die Engel werden ausgehen und die Bösen aus der Mitte der Gerechten aussondern,",
+   "l2": "So wird es am Ende der Welt sein: Die Engel werden ausziehen und die Bösen von den Gerechten trennen",
+   "l3": "So wird es am Ende der Welt sein: Die Engel werden kommen und die schlechten Menschen von den guten trennen."
+  },
+  {
+   "v": 50,
+   "l1": "und sie werden sie in den Feuerofen werfen; dort wird das Weinen und das Knirschen der Zähne sein.",
+   "l2": "und sie in den Feuerofen werfen. Dort wird Weinen und Zähneknirschen sein.",
+   "l3": "Sie werden sie in den brennenden Ofen werfen. Dort werden sie weinen und vor Verzweiflung mit den Zähnen knirschen."
+  },
+  {
+   "v": 51,
+   "l1": "Habt ihr dies alles verstanden? Sie sagen zu ihm: Ja.",
+   "l2": "Habt ihr das alles verstanden? Sie antworteten ihm: Ja.",
+   "l3": "Habt ihr das alles verstanden?, fragte Jesus. Ja, antworteten sie."
+  },
+  {
+   "v": 52,
+   "l1": "Er aber sprach zu ihnen: Deswegen ist jeder Schriftgelehrte, der für das Himmelreich gelehrt wurde, gleich einem Menschen, einem Hausherrn, der aus seinem Schatz Neues und Altes hervorbringt.",
+   "l2": "Da sagte er zu ihnen: Deshalb gleicht jeder Schriftgelehrte, der ein Schüler des Himmelreichs geworden ist, einem Hausherrn, der aus seinem Vorrat Neues und Altes hervorholt.",
+   "l3": "Da sagte er zu ihnen: Deshalb gleicht jeder Schriftgelehrte (Gesetzeslehrer), der etwas über Gottes neue Welt gelernt hat, einem Hausbesitzer, der aus seinem Vorrat Neues und Altes hervorholt."
+  },
+  {
+   "v": 53,
+   "l1": "Und es geschah, als Jesus diese Gleichnisse beendet hatte, brach er von dort auf.",
+   "l2": "Und es geschah, als Jesus diese Gleichnisse beendet hatte, zog er von dort weiter.",
+   "l3": "Als Jesus diese Bilder zu Ende erzählt hatte, zog er von dort weiter."
+  },
+  {
+   "v": 54,
+   "l1": "Und gekommen in seine Vaterstadt, lehrte er sie in ihrer Synagoge, sodass sie außer sich gerieten und sagten: Woher hat dieser diese Weisheit und die Wunderkräfte?",
+   "l2": "Er kam in seine Heimatstadt und lehrte die Leute in ihrer Synagoge, sodass sie erstaunt waren und sagten: Woher hat dieser diese Weisheit und diese Wunderkräfte?",
+   "l3": "Er kam in seine Heimatstadt und lehrte die Leute in der Synagoge. Sie waren völlig verblüfft und fragten: Woher hat der Mann diese Weisheit und die Kraft, solche Wunder zu tun?"
+  },
+  {
+   "v": 55,
+   "l1": "Ist dieser nicht der Sohn des Zimmermanns? Heißt nicht seine Mutter Maria und seine Brüder Jakobus und Josef und Simon und Judas?",
+   "l2": "Ist das nicht der Sohn des Zimmermanns? Heißt nicht seine Mutter Maria und sind seine Brüder nicht Jakobus, Josef, Simon und Judas?",
+   "l3": "Ist das nicht der Sohn des Zimmermanns? Heißt seine Mutter nicht Maria, und sind seine Brüder nicht Jakobus, Josef, Simon und Judas?"
+  },
+  {
+   "v": 56,
+   "l1": "Und sind nicht seine Schwestern alle bei uns? Woher hat dieser nun dies alles?",
+   "l2": "Und leben nicht alle seine Schwestern bei uns? Woher hat er dann das alles?",
+   "l3": "Und seine Schwestern wohnen doch alle hier bei uns. Woher hat er das alles bloß?"
+  },
+  {
+   "v": 57,
+   "l1": "Und sie nahmen Anstoß an ihm. Jesus aber sprach zu ihnen: Ein Prophet ist nicht ohne Ehre außer in seiner eigenen Vaterstadt und in seinem Haus.",
+   "l2": "Und sie nahmen Anstoß an ihm. Jesus aber sagte zu ihnen: Ein Prophet gilt nirgends so wenig wie in seiner Heimatstadt und in seiner eigenen Familie.",
+   "l3": "So konnten sie nichts mit ihm anfangen und lehnten ihn ab. Jesus aber sagte: Nirgends wird ein Prophet so wenig geachtet wie in seiner Heimatstadt und in seiner eigenen Familie."
+  },
+  {
+   "v": 58,
+   "l1": "Und er tat dort nicht viele Wunderkräfte wegen ihres Unglaubens.",
+   "l2": "Und er tat dort wegen ihres Unglaubens nicht viele Wunder.",
+   "l3": "Und weil sie ihm nicht glaubten, tat er dort nur wenige Wunder."
+  }
+ ]
+}

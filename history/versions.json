@@ -334,5 +334,17 @@
   "verseCount": 25,
   "changeCount": 0,
   "baseline": true
+ },
+ {
+  "book": "matthaeus",
+  "id": 2,
+  "label": "Qualitäts-Audit",
+  "model": "Claude Opus 4.8",
+  "baseText": "Tischendorf, Novum Testamentum Graece, 8. Ausgabe",
+  "source": "Unabhängiger zweistufiger Audit: Prüfung gegen den Urtext + adversariale Gegenprüfung jeder Korrektur",
+  "timestamp": "2026-06-27T18:58:31.807Z",
+  "verseCount": 1067,
+  "changeCount": 26,
+  "baseline": false
  }
 ]
