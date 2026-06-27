@@ -66,16 +66,11 @@
       </div>
 
       <div class="controls">
-        <div class="book-row">
-          <label for="bookSel">Buch</label>
-          <select id="bookSel" aria-label="Buch wählen"></select>
-        </div>
-        <form class="search-row" id="searchForm" autocomplete="off">
-          <input id="search" type="text" inputmode="text" placeholder="Bibelstelle, z. B. Markus 1,1-8  ·  Mk 4,35  ·  3" aria-label="Bibelstelle suchen" />
-          <button id="go" type="submit">Anzeigen</button>
-        </form>
-
-        <div class="row2">
+        <div class="toprow">
+          <div class="book-row">
+            <label for="bookSel">Buch</label>
+            <select id="bookSel" aria-label="Buch wählen"></select>
+          </div>
           <div class="slider-box">
             <div class="slider-labels">
               <span data-lvl="1">1 · Urtextnah</span>
@@ -85,16 +80,22 @@
             <input type="range" id="level" min="1" max="3" step="1" value="2" aria-label="Nähe zum Urtext" />
             <div class="level-name" id="levelName"></div>
           </div>
+        </div>
 
+        <form class="search-row" id="searchForm" autocomplete="off">
+          <input id="search" type="text" inputmode="text" placeholder="Bibelstelle, z. B. Markus 1,1-8  ·  Mk 4,35  ·  3" aria-label="Bibelstelle suchen" />
+          <button id="go" type="submit">Aufschlagen</button>
+        </form>
+
+        <div class="row2">
           <div class="toggles">
             <label><input type="checkbox" id="greekToggle" /> Urtext (Griechisch)</label>
           </div>
-        </div>
-
-        <div class="quicknav">
-          <button id="prevCh" title="vorheriges Kapitel" data-click-type="generativ_bibel_chapter_changed" data-action="previous_chapter">‹ Kap.</button>
-          <span id="chLabel">Kapitel 1 / 16</span>
-          <button id="nextCh" title="nächstes Kapitel" data-click-type="generativ_bibel_chapter_changed" data-action="next_chapter">Kap. ›</button>
+          <div class="quicknav">
+            <button id="prevCh" title="vorheriges Kapitel" data-click-type="generativ_bibel_chapter_changed" data-action="previous_chapter">‹ Kap.</button>
+            <span id="chLabel">Kapitel 1 / 16</span>
+            <button id="nextCh" title="nächstes Kapitel" data-click-type="generativ_bibel_chapter_changed" data-action="next_chapter">Kap. ›</button>
+          </div>
         </div>
       </div>
     </div>
@@ -120,7 +121,7 @@
       </section>
       <p><b>Drei Fassungen der Augsburger GenerativBibel:</b> <b>Urtextnah</b> = ganz nah am Urtext (wörtlich/konkordant) · <b>mittel</b> = genau &amp; natürlich · <b>Lesefluss</b> = heutiges Alltagsdeutsch. Der Schieberegler wählt, wie nah am Urtext der Text sein soll.</p>
       <p><b>Urtext &amp; Lexikon:</b> Griechischer Text nach <i>Tischendorf, Novum Testamentum Graece, 8. Ausgabe</i> (gemeinfrei). Wort-Lexikon nach <i>Strong's Greek Dictionary</i> / OpenScriptures (CC&nbsp;BY-SA). Tippe bei eingeblendetem Urtext auf ein griechisches Wort, um Bedeutung und Strong-Nummer zu sehen.</p>
-      <p><b>Wichtiger Hinweis:</b> Die <b>Augsburger GenerativBibel</b> ist <b>KI-erstellt</b> (generativ) und mehrstufig gegengeprüft, aber <b>keine</b> wissenschaftlich geprüfte Bibelausgabe. Wir empfehlen, für das Bibelstudium echte, von Menschen übersetzte Bibeln zu verwenden. Diese Übersetzung ist eine experimentelle KI-Bibel mit KI-Übersetzung als Testfall.</p>
+      <p><b>Hinweis:</b> Die Augsburger GenerativBibel ist KI-erstellt (generativ) und mehrstufig gegengeprüft, aber keine wissenschaftlich geprüfte Bibelausgabe. Wir empfehlen, für das Bibelstudium echte, von Menschen übersetzte Bibeln zu verwenden. Diese Übersetzung ist eine experimentelle KI-Bibel mit KI-Übersetzung als Testfall.</p>
       <p><b>Transparenz:</b> Ein unabhängiger <a href="pruefbericht.html" data-click-type="generativ_bibel_pruefbericht_open" data-destination="pruefbericht.html">Prüfbericht</a> dokumentiert Methode, Textnähe zu bestehenden Übersetzungen und Qualität gegenüber dem Grundtext (am Beispiel des Römerbriefs).</p>
       <p id="versionInfo" class="version-line"></p>
       <p class="version-line"><i>Entstehung: gestartet am Freitag, 19. Juni 2026, wenige Minuten vor Mitternacht in Augsburg im Hotelturm an der Kongresshalle.</i></p>
