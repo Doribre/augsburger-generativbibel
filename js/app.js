@@ -565,8 +565,6 @@ function updateQuickNav() {
   $('#chLabel').textContent = 'Kapitel ' + ch + ' / ' + meta.chapters;
 }
 function syncSliderUI() {
-  const L = LEVELS[state.level];
-  $('#levelName').innerHTML = '<b>' + BRAND + ' ' + L.name + '</b> <span style="opacity:.8">· ' + L.hint + '</span>';
   document.querySelectorAll('.slider-labels span').forEach((sp) => sp.classList.toggle('active', Number(sp.dataset.lvl) === state.level));
 }
 
