@@ -2,7 +2,7 @@
 // Strategie: HTML-Seiten network-first (immer aktuelle Fassung, offline Fallback
 // auf Cache); statische Assets (CSS/JS/JSON/Bilder) cache-first. Kerndaten werden
 // beim Install vorab gecacht; Buch-Dateien zur Laufzeit.
-const CACHE = 'agb-v14';
+const CACHE = 'agb-v15';
 const CORE = [
   './', './index.html', './css/style.css', './js/app.js', './pruefbericht.html',
   './manifest.webmanifest', './icon.svg',

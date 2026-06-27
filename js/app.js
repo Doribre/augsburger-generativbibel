@@ -287,6 +287,7 @@ function syncUrl(push) {
 function render(push) {
   const segs = state.segments || [];
   const results = $('#results');
+  const exEl = $('.examples'); if (exEl) exEl.hidden = true; // Beispiele ausblenden, sobald Bibeltext sichtbar ist
   if (!segs.length) { results.innerHTML = ''; return; }
   const lvl = LEVELS[state.level].key;
   let html = '';
@@ -543,6 +544,7 @@ function showError(err) {
     empty: 'Bitte eine Bibelstelle eingeben, z. B. <code>Markus 1,1-8</code>.',
   };
   $('#results').innerHTML = '<div class="msg">' + (map[kind] || map.empty) + '</div>';
+  const ex = $('.examples'); if (ex) ex.hidden = false; // bei Fehler/leerer Eingabe Beispiele einblenden
 }
 
 function navChapter(dir) {
