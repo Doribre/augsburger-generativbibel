@@ -52,7 +52,7 @@ function buildPage(opts) {
   h = h.replace('href="css/style.css"', 'href="' + prefix + 'css/style.css"');
   h = h.replace('src="js/app.js"', 'src="' + prefix + 'js/app.js"');
   h = h.replace("register('sw.js')", "register('" + prefix + "sw.js')");
-  h = h.replace(/href="pruefbericht\.html"/g, 'href="' + prefix + 'pruefbericht.html"');
+  h = h.replace(/href="(pruefbericht|impressum|datenschutz)\.html"/g, 'href="' + prefix + '$1.html"');
   return h;
 }
 
@@ -117,7 +117,7 @@ function chapterJsonLd(meta, chNum, fassung, url) {
 // Alte Ausgabe entfernen (sauberer Neuaufbau)
 for (const f of FASSUNGEN) fs.rmSync(path.join(ROOT, f.slug), { recursive: true, force: true });
 
-const sitemap = [LIVE + '/', LIVE + '/pruefbericht.html'];
+const sitemap = [LIVE + '/', LIVE + '/pruefbericht.html', LIVE + '/impressum.html', LIVE + '/datenschutz.html'];
 let pages = 0;
 for (const id of available) {
   const meta = metaById[id];
