@@ -30,7 +30,7 @@ jobs:
       - name: Web-Assets nach www/ kopieren (Bibeltexte werden mit eingebettet)
         run: |
           rm -rf www && mkdir www
-          cp -r index.html css js data icon.svg manifest.webmanifest sw.js www/
+          cp -r index.html css js data icon.svg manifest.webmanifest sw.js pruefbericht.html impressum.html datenschutz.html www/
 
       - name: Capacitor installieren
         run: npm install
