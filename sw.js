@@ -1,7 +1,8 @@
 // Service Worker — macht die Augsburger GenerativBibel offline-fähig.
-// Strategie: App-Hülle + Kerndaten beim Install vorab cachen; Buch-Dateien
-// werden bei Erstaufruf zur Laufzeit gecacht (cache-first → danach offline).
-const CACHE = 'agb-v8';
+// Strategie: HTML-Seiten network-first (immer aktuelle Fassung, offline Fallback
+// auf Cache); statische Assets (CSS/JS/JSON/Bilder) cache-first. Kerndaten werden
+// beim Install vorab gecacht; Buch-Dateien zur Laufzeit.
+const CACHE = 'agb-v9';
 const CORE = [
   './', './index.html', './css/style.css', './js/app.js', './pruefbericht.html',
   './manifest.webmanifest', './icon.svg',
@@ -25,7 +26,19 @@ self.addEventListener('activate', (e) => {
 self.addEventListener('fetch', (e) => {
   const req = e.request;
   if (req.method !== 'GET') return;
+  const isDoc = req.mode === 'navigate' || req.destination === 'document';
   e.respondWith((async () => {
+    // HTML-Seiten: network-first — immer die aktuelle Fassung; offline Fallback auf Cache.
+    if (isDoc) {
+      try {
+        const res = await fetch(req);
+        if (res && res.status === 200) { const copy = res.clone(); caches.open(CACHE).then((c) => c.put(req, copy)); }
+        return res;
+      } catch (err) {
+        return (await caches.match(req)) || (await caches.match('./index.html')) || Response.error();
+      }
+    }
+    // Statische Assets (CSS/JS/JSON/Bilder): cache-first.
     const cached = await caches.match(req);
     if (cached) return cached;
     try {
