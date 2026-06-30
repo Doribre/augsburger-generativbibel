@@ -85,7 +85,15 @@ async function boot() {
     ]);
     let otCatalog = [];
     try { otCatalog = await fetch(dataUrl('data/ot_books.json')).then((r) => r.json()); } catch (e) { otCatalog = []; }
-    state.catalog = ntCatalog.concat(otCatalog);
+    // Reihenfolge wie in der Bibel: Altes Testament vor Neuem Testament (also Psalmen
+    // vor den Evangelien). Innerhalb eines Testaments bleibt die kanonische Reihenfolge
+    // der jeweiligen Katalog-Datei erhalten (Array.sort ist stabil).
+    const TEST_RANK = { at: 0, nt: 1 };
+    state.catalog = ntCatalog.concat(otCatalog).sort((a, b) => {
+      const ra = TEST_RANK[a.testament] != null ? TEST_RANK[a.testament] : 1;
+      const rb = TEST_RANK[b.testament] != null ? TEST_RANK[b.testament] : 1;
+      return ra - rb;
+    });
     state.manifest = manifest;
     state.lex = lex;
   } catch (e) {

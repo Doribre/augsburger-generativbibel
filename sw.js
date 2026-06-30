@@ -7,7 +7,7 @@
 // Beim Install werden die Kerndaten vorab gecacht. Zusammen mit der Selbstheilung
 // in index.html (controllerchange → einmaliger Reload) sehen Besucher Updates ohne
 // manuelles Leeren des Caches.
-const CACHE = 'agb-v21';
+const CACHE = 'agb-v22';
 const CORE = [
   './', './index.html', './css/style.css', './js/app.js', './pruefbericht.html',
   './manifest.webmanifest', './icon.svg',
