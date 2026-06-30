@@ -140,6 +140,16 @@
   <script src="js/app.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
+      // Selbstheilung: übernimmt ein NEUER Service Worker (echtes Update), genau
+      // einmal neu laden, damit frischer Code/Inhalt sofort sichtbar ist. Beim
+      // Erstbesuch (vorher kein Controller) NICHT neu laden → kein Reload-Loop.
+      var swHadController = !!navigator.serviceWorker.controller;
+      var swReloaded = false;
+      navigator.serviceWorker.addEventListener('controllerchange', function () {
+        if (!swHadController || swReloaded) return;
+        swReloaded = true;
+        window.location.reload();
+      });
       window.addEventListener('load', function () {
         navigator.serviceWorker.register('sw.js').catch(function () {});
       });
