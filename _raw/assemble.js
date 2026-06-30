@@ -12,8 +12,11 @@ if (!bookId || !greekArg || !outArg) {
 }
 
 const catalog = JSON.parse(fs.readFileSync(path.join(BASE, 'data/nt_books.json'), 'utf8'));
+const otPath = path.join(BASE, 'data/ot_books.json');
+if (fs.existsSync(otPath)) catalog.push(...JSON.parse(fs.readFileSync(otPath, 'utf8')));
 const meta = catalog.find((b) => b.id === bookId);
 if (!meta) { console.error('Unbekanntes Buch: ' + bookId); process.exit(1); }
+const LV = (meta.versions && meta.versions.length) ? meta.versions : ['l1', 'l2', 'l3']; // Fassungen dieses Buches (NT: 3, AT: 2)
 
 const greek = JSON.parse(fs.readFileSync(path.resolve(greekArg), 'utf8'));
 const outDir = path.resolve(outArg);
@@ -49,12 +52,18 @@ for (let ch = 1; ch <= nch; ch++) {
     const isOmitted = !gv.gr || !gv.gr.trim();
     if (isOmitted) { out[gv.v] = { omitted: true }; omittedCount++; continue; }
     const t = tr ? tr[gv.v] : null;
-    if (!t || !t.l1 || !t.l2 || !t.l3) {
+    const gw = gv.words ? gv.words.map((w) => [w.w, w.s]) : [];
+    const missing = !t || LV.some((k) => !t[k] || !String(t[k]).trim());
+    if (missing) {
       problems.push(bookId + ' ' + ch + ',' + gv.v + ': Übersetzung unvollständig/fehlt.');
-      out[gv.v] = { l1: (t && t.l1) || '', l2: (t && t.l2) || '', l3: (t && t.l3) || '', gr: gv.gr, gw: gv.words.map((w) => [w.w, w.s]), incomplete: true };
+      const o = { gr: gv.gr, gw: gw, incomplete: true };
+      for (const k of LV) o[k] = (t && t[k]) ? String(t[k]).trim() : '';
+      out[gv.v] = o;
       continue;
     }
-    out[gv.v] = { l1: t.l1.trim(), l2: t.l2.trim(), l3: t.l3.trim(), gr: gv.gr, gw: gv.words.map((w) => [w.w, w.s]) };
+    const o = { gr: gv.gr, gw: gw };
+    for (const k of LV) o[k] = String(t[k]).trim();
+    out[gv.v] = o;
     translated++;
   }
   chapters[ch] = out;
@@ -65,7 +74,9 @@ const data = {
   id: bookId,
   book: meta.name,
   short: meta.short,
-  source: 'Tischendorf, Novum Testamentum Graece, 8. Ausgabe (Koine-Griechisch, gemeinfrei)',
+  source: meta.source || 'Tischendorf, Novum Testamentum Graece, 8. Ausgabe (Koine-Griechisch, gemeinfrei)',
+  script: meta.script || 'greek',
+  versions: LV,
   chapterCount: nch,
   verseCounts,
   notes,

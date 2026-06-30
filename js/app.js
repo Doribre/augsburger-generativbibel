@@ -6,6 +6,7 @@ const LEVELS = {
   2: { key: 'l2', name: 'mittel', hint: 'genau & natürlich' },
   3: { key: 'l3', name: 'Lesefluss', hint: 'heutiges Alltagsdeutsch' },
 };
+const LEVEL_OF_KEY = { l1: 1, l2: 2, l3: 3 };
 
 const state = {
   catalog: null,     // nt_books.json
@@ -23,6 +24,7 @@ const state = {
   ref: null,         // (Legacy) – aktuelle Stelle = segments[0]
   segments: [],      // [{bookId, chapter, verses|null}] – Listen & Semikolon (FD#0004)
   pathMode: false,   // true = saubere Kapitel-URL führen (/{fassung}/{buch}/{kapitel}/)
+  levels: [1, 2, 3], // verfügbare Stufen des aktuellen Buches (NT: 3, AT z. B. Psalmen: 2)
 };
 
 const $ = (s) => document.querySelector(s);
@@ -76,12 +78,14 @@ function startHeartbeat() {
 async function boot() {
   initTheme();
   try {
-    const [catalog, manifest, lex] = await Promise.all([
+    const [ntCatalog, manifest, lex] = await Promise.all([
       fetch(dataUrl('data/nt_books.json')).then((r) => r.json()),
       fetch(dataUrl('data/manifest.json')).then((r) => r.json()),
       fetch(dataUrl('data/lexicon.json')).then((r) => r.json()),
     ]);
-    state.catalog = catalog;
+    let otCatalog = [];
+    try { otCatalog = await fetch(dataUrl('data/ot_books.json')).then((r) => r.json()); } catch (e) { otCatalog = []; }
+    state.catalog = ntCatalog.concat(otCatalog);
     state.manifest = manifest;
     state.lex = lex;
   } catch (e) {
@@ -138,6 +142,7 @@ async function loadBook(id) {
   state.notes = state.bookData.notes || {};
   buildChangeIndex();
   const sel = $('#bookSel'); if (sel) sel.value = id;
+  rebuildSlider(id);
 }
 
 // Lädt alle in den Segmenten referenzierten Bücher und setzt das erste als „aktuell"
@@ -322,7 +327,7 @@ function render(push) {
       const histMark = (isCur && state.changeIndex[ch + ':' + v])
         ? '<button class="vhist" data-ref="' + ch + ':' + v + '" title="Änderungshistorie dieses Verses">↻</button>' : '';
       html += '<p class="verse" id="v' + v + '"><span class="vnum">' + v + '</span>' + histMark + '<span class="vtext">' + escapeHtml(verse[lvl] || '') + '</span></p>';
-      if (state.greek && verse.gr) html += '<div class="greek-line">' + renderGreek(verse.gw, verse.gr) + '</div>';
+      if (state.greek && verse.gr) { const rtl = bookMeta(seg.bookId).script === 'hebrew'; html += '<div class="greek-line' + (rtl ? ' rtl' : '') + '"' + (rtl ? ' dir="rtl"' : '') + '>' + renderGreek(verse.gw, verse.gr) + '</div>'; }
       if (note) {
         const label = note.type === 'variante' ? 'Textvariante' : note.type === 'schluss' ? 'Markusschluss' : note.type === 'perikope' ? 'Umstrittene Stelle' : 'Hinweis';
         html += '<div class="note"><b>' + label + ' (' + ch + ',' + v + '):</b> ' + escapeHtml(note.text) + '</div>';
@@ -497,9 +502,8 @@ function wireControls() {
   });
 
   const slider = $('#level');
-  slider.value = state.level;
-  slider.addEventListener('input', () => { state.level = Number(slider.value); localStorage.setItem('mk_level', String(state.level)); state.pathMode = true; syncSliderUI(); render(); track('generativ_bibel_translation_changed', TRANSLATION_KEY[state.level]); });
-  document.querySelectorAll('.slider-labels span').forEach((sp) => sp.addEventListener('click', () => { state.level = Number(sp.dataset.lvl); slider.value = state.level; localStorage.setItem('mk_level', String(state.level)); state.pathMode = true; syncSliderUI(); render(); track('generativ_bibel_translation_changed', TRANSLATION_KEY[state.level]); }));
+  slider.addEventListener('input', () => { state.level = (state.levels || [1, 2, 3])[Number(slider.value) - 1] || state.level; localStorage.setItem('mk_level', String(state.level)); state.pathMode = true; syncSliderUI(); render(); track('generativ_bibel_translation_changed', TRANSLATION_KEY[state.level]); });
+  // Stufen-Labels werden je Buch in rebuildSlider() neu aufgebaut + verdrahtet.
 
   const gk = $('#greekToggle');
   gk.checked = state.greek;
@@ -570,6 +574,30 @@ function updateQuickNav() {
   $('#prevCh').disabled = ch <= 1;
   $('#nextCh').disabled = ch >= meta.chapters;
   $('#chLabel').textContent = 'Kapitel ' + ch + ' / ' + meta.chapters;
+}
+function bookLevels(id) {
+  const v = bookMeta(id).versions;
+  if (Array.isArray(v) && v.length) { const a = v.map((k) => LEVEL_OF_KEY[k]).filter(Boolean); if (a.length) return a; }
+  return [1, 2, 3];
+}
+function rebuildSlider(id) {
+  const levels = bookLevels(id);
+  state.levels = levels;
+  if (levels.indexOf(state.level) < 0) state.level = levels[levels.length - 1];
+  const slider = $('#level'); if (!slider) return;
+  slider.min = 1; slider.max = levels.length; slider.step = 1;
+  slider.value = levels.indexOf(state.level) + 1;
+  const lab = document.querySelector('.slider-labels');
+  if (lab) {
+    lab.innerHTML = levels.map((l) => '<span data-lvl="' + l + '">' + (levels.length === 3 ? (l + ' · ') : '') + LEVELS[l].name + '</span>').join('');
+    lab.querySelectorAll('span').forEach((sp) => sp.addEventListener('click', () => {
+      state.level = Number(sp.dataset.lvl); slider.value = state.levels.indexOf(state.level) + 1;
+      localStorage.setItem('mk_level', String(state.level)); state.pathMode = true; syncSliderUI(); render();
+      track('generativ_bibel_translation_changed', TRANSLATION_KEY[state.level]);
+    }));
+  }
+  const ul = document.getElementById('urtextLabel'); if (ul) ul.textContent = 'Urtext (' + (bookMeta(id).script === 'hebrew' ? 'Hebräisch' : 'Griechisch') + ')';
+  syncSliderUI();
 }
 function syncSliderUI() {
   document.querySelectorAll('.slider-labels span').forEach((sp) => sp.classList.toggle('active', Number(sp.dataset.lvl) === state.level));

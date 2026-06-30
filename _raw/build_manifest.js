@@ -5,6 +5,8 @@ const path = require('path');
 const BASE = path.join(__dirname, '..');
 
 const catalog = JSON.parse(fs.readFileSync(path.join(BASE, 'data/nt_books.json'), 'utf8'));
+const otPath = path.join(BASE, 'data/ot_books.json');
+if (fs.existsSync(otPath)) catalog.push(...JSON.parse(fs.readFileSync(otPath, 'utf8')));
 let history = { versions: [], changes: [] };
 try { history = JSON.parse(fs.readFileSync(path.join(BASE, 'data/history.json'), 'utf8')); } catch (e) {}
 
@@ -26,7 +28,7 @@ const books = catalog.map((b) => {
       for (const ch in d.chapters) for (const v in d.chapters[ch]) if (/^\d+$/.test(v) && !d.chapters[ch][v].omitted) verseCount++;
     } catch (e) {}
   }
-  return { id: b.id, name: b.name, short: b.short, chapters: b.chapters, available, verseCount, latest: latestVersion(b.id) };
+  return { id: b.id, name: b.name, short: b.short, chapters: b.chapters, available, verseCount, latest: latestVersion(b.id), versions: b.versions || ['l1', 'l2', 'l3'], script: b.script || 'greek', testament: b.testament || 'nt' };
 });
 
 const manifest = {

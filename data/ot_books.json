@@ -1,0 +1,3 @@
+[
+  { "id": "psalmen", "name": "Psalmen", "short": "Ps", "abbr": ["ps", "psalm", "psalmen", "pslm"], "chapters": 150, "versions": ["l1", "l3"], "script": "hebrew", "testament": "at", "source": "Westminster Leningrad Codex / Open Scriptures Hebrew Bible (Strong-Nummern & Morphologie: CC BY 4.0; hebräischer Text gemeinfrei)" }
+]

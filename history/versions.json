@@ -346,5 +346,17 @@
   "verseCount": 1067,
   "changeCount": 26,
   "baseline": false
+ },
+ {
+  "book": "psalmen",
+  "id": 1,
+  "label": "Erstübersetzung",
+  "model": "Claude Opus 4.8",
+  "baseText": "Westminster Leningrad Codex / Open Scriptures Hebrew Bible",
+  "source": "KI-Pipeline (2 Fassungen): Übersetzen → adversariale Prüfung → Korrektur",
+  "timestamp": "2026-06-30T04:54:27.416Z",
+  "verseCount": 2527,
+  "changeCount": 0,
+  "baseline": true
  }
 ]

@@ -25,6 +25,7 @@ const esc = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</
 const template = read('index.html');
 const manifest = readJson('data/manifest.json');
 const catalog = readJson('data/nt_books.json');
+try { for (const b of readJson('data/ot_books.json')) catalog.push(b); } catch (e) {}
 const metaById = {};
 for (const b of catalog) metaById[b.id] = b;
 const available = manifest.available || [];
@@ -57,7 +58,7 @@ function buildPage(opts) {
 }
 
 // ---- Kapitel-Inhalt (entspricht der Render-Ausgabe der App) ----
-function chapterResults(meta, chNum, chap, notes, fassung) {
+function chapterResults(meta, chNum, chap, notes, fassung, bookFassungen) {
   const ref = meta.name + ' ' + chNum;
   let html = '<div class="passage-head"><h2>' + esc(ref) + '</h2>'
     + '<span class="lvl-tag">Augsburger GenerativBibel ' + esc(fassung.name) + '</span></div>';
@@ -84,12 +85,12 @@ function chapterResults(meta, chNum, chap, notes, fassung) {
   if (chNum < maxCh) nav += ' <a class="cn-next" href="../' + (chNum + 1) + '/">' + esc(meta.short || meta.name) + ' ' + (chNum + 1) + ' ›</a>';
   nav += '</nav>';
   let fnav = '<nav class="fassungnav">Diese Stelle in anderer Fassung: ';
-  fnav += FASSUNGEN.map((f) => '<a href="../../../' + f.slug + '/' + meta.id + '/' + chNum + '/">' + esc(f.name) + '</a>').join(' · ');
+  fnav += (bookFassungen || FASSUNGEN).map((f) => '<a href="../../../' + f.slug + '/' + meta.id + '/' + chNum + '/">' + esc(f.name) + '</a>').join(' · ');
   fnav += '</nav>';
   return html + nav + fnav;
 }
 
-function chapterJsonLd(meta, chNum, fassung, url) {
+function chapterJsonLd(meta, chNum, fassung, url, source) {
   const ref = meta.name + ' ' + chNum;
   const g = [
     {
@@ -105,9 +106,9 @@ function chapterJsonLd(meta, chNum, fassung, url) {
       name: ref + ' – Augsburger GenerativBibel (' + fassung.name + ')',
       inLanguage: 'de-DE',
       url: url,
-      isPartOf: { '@type': 'Book', name: 'Augsburger GenerativBibel – Neues Testament', inLanguage: 'de-DE' },
+      isPartOf: { '@type': 'Book', name: 'Augsburger GenerativBibel', inLanguage: 'de-DE' },
       about: ref,
-      isBasedOn: 'Tischendorf, Novum Testamentum Graece, 8. Ausgabe',
+      isBasedOn: source || 'Tischendorf, Novum Testamentum Graece, 8. Ausgabe',
     },
   ];
   return JSON.stringify({ '@context': 'https://schema.org', '@graph': g }, null, 2).split('\n').map((l) => '  ' + l).join('\n');
@@ -124,20 +125,21 @@ for (const id of available) {
   if (!meta) { console.log('!! kein Katalog-Eintrag für ' + id); continue; }
   const book = readJson('data/books/' + id + '.json');
   const notes = book.notes || {};
-  for (const f of FASSUNGEN) {
+  const bookFassungen = FASSUNGEN.filter((f) => (book.versions || ['l1', 'l2', 'l3']).includes(f.key));
+  for (const f of bookFassungen) {
     for (let ch = 1; ch <= meta.chapters; ch++) {
       const chap = book.chapters[String(ch)] || book.chapters[ch];
       if (!chap) continue;
       const url = LIVE + '/' + f.slug + '/' + id + '/' + ch + '/';
       const title = meta.name + ' ' + ch + ' – Augsburger GenerativBibel (' + f.name + ')';
-      const description = meta.name + ' ' + ch + ' in der Augsburger GenerativBibel, ' + f.name + '-Fassung – KI-übersetztes Neues Testament zum Lesen in drei Fassungen.';
+      const description = meta.name + ' ' + ch + ' in der Augsburger GenerativBibel, ' + f.name + '-Fassung – KI-übersetzte Bibel zum Lesen.';
       const html = buildPage({
         prefix: '../../../',
         title: title,
         description: description,
         canonical: url,
-        resultsHtml: chapterResults(meta, ch, chap, notes, f),
-        jsonLd: chapterJsonLd(meta, ch, f, url),
+        resultsHtml: chapterResults(meta, ch, chap, notes, f, bookFassungen),
+        jsonLd: chapterJsonLd(meta, ch, f, url, book.source),
       });
       const dir = path.join(ROOT, f.slug, id, String(ch));
       fs.mkdirSync(dir, { recursive: true });
